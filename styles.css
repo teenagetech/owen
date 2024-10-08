@@ -341,10 +341,12 @@ main {
 
 .titlebar-text {
     font-size: 20px;
+    color: #fff;
 }
 
 .short-text {
     font-size: 20px;
+    color: #fff;
 }
 
 .titlebar-link-photo {
