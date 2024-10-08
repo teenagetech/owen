@@ -1,0 +1,226 @@
+body {
+    font-family: 'Montserrat', 'Helvetica Neue', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #efede3;
+    text-decoration: none;
+    color: #e0e0e0;
+    display: flex;
+    flex-direction: column;
+}
+@media (prefers-color-scheme: dark) {
+    body {
+    background-color: #222222;
+    }
+}
+
+html {
+    scroll-behavior: smooth !important;
+    text-decoration: none;
+}
+
+a {
+    text-decoration: none;
+    color: #F1D302;
+}
+
+a :hover {
+    cursor: pointer;
+}
+
+.mainimg {
+    cursor: grab;
+    padding-bottom: 20px;
+}
+
+p, h1, h2, h3, h4, h5, h6, text, code, pre {
+    cursor: default;
+}
+
+p {
+    font-size: 18px;
+}
+.main-h1 {
+    font-size: 25px;
+}
+button {
+    background-color: #30BCED;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 20px;
+}
+button:hover {
+    background: linear-gradient(45deg, #ED1C24, #30BCED);
+    animation: gradientAnimation 5s infinite;
+    background-size: 400%;
+}
+button>a {
+    text-decoration: none;
+    color: #fff;
+}
+button>a:hover {
+    color: #fff;
+}
+.aboutMe {
+    width: 90vw;
+    max-width: 700px;
+    line-height: 1.7;
+}
+header {
+    height: 50px;
+    padding: 0 10px;
+    color: #000000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 6;
+    box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
+    display: flex;
+    align-items: center;
+    background-color: #ED1C24;
+}
+
+header nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+header nav ul li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header nav ul li a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+}
+
+
+main {
+    text-align: center;
+    padding: 80px 20px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.dropdown {
+    position: relative;
+    display: flexbox;
+    text-align: center;
+}
+
+.dropdown-content {
+    box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
+    background: #30BCED;
+    animation: headerAnimation 5s infinite;
+    background-size: 200% 200%;
+    text-align: center;
+    border-radius: 5px;
+    display: none;
+    position: absolute;
+    animation: fadeIn 0.75s;
+    padding: 4px;
+    min-width: 157px;
+    z-index: 3;
+}
+
+header>nav>ul>li>a {
+    animation: fadeIn 0.75s;
+}
+
+footer>p {
+    animation: fadeIn 0.75s;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 100% 50%;
+    }
+
+    50% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.dropdown-content a {
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    padding: 4px;
+    text-align: center;
+}
+
+.dropdown-content a:hover {
+    background-color: #00000074;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    text-align: center;
+}
+
+footer {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 3;
+    box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
+    color: #fff;
+    background-color: #F1D302;
+}
+
+main {
+    flex: 1;
+    text-align: center;
+}
+
+.logo {
+    padding-right: 6px;
+}
+
+.titlebar-text {
+    font-size: 20px;
+    padding-bottom: 3px;
+}
