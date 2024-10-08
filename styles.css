@@ -314,7 +314,6 @@ footer>p {
 }
 
 footer {
-    position: fixed;
     bottom: 0px;
     width: 100%;
     height: 46px;
@@ -326,6 +325,7 @@ footer {
     box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
     color: #222222;
     background-color: #F1D302;
+    position: fixed;
 }
 
 main {
