@@ -253,7 +253,7 @@ main {
     min-width: 157px;
     z-index: 3;
 }
-header nav ul li:last-child a {
+header nav ul li:last-child {
     padding-right: 20px;
 }
 header>nav>ul>li>a {
