@@ -4,13 +4,15 @@ body {
     padding: 0;
     background-color: #efede3;
     text-decoration: none;
-    color: #e0e0e0;
+    color: #222222;
     display: flex;
     flex-direction: column;
 }
+
 @media (prefers-color-scheme: dark) {
     body {
-    background-color: #222222;
+        background-color: #222222;
+        color: #e0e0e0;
     }
 }
 
@@ -33,16 +35,27 @@ a :hover {
     padding-bottom: 20px;
 }
 
-p, h1, h2, h3, h4, h5, h6, text, code, pre {
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+text,
+code,
+pre {
     cursor: default;
 }
 
 p {
     font-size: 18px;
 }
+
 .main-h1 {
     font-size: 25px;
 }
+
 button {
     background-color: #30BCED;
     border: none;
@@ -56,23 +69,28 @@ button {
     cursor: pointer;
     border-radius: 20px;
 }
+
 button:hover {
     background: linear-gradient(45deg, #ED1C24, #30BCED);
     animation: gradientAnimation 5s infinite;
     background-size: 400%;
 }
+
 button>a {
     text-decoration: none;
     color: #fff;
 }
+
 button>a:hover {
     color: #fff;
 }
+
 .aboutMe {
     width: 90vw;
     max-width: 700px;
     line-height: 1.7;
 }
+
 header {
     height: 50px;
     padding: 0 10px;
