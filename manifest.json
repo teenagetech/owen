@@ -1,0 +1,21 @@
+{
+    "name": "Owen Van Vooren",
+    "short_name": "Owen/Site",
+    "start_url": "/home.html",
+    "display": "standalone",
+    "background_color": "#222222",
+    "theme_color": "#FFFFFFF",
+    "icons": [
+      {
+        "src": "/favicon.ico",
+        "sizes": "48x48",
+        "type": "image/ico"
+      },
+      {
+        "src": "/apple-touch-icon.png",
+        "sizes": "180x180",
+        "type": "image/png"
+      }
+    ]
+  }
+  
