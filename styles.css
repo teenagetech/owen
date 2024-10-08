@@ -184,6 +184,7 @@ header {
 .slash {
     color: #fff;
     cursor: default;
+    animation: fadeIn 0.75s;
 }
 
 header nav {
