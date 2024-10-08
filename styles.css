@@ -78,6 +78,7 @@ body {
         animation: fadeOut 0.75s;
     }
 }
+
 @media (min-width: 761px) {
     .titlebar-text {
         display: all !important;
@@ -219,7 +220,8 @@ header nav ul li a {
     margin-right: 8px;
 }
 
-.titlebar-text, .short-text {
+.titlebar-text,
+.short-text {
     font-size: 20px;
     line-height: 1.2;
 }
@@ -254,9 +256,11 @@ main {
     min-width: 157px;
     z-index: 3;
 }
+
 header nav ul li:last-child {
     padding-right: 20px;
 }
+
 header>nav>ul>li>a {
     animation: fadeIn 0.75s;
 }
