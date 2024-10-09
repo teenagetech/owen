@@ -156,7 +156,9 @@ button>a:hover {
     max-width: 700px;
     line-height: 1.7;
 }
-
+.twitter-tweet {
+    max-width: 400px !important;
+}
 header {
     height: 50px;
     padding: 0 10px;
