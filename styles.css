@@ -392,3 +392,15 @@ main {
     animation: fadeIn 0.50s;
     color: #30BCED;
 }
+.titlebar-link-dev,
+.short-text-dev {
+    font-size: 20px;
+    color: #30BCED;
+    transition: color 0.5s ease;
+}
+.titlebar-link-photo,
+.short-text-photo {
+    font-size: 20px;
+    color: #F1D302;
+    transition: color 0.5s ease;
+}
