@@ -207,7 +207,14 @@ header nav ul li a {
     padding: 10px;
     text-decoration: none;
 }
-
+.normal-link {
+    color: #F1D302;
+    transition: color 0.5s ease;
+}
+.normal-link:hover {
+    color: #30BCED;
+    transition: color 0.5s ease;
+}
 .logo {
     height: 40px;
     margin-right: 8px;
