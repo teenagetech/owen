@@ -4,15 +4,39 @@ body {
     padding: 0;
     background-color: #efede3;
     text-decoration: none;
-    color: #222222;
     display: flex;
     flex-direction: column;
 }
 
 @media (prefers-color-scheme: dark) {
     body {
-        background-color: #222222;
+        background-color: #282829;
         color: #e0e0e0;
+    }
+    header {
+        box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
+    }
+    footer {
+        box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
+    }
+    .normal-link:hover {
+        color: #FFBF00;
+        transition: color 0.5s ease;
+    }
+}
+@media (prefers-color-scheme: light) {
+    body {
+        color: #282829;
+    }
+    header {
+        box-shadow: rgba(0, 0, 0, 0.477) 0px 1px 15px;
+    }
+    footer {
+        box-shadow: rgba(0, 0, 0, 0.477) 0px 5px 15px;
+    }
+    .normal-link:hover {
+        color: #E03400;
+        transition: color 0.5s ease;
     }
 }
 
@@ -98,7 +122,6 @@ html {
 
 a {
     text-decoration: none;
-    color: #F1D302;
 }
 
 a :hover {
@@ -123,9 +146,11 @@ p {
 }
 
 button {
-    background-color: #30BCED;
+    color: #FFFFFF;
+    transition: color 0.25s ease;
+    background-color: #45A3D9;
+    transition: background-color 0.5s ease;
     border: none;
-    color: #fff;
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;
@@ -137,9 +162,10 @@ button {
 }
 
 button:hover {
-    background: linear-gradient(45deg, #ED1C24, #30BCED);
-    animation: gradientAnimation 5s infinite;
-    background-size: 400%;
+    color: #282829;
+    transition: color 0.25s ease;
+    background-color: #FFBF00;
+    transition: background-color 0.5s ease;
 }
 
 button>a {
@@ -160,20 +186,63 @@ button>a:hover {
     max-width: 400px !important;
 }
 header {
-    height: 50px;
-    padding: 0 10px;
+    height: 56px;
+    padding: 0 20px; /* Increase side padding for more balance */
     color: #000000;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 6;
-    box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
+    display: flex;
+    align-items: center; /* Ensures vertical centering */
+    justify-content: space-between;
+    background-color: #E03400;
+    box-sizing: border-box;
+}
+
+.titlebar-text {
+    font-size: 20px;
+    line-height: 56px;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    vertical-align: middle;
+}
+
+.logo {
+    height: 40px;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+header nav ul li a {
+    padding: 10px 15px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+header nav ul {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #ED1C24;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
 }
+
+header nav ul li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header nav ul li:last-child {
+    padding-right: 10px;
+}
+
 
 .slash {
     color: #fff;
@@ -191,33 +260,15 @@ header nav ul {
     justify-content: space-between;
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 0 10px;
 }
 
-header nav ul li {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-grow: 1;
-}
-
-header nav ul li a {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    text-decoration: none;
+.normal-link {
+    transition: color 0.5s ease;
 }
 .normal-link {
-    color: #F1D302;
+    color: #45A3D9;
     transition: color 0.5s ease;
-}
-.normal-link:hover {
-    color: #30BCED;
-    transition: color 0.5s ease;
-}
-.logo {
-    height: 40px;
-    margin-right: 8px;
 }
 
 .titlebar-text,
@@ -244,7 +295,7 @@ main {
 
 .dropdown-content {
     box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
-    background: #30BCED;
+    background: #45A3D9;
     animation: headerAnimation 5s infinite;
     background-size: 200% 200%;
     text-align: center;
@@ -257,30 +308,12 @@ main {
     z-index: 3;
 }
 
-header nav ul li:last-child {
-    padding-right: 20px;
-}
-
 header>nav>ul>li>a {
     animation: fadeIn 0.75s;
 }
 
 footer>p {
     animation: fadeIn 0.75s;
-}
-
-@keyframes gradientAnimation {
-    0% {
-        background-position: 100% 50%;
-    }
-
-    50% {
-        background-position: 0% 50%;
-    }
-
-    100% {
-        background-position: 100% 50%;
-    }
 }
 
 @keyframes fadeIn {
@@ -331,9 +364,8 @@ footer {
     justify-content: center;
     text-align: center;
     z-index: 3;
-    box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
-    color: #222222;
-    background-color: #F1D302;
+    color: #282829;
+    background-color: #FFBF00;
     position: fixed;
 }
 
@@ -346,68 +378,41 @@ main {
     padding-right: 6px;
 }
 
-.titlebar-text {
-    font-size: 20px;
-    color: #fff;
-}
-
 .short-text {
     font-size: 20px;
     color: #fff;
 }
 
+.titlebar-link-dev,
 .titlebar-link-photo {
     font-size: 20px;
-    color: #F1D302;
+    color: #FFBF00;
 }
 
-.titlebar-link-photo:hover {
-    font-size: 20px;
-    animation: fadeIn 0.50s;
-    color: #30BCED;
-}
-
-.titlebar-link-dev {
-    font-size: 20px;
-    color: #30BCED;
-}
-
+.titlebar-link-photo:hover,
 .titlebar-link-dev:hover {
     font-size: 20px;
     animation: fadeIn 0.50s;
-    color: #F1D302;
+    color: #FFFFFF;
 }
 
-.short-text-dev {
-    font-size: 20px;
-    color: #30BCED;
-}
-
+.short-text-dev,
 .short-text-photo {
     font-size: 20px;
-    color: #F1D302;
+    color: #FFBF00;
 }
 
-.short-text-dev:hover {
-    font-size: 20px;
-    animation: fadeIn 0.50s;
-    color: #F1D302;
-}
-
+.short-text-dev:hover,
 .short-text-photo:hover {
     font-size: 20px;
     animation: fadeIn 0.50s;
-    color: #30BCED;
+    color: #FFFFFF;
 }
 .titlebar-link-dev,
-.short-text-dev {
-    font-size: 20px;
-    color: #30BCED;
-    transition: color 0.5s ease;
-}
+.short-text-dev,
 .titlebar-link-photo,
 .short-text-photo {
     font-size: 20px;
-    color: #F1D302;
+    color: #FFBF00;
     transition: color 0.5s ease;
 }
