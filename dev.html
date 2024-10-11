@@ -17,6 +17,7 @@
   <meta name="theme-color" content="#E03400">
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body draggable="false">
   <div id="header-container"></div>
   <main>
@@ -24,8 +25,8 @@
       oncontextmenu="return false;">
     <h1 class="main-h1">I develop things.</h1>
     <p class="aboutMe">I develop in Swift, HTML, CSS, a little
-      JS, and a very small amount of Arduino/C++. You can check out my programming escapades at my startup, <a class="normal-link"
-        href="https://teenagetech.github.io">Teenage Tech</a>.
+      JS, and a very small amount of Arduino/C++. You can check out my programming escapades at my startup, <a
+        class="normal-link" href="https://teenagetech.github.io">Teenage Tech</a>.
     </p>
     <br>
     <span>
@@ -37,15 +38,96 @@
         title="Chat with the internet's favorite cat 😉"><button><b>CatChat</b></button></a>
       <a href="https://artshare.one"
         title="Share your art with the world. Or maybe just localStorage."><button><b>ArtShare</b></button></a>
-        <a href="https://teenagetech.github.io/teenagetechgames"
+      <a href="https://teenagetech.github.io/teenagetechgames"
         title="Rescue the Holy Swiss in Mouse Man: Cheese Heist."><button><b>Mouse Man</b></button></a>
     </span>
+    <br>
+    <br>
+    <h2>A few of my dev projects:</h2>
+    <br>
+    <div class="gallery-container">
+      <div class="gallery-item" onclick="toggleOverlay(this)">
+        <img src="XploreImage.png" alt="Xplore" class="gallery-image" oncontextmenu="return false;">
+        <div class="image-overlay">
+          <p>I originally created Xplore as a fun way to learn Swift, but then it quickly became a simple but powerful
+            web browser for Mac.</p>
+        </div>
+      </div>
+      <div class="gallery-item" onclick="toggleOverlay(this)">
+        <img src="wordclockImage.png" alt="word clock" class="gallery-image" oncontextmenu="return false;">
+        <div class="image-overlay">
+          <p>I designed word clock as a fun, informal, and possibly useful browser extension after looking at my
+            Playdate console's own simple word clock, that spelled out the time instead of using numbers.</p>
+        </div>
+      </div>
+      <div class="gallery-item" onclick="toggleOverlay(this)">
+        <img src="CatChatImage.png" alt="CatChat" class="gallery-image" oncontextmenu="return false;">
+        <div class="image-overlay">
+          <p>After noticing the controversy over AI, I decided to build a simple and fun <i>non</i>-AI chatbot, and made
+            it cat-themed, to keep with the informal and fun vibe.</p>
+        </div>
+      </div>
+      <div class="gallery-item" onclick="toggleOverlay(this)">
+        <img src="ArtShareImage.png" alt="ArtShare" class="gallery-image" oncontextmenu="return false;">
+        <div class="image-overlay">
+          <p>As part of the 2023-2024 <i>FIRST LEGO League</i> season, I used my web dev skills to design a website for
+            sharing art, called ArtShare, in partnership with my talented team.</p>
+        </div>
+      </div>
+      <div class="gallery-item" onclick="toggleOverlay(this)">
+        <img src="MouseManImage.png" alt="Mouse Man" class="gallery-image" oncontextmenu="return false;">
+        <div class="image-overlay">
+          <p>My cousin, Weston, likes to draw comics, with his main character, "Mouse Man". I asked him if he'd like a
+            Mouse Man video game. He said yes, and Mouse Man: Cheese Heist was born.</p>
+        </div>
+      </div>
+      <div class="gallery-item" onclick="toggleOverlay(this)">
+        <img src="TeenageTechImage.png" alt="Teenage Tech" class="gallery-image" oncontextmenu="return false;">
+        <div class="image-overlay">
+          <p>I founded Teenage Tech as a fun way to use my programming skills, and share my projects with others.</p>
+        </div>
+      </div>
+    </div>
   </main>
   <footer>
     <p>&copy; Owen Van Vooren. All rights reserved.</p>
   </footer>
   <script src="header.js"></script>
   <script type="module" src="firebaseconfig.js"></script>
+  <script>
+    let activeOverlay = null;
+    let dimmedImage = null;
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('click', (event) => {
+        event.stopPropagation();
+
+        const overlay = item.querySelector('.image-overlay');
+        const image = item.querySelector('.gallery-image');
+        if (activeOverlay && activeOverlay !== overlay) {
+          activeOverlay.classList.remove('show');
+          dimmedImage.classList.remove('dim');
+        }
+
+        overlay.classList.toggle('show');
+        image.classList.toggle('dim');
+        if (overlay.classList.contains('show')) {
+          activeOverlay = overlay;
+          dimmedImage = image;
+        } else {
+          activeOverlay = null;
+          dimmedImage = null;
+        }
+      });
+    });
+    document.addEventListener('click', () => {
+      if (activeOverlay) {
+        activeOverlay.classList.remove('show');
+        dimmedImage.classList.remove('dim');
+        activeOverlay = null;
+        dimmedImage = null;
+      }
+    });
+  </script>
 </body>
 
 </html>

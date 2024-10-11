@@ -17,15 +17,48 @@
   <meta name="theme-color" content="#E03400">
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body draggable="false">
   <div id="header-container"></div>
   <main>
     <img src="mascotblue.png" alt="My logo : )" draggable="false" width="200" height=auto class="mainimg"
       oncontextmenu="return false;">
     <h1 class="main-h1">I take pictures.</h1>
-    <p class="aboutMe">I'm an amateur photographer/cinematographer, as well as an aspiring video editor. I've got a YouTube
-      channel that I run with my best friend. It's called <a href="https://www.youtube.com/@PulsarFreestyle" class="normal-link">Pulsar Freestyle</a>, where
+    <p class="aboutMe">I'm an amateur photographer/cinematographer, as well as an aspiring video editor. I've got a
+      YouTube
+      channel that I run with my best friend. It's called <a href="https://www.youtube.com/@PulsarFreestyle"
+        class="normal-link">Pulsar Freestyle</a>, where
       we post freestyle FPV videos.</p>
+    <br>
+    <br>
+    <h2>Some of my photos:</h2>
+    <br>
+    <div class="gallery-container">
+      <div class="gallery-item" onclick="toggleOverlay(this)">
+        <img src="mountain.png" alt="Mountain" class="gallery-image" oncontextmenu="return false;">
+        <div class="image-overlay">Avalanche Mountain, Glacier National Park</div>
+      </div>
+      <div class="gallery-item" onclick="toggleOverlay(this)">
+        <img src="cardinal.png" alt="Cardinal" class="gallery-image" oncontextmenu="return false;">
+        <div class="image-overlay">Cardinal in a birch tree</div>
+      </div>
+      <div class="gallery-item" onclick="toggleOverlay(this)">
+        <img src="glacier.png" alt="Glacier" class="gallery-image" oncontextmenu="return false;">
+        <div class="image-overlay">Jackson Glacier, Glacier National Park</div>
+      </div>
+      <div class="gallery-item" onclick="toggleOverlay(this)">
+        <img src="lake.png" alt="Lake" class="gallery-image" oncontextmenu="return false;">
+        <div class="image-overlay">Windy Lake, Glacier National Park</div>
+      </div>
+      <div class="gallery-item" onclick="toggleOverlay(this)">
+        <img src="lighthouse.png" alt="Lighthouse" class="gallery-image" oncontextmenu="return false;">
+        <div class="image-overlay">Lighthouse, Maine</div>
+      </div>
+      <div class="gallery-item" onclick="toggleOverlay(this)">
+        <img src="cabin.png" alt="Cabin" class="gallery-image" oncontextmenu="return false;">
+        <div class="image-overlay">Cabin at dusk</div>
+      </div>
+    </div>
     <br>
   </main>
   <footer>
@@ -33,6 +66,41 @@
   </footer>
   <script src="header.js"></script>
   <script type="module" src="firebaseconfig.js"></script>
+  <script>
+    let activeOverlay = null;
+    let dimmedImage = null;
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('click', (event) => {
+        event.stopPropagation();
+
+        const overlay = item.querySelector('.image-overlay');
+        const image = item.querySelector('.gallery-image');
+        if (activeOverlay && activeOverlay !== overlay) {
+          activeOverlay.classList.remove('show');
+          dimmedImage.classList.remove('dim');
+        }
+
+        overlay.classList.toggle('show');
+        image.classList.toggle('dim');
+        if (overlay.classList.contains('show')) {
+          activeOverlay = overlay;
+          dimmedImage = image;
+        } else {
+          activeOverlay = null;
+          dimmedImage = null;
+        }
+      });
+    });
+    document.addEventListener('click', () => {
+      if (activeOverlay) {
+        activeOverlay.classList.remove('show');
+        dimmedImage.classList.remove('dim');
+        activeOverlay = null;
+        dimmedImage = null;
+      }
+    });
+  </script>
+
 </body>
 
 </html>
