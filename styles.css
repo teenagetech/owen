@@ -38,6 +38,9 @@ body {
     .gallery-item {
         box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
     }
+    .twitter-tweet {
+        box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
+    }
 
     .gallery-item .image-overlay {
         background-color: rgba(0, 0, 0, 0.6);
@@ -69,6 +72,10 @@ body {
 
     .carousel-caption {
         background-color: rgba(255, 255, 255, 0.6);
+    }
+
+    .twitter-tweet {
+        box-shadow: rgba(0, 0, 0, 0.477) 0px 5px 15px;
     }
 
     .gallery-item {
