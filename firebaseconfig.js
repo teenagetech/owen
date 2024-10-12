@@ -1,17 +1,14 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-analytics.js";
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-analytics.js";
+  const firebaseConfig = {
+    apiKey: "AIzaSyARDxDlTMVvpm_deaut9qwy2qrtWG9rZBQ",
+    authDomain: "owen-uno.firebaseapp.com",
+    projectId: "owen-uno",
+    storageBucket: "owen-uno.appspot.com",
+    messagingSenderId: "131464317652",
+    appId: "1:131464317652:web:405f86bff2ea4150018941",
+    measurementId: "G-PKR2D1672G"
+  };
 
-const firebaseConfig = {
-  apiKey: "AIzaSyCAAIxwAqHedBT3c1fuTUkaDBxQ0MaKsRE",
-  authDomain: "teenage-tech.firebaseapp.com",
-  projectId: "teenage-tech",
-  storageBucket: "teenage-tech.appspot.com",
-  messagingSenderId: "8796698339",
-  appId: "1:8796698339:web:ab9388605c5d7d6c0577d6",
-  measurementId: "G-N7Q05TGCJ6"
-};
-
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-
-export { app, analytics };
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);

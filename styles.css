@@ -71,7 +71,7 @@ body {
     }
 
     .carousel-caption {
-        background-color: rgba(255, 255, 255, 0.6);
+        background-color: rgba(255, 255, 255, 0.7);
     }
 
     .twitter-tweet {
@@ -177,6 +177,8 @@ a :hover {
 .mainimg {
     cursor: grab;
     padding-bottom: 20px;
+    -webkit-filter: drop-shadow(6px 6px 6px #1f1f1f);
+    filter: drop-shadow(6px 6px 6px #1f1f1f);
 }
 
 p,
@@ -479,6 +481,11 @@ main {
     transition: color 0.5s ease;
 }
 
+.carousel {
+    display: flex;
+    transition: transform 0.4s ease-in-out;
+}
+
 .carousel-container {
     position: relative;
     max-width: 90vw;
@@ -486,19 +493,22 @@ main {
     margin: auto;
     overflow: hidden;
     border-radius: 15px;
-}
-
-.carousel {
+    max-height: 580px;
     display: flex;
-    transition: transform 0.4s ease-in-out;
+    align-items: center;
+    justify-content: center;
 }
 
 .carousel-image {
     width: 100%;
     height: auto;
+    max-height: 100%;
     object-fit: contain;
-    max-height: 80vh;
     border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 
@@ -515,7 +525,12 @@ main {
     cursor: pointer;
     padding: 10px;
     font-size: 18px;
-    border-radius: 20px;
+    border-radius: 10px;
+    width: 40px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .carousel-prev {
@@ -553,7 +568,7 @@ main {
 
 .carousel-caption {
     position: absolute;
-    bottom: 10px;
+    bottom: 20px;
     left: 10px;
     padding: 5px 10px;
     color: #fff;
@@ -579,7 +594,7 @@ main {
     position: relative;
     box-sizing: border-box;
     overflow: hidden;
-    border-radius: 20px;
+    border-radius: 10px;
     width: 100%;
     max-width: 400px;
     height: 300px;
@@ -590,8 +605,7 @@ main {
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease, filter 0.3s ease;
-    border-radius: 20px;
-    ;
+    border-radius: 10px;
 }
 
 .gallery-item .image-overlay {
@@ -607,10 +621,14 @@ main {
     transition: opacity 0.3s ease;
     font-size: 18px;
     text-align: center;
-    border-radius: 20px;
+    border-radius: 10px;
     cursor: pointer;
-    padding-left: 10px;
-    padding-right: 10px;
+}
+.gallery-item .image-overlay p {
+    cursor: pointer;
+    padding-left: 15px;
+    padding-right: 15px;
+    line-height: 1.6;
 }
 
 .gallery-item .image-overlay.show {
