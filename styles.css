@@ -46,6 +46,10 @@ body {
         background-color: rgba(0, 0, 0, 0.6);
         color: #fff;
     }
+    .mainimg {
+        -webkit-filter: drop-shadow(6px 6px 6px #1f1f1f);
+        filter: drop-shadow(6px 6px 6px #1f1f1f);
+    }
 }
 
 @media (prefers-color-scheme: light) {
@@ -85,6 +89,10 @@ body {
     .gallery-item .image-overlay {
         background-color: rgba(256, 256, 256, 0.6);
         color: #282829;
+    }
+    .mainimg {
+        -webkit-filter: drop-shadow(6px 6px 6px #1f1f1f);
+        filter: drop-shadow(6px 6px 6px #b7b7b7);
     }
 }
 
@@ -177,8 +185,6 @@ a :hover {
 .mainimg {
     cursor: grab;
     padding-bottom: 20px;
-    -webkit-filter: drop-shadow(6px 6px 6px #1f1f1f);
-    filter: drop-shadow(6px 6px 6px #1f1f1f);
 }
 
 p,
