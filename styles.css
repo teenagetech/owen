@@ -8,6 +8,10 @@ body {
     flex-direction: column;
 }
 
+p {
+    line-height: 1.6;
+}
+
 @media (prefers-color-scheme: dark) {
     body {
         background-color: #282829;
@@ -49,6 +53,9 @@ body {
     .mainimg {
         -webkit-filter: drop-shadow(6px 6px 6px #1f1f1f);
         filter: drop-shadow(6px 6px 6px #1f1f1f);
+    }
+    .yellowtext {
+        color: #FFBF00;
     }
 }
 
@@ -93,6 +100,9 @@ body {
     .mainimg {
         -webkit-filter: drop-shadow(6px 6px 6px #1f1f1f);
         filter: drop-shadow(6px 6px 6px #b7b7b7);
+    }
+    .yellowtext {
+        color: #cf9b00;
     }
 }
 
