@@ -6,6 +6,7 @@ body {
     text-decoration: none;
     display: flex;
     flex-direction: column;
+    -ms-overflow-style: none;
 }
 
 p {
@@ -42,6 +43,7 @@ p {
     .gallery-item {
         box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
     }
+
     .twitter-tweet {
         box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
     }
@@ -50,10 +52,12 @@ p {
         background-color: rgba(0, 0, 0, 0.6);
         color: #fff;
     }
+
     .mainimg {
         -webkit-filter: drop-shadow(6px 6px 6px #1f1f1f);
         filter: drop-shadow(6px 6px 6px #1f1f1f);
     }
+
     .yellowtext {
         color: #FFBF00;
     }
@@ -97,13 +101,24 @@ p {
         background-color: rgba(256, 256, 256, 0.6);
         color: #282829;
     }
+
     .mainimg {
         -webkit-filter: drop-shadow(6px 6px 6px #1f1f1f);
         filter: drop-shadow(6px 6px 6px #cccccc);
     }
+
     .yellowtext {
         color: #cf9b00;
     }
+}
+
+html {
+    scrollbar-width: none;
+}
+
+body::-webkit-scrollbar,
+body::-webkit-scrollbar-button {
+    display: none;
 }
 
 @media (max-width: 548px) {
@@ -640,6 +655,7 @@ main {
     border-radius: 10px;
     cursor: pointer;
 }
+
 .gallery-item .image-overlay p {
     cursor: pointer;
     padding-left: 15px;
