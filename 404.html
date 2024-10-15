@@ -6,7 +6,7 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Owen Van Vooren</title>
+  <title>Owen Van Vooren - Page Not Found</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
@@ -18,6 +18,7 @@
 <body draggable="false">
   <div id="header-container"></div>
   <main>
+    <!--Hey from the HTML! Sorry you couldn't find the page you were looking for :(-->
     <img src="mascotblue.png" alt="My logo : )" draggable="false" width="200" height=auto class="mainimg"
       oncontextmenu="return false;">
     <h1 class="main-h1">Oops! It seems you've lost your way.</h1>
@@ -27,12 +28,32 @@
       <a href="https://owen.uno"><button><b>Back to home</b></button></a>
     </span>
     <br>
+    <div id="randomFact" class="random-fact"></div>
   </main>
   <footer>
-    <p>&copy; Owen Van Vooren. All rights reserved.</p>
+    <p>&copy; <a href="https://github.com/teenagetech" class="footer-link">Owen Van Vooren</a>. All rights reserved.</p>
   </footer>
   <script src="header.js"></script>
   <script type="module" src="firebaseconfig.js"></script>
+
+  <script>
+    const facts = [
+      "Fun fact: this site is powered by over 1,250 lines of code!",
+      "Fun fact: Owen.uno is a shorter domain than Apple.com, Google.com, and even GitHub.io!",
+      "Site hint: try hovering your cursor over the blue mascot. Can you pet him?",
+      'Question: is the mascot a duck or a chicken? I can\'t decide! Email me your thoughts at <a href="mailto:contact@owen.uno" class="normal-link">contact@owen.uno</a>!'
+    ];
+
+
+    function displayRandomFact() {
+      const randomIndex = Math.floor(Math.random() * facts.length);
+      const factElement = document.getElementById('randomFact');
+      factElement.innerHTML = facts[randomIndex];
+    }
+
+    displayRandomFact();
+  </script>
+
 </body>
 
 </html>
