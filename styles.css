@@ -225,10 +225,15 @@ a:hover {
     cursor: pointer;
 }
 
-
 .mainimg {
+    transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
     cursor: grab;
-    padding-bottom: 20px;
+    z-index: 4;
+}
+
+.mainimg:hover {
+    transform: rotate(-3deg);
+    cursor: grab;
 }
 
 p,
