@@ -136,6 +136,19 @@
         <br>
         <p>Have an idea? A comment? A question? An opinion on duck/chicken mascot identity!?<br>Email me at <a
                 href="mailto:hi@owen.uno" class="normal-link">hi@owen.uno</a></p>
+        <br>
+        <h2>Join the mailing list!</h2>
+        <h4>I'll let you know when I release new software or when new photography drops.</h4>
+        <br>
+        <form class="subscribe-form" id="subscribeForm">
+            <div class="input-container">
+                <input type="email" id="email-input" name="email" class="input-field" placeholder="Email Address"
+                    required>
+                <button type="submit" class="subscribe-button"><b>Subscribe</b></button>
+            </div>
+            <p id="email-helper-text" class="email-helper-text"></p>
+            <p id="form-message" class="form-message"></p>
+        </form>
     </main>
     <footer>
         <p>&copy; <a href="https://github.com/teenagetech" class="footer-link">Owen Van Vooren</a>. All rights reserved.
@@ -143,6 +156,96 @@
     </footer>
     <script src="header.js"></script>
     <script type="module" src="firebaseconfig.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const emailInput = document.getElementById('email-input');
+            const emailHelperText = document.getElementById('email-helper-text');
+            const subscribeButton = document.querySelector('.subscribe-button');
+
+            emailInput.addEventListener('input', function () {
+                const email = emailInput.value;
+
+                if (validateEmail(email)) {
+                    emailHelperText.textContent = 'Awesome! Your email looks good.';
+                    emailHelperText.classList.add('valid');
+                    emailHelperText.classList.remove('error');
+                    subscribeButton.disabled = false;
+                } else {
+                    emailHelperText.textContent = getEmailErrorMessage(email);
+                    emailHelperText.classList.add('error');
+                    emailHelperText.classList.remove('valid');
+                    subscribeButton.disabled = true;
+                }
+            });
+
+            document.getElementById('subscribeForm').addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const email = emailInput.value;
+                const formMessage = document.getElementById('form-message');
+                const formspreeUrl = 'https://formspree.io/f/YOUR_FORM_ID';
+
+                if (localStorage.getItem('formSubmitted')) {
+                    formMessage.textContent = 'You have already subscribed. Only one request per user!';
+                    formMessage.classList.add('error');
+                    return;
+                }
+
+                if (validateEmail(email)) {
+                    fetch(formspreeUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ email: email })
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.ok) {
+                                formMessage.textContent = 'Thank you for subscribing!';
+                                formMessage.classList.remove('error');
+                                formMessage.classList.add('success');
+                                localStorage.setItem('formSubmitted', true);
+                                emailInput.value = '';
+                                subscribeButton.disabled = true;
+                                emailHelperText.textContent = '';
+                            } else {
+                                formMessage.textContent = 'Oops! Something went wrong. Please try again.';
+                                formMessage.classList.add('error');
+                            }
+                        })
+                        .catch(error => {
+                            formMessage.textContent = 'Oops! Something went wrong. Please try again.';
+                            formMessage.classList.add('error');
+                        });
+                }
+            });
+
+            function validateEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(String(email).toLowerCase());
+            }
+
+            function getEmailErrorMessage(email) {
+                if (!email.includes('@')) {
+                    return 'Hmm, it looks like you\'re missing the "@" sign.';
+                } else if (!email.includes('.')) {
+                    return 'Almost there, but you\'re missing a "." to complete the domain!';
+                } else if (email.split('@').length > 2) {
+                    return 'Whoa! You\'ve got more than one "@" sign there.';
+                } else if (email.startsWith('@') || email.endsWith('@')) {
+                    return 'Your email shouldn\'t start or end with the "@" sign.';
+                } else if (email.endsWith('.')) {
+                    return 'Your email shouldn\'t end with a "."';
+                } else {
+                    return 'This doesn\'t look like a valid email address. Double-check it!';
+                }
+            }
+        });
+
+
+    </script>
     <script>
         const carousel = document.querySelector('.carousel');
         const slides = document.querySelectorAll('.carousel-item');
