@@ -148,7 +148,11 @@
             </div>
             <p id="email-helper-text" class="email-helper-text"></p>
             <p id="form-message" class="form-message"></p>
+            <br>
+            <br>
         </form>
+        <br>
+        <br>
     </main>
     <footer>
         <p>&copy; <a href="https://github.com/teenagetech" class="footer-link">Owen Van Vooren</a>. All rights reserved.
@@ -161,10 +165,14 @@
             const emailInput = document.getElementById('email-input');
             const emailHelperText = document.getElementById('email-helper-text');
             const subscribeButton = document.querySelector('.subscribe-button');
-
+            const formMessage = document.getElementById('form-message');
+    
             emailInput.addEventListener('input', function () {
                 const email = emailInput.value;
-
+    
+                formMessage.textContent = '';
+                formMessage.classList.remove('error', 'success');
+    
                 if (validateEmail(email)) {
                     emailHelperText.textContent = 'Awesome! Your email looks good.';
                     emailHelperText.classList.add('valid');
@@ -177,20 +185,19 @@
                     subscribeButton.disabled = true;
                 }
             });
-
+    
             document.getElementById('subscribeForm').addEventListener('submit', function (event) {
                 event.preventDefault();
-
+    
                 const email = emailInput.value;
-                const formMessage = document.getElementById('form-message');
                 const formspreeUrl = 'https://formspree.io/f/xjkvvzaq';
-
+    
                 if (localStorage.getItem('formSubmitted')) {
-                    formMessage.textContent = 'You have already subscribed. Only one request per user!';
+                    formMessage.textContent = 'Hey! It looks like you\'ve already subscribed! You\'re all set!';
                     formMessage.classList.add('error');
                     return;
                 }
-
+    
                 if (validateEmail(email)) {
                     fetch(formspreeUrl, {
                         method: 'POST',
@@ -206,46 +213,31 @@
                                 formMessage.textContent = 'Thank you for subscribing!';
                                 formMessage.classList.remove('error');
                                 formMessage.classList.add('success');
-                                localStorage.setItem('formSubmitted', true);
-                                emailInput.value = '';
-                                subscribeButton.disabled = true;
-                                emailHelperText.textContent = '';
+                                localStorage.setItem('formSubmitted', 'true');
                             } else {
                                 formMessage.textContent = 'Oops! Something went wrong. Please try again.';
                                 formMessage.classList.add('error');
                             }
                         })
-                        .catch(error => {
+                        .catch(() => {
                             formMessage.textContent = 'Oops! Something went wrong. Please try again.';
                             formMessage.classList.add('error');
                         });
                 }
             });
-
+    
             function validateEmail(email) {
-                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                return re.test(String(email).toLowerCase());
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
             }
-
+    
             function getEmailErrorMessage(email) {
-                if (!email.includes('@')) {
-                    return 'Hmm, it looks like you\'re missing the "@" sign.';
-                } else if (!email.includes('.')) {
-                    return 'Almost there, but you\'re missing a "." to complete the domain!';
-                } else if (email.split('@').length > 2) {
-                    return 'Whoa! You\'ve got more than one "@" sign there.';
-                } else if (email.startsWith('@') || email.endsWith('@')) {
-                    return 'Your email shouldn\'t start or end with the "@" sign.';
-                } else if (email.endsWith('.')) {
-                    return 'Your email shouldn\'t end with a "."';
-                } else {
-                    return 'This doesn\'t look like a valid email address. Double-check it!';
-                }
+                if (!email) return 'Email is required.';
+                return 'Please enter a valid email address.';
             }
         });
-
-
     </script>
+    
     <script>
         const carousel = document.querySelector('.carousel');
         const slides = document.querySelectorAll('.carousel-item');
