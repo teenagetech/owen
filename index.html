@@ -137,7 +137,7 @@
         <p>Have an idea? A comment? A question? An opinion on duck/chicken mascot identity!?<br>Email me at <a
                 href="mailto:hi@owen.uno" class="normal-link">hi@owen.uno</a></p>
         <br>
-        <h2>Join the mailing list!</h2>
+        <h2>Stay in the loop!</h2>
         <h4>I'll let you know when I release new software or when new photography drops.</h4>
         <br>
         <form class="subscribe-form" id="subscribeForm">
@@ -167,17 +167,12 @@
         const formMessage = document.getElementById('form-message');
         const subscribeButton = document.querySelector('.subscribe-button');
 
-        // Function to validate email
         emailInput.addEventListener('input', function () {
             const email = emailInput.value;
-
-            // Clear form message (for already submitted/server errors)
             if (formMessage.textContent !== '') {
                 formMessage.textContent = '';
                 formMessage.classList.remove('error');
             }
-
-            // Email validation logic
             if (validateEmail(email)) {
                 emailHelperText.textContent = 'Awesome! Your email looks good.';
                 emailHelperText.classList.add('valid');
@@ -191,7 +186,6 @@
             }
         });
 
-        // Handling form submission
         document.getElementById('subscribeForm').addEventListener('submit', function (event) {
             event.preventDefault();
 
