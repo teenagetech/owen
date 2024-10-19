@@ -161,69 +161,61 @@
     <script src="header.js"></script>
     <script type="module" src="firebaseconfig.js"></script>
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const emailInput = document.getElementById('email-input');
-        const emailHelperText = document.getElementById('email-helper-text');
-        const formMessage = document.getElementById('form-message');
-        const subscribeButton = document.querySelector('.subscribe-button');
+        document.addEventListener('DOMContentLoaded', function () {
+            const emailInput = document.getElementById('email-input');
+            const emailHelperText = document.getElementById('email-helper-text');
+            const formMessage = document.getElementById('form-message');
+            const subscribeButton = document.querySelector('.subscribe-button');
 
-        emailInput.addEventListener('input', function () {
-            const email = emailInput.value;
-            if (formMessage.textContent !== '') {
-                formMessage.textContent = '';
-                formMessage.classList.remove('error');
-            }
-            if (validateEmail(email)) {
-                emailHelperText.textContent = 'Awesome! Your email looks good.';
-                emailHelperText.classList.add('valid');
-                emailHelperText.classList.remove('error');
-                subscribeButton.disabled = false;
-            } else {
-                emailHelperText.textContent = getEmailErrorMessage(email);
-                emailHelperText.classList.add('error');
-                emailHelperText.classList.remove('valid');
-                subscribeButton.disabled = true;
-            }
-        });
+            emailInput.addEventListener('input', function () {
+                const email = emailInput.value;
+                if (formMessage.textContent !== '') {
+                    formMessage.textContent = '';
+                    formMessage.classList.remove('error');
+                }
+                if (validateEmail(email)) {
+                    emailHelperText.textContent = 'Awesome! Your email looks good.';
+                    emailHelperText.classList.add('valid');
+                    emailHelperText.classList.remove('error');
+                    subscribeButton.disabled = false;
+                } else {
+                    emailHelperText.textContent = getEmailErrorMessage(email);
+                    emailHelperText.classList.add('error');
+                    emailHelperText.classList.remove('valid');
+                    subscribeButton.disabled = true;
+                }
+            });
 
-        document.getElementById('subscribeForm').addEventListener('submit', function (event) {
-            event.preventDefault();
+            document.getElementById('subscribeForm').addEventListener('submit', function (event) {
+                event.preventDefault();
 
-            const email = emailInput.value;
-            const formspreeUrl = 'https://formspree.io/f/xjkvvzaq';
-
-            if (localStorage.getItem('formSubmitted')) {
-                formMessage.textContent = 'Hey! It looks like you\'ve already subscribed! You\'re all set!';
-                formMessage.classList.add('error');
-                return;
-            }
-
-            if (validateEmail(email)) {
-                fetch(formspreeUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ email: email })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.ok) {
-                        formMessage.textContent = 'Thank you for subscribing!';
-                        formMessage.classList.remove('error');
-                        localStorage.setItem('formSubmitted', true);
-                    } else {
-                        formMessage.textContent = 'Oops! Something went wrong. Please try again.';
-                        formMessage.classList.add('error');
-                    }
-                })
-                .catch(error => {
-                    formMessage.textContent = 'Oops! Something went wrong. Please try again.';
-                    formMessage.classList.add('error');
-                });
-            }
-        });
+                const email = emailInput.value;
+                const formspreeUrl = 'https://formspree.io/f/xjkvvzaq';
+                if (validateEmail(email)) {
+                    fetch(formspreeUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ email: email })
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.ok) {
+                                formMessage.textContent = 'Thank you for subscribing!';
+                                formMessage.classList.remove('error');
+                            } else {
+                                formMessage.textContent = 'Oops! Something went wrong. Please try again.';
+                                formMessage.classList.add('error');
+                            }
+                        })
+                        .catch(error => {
+                            formMessage.textContent = 'Oops! Something went wrong. Please try again.';
+                            formMessage.classList.add('error');
+                        });
+                }
+            });
 
             function validateEmail(email) {
                 const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -246,7 +238,6 @@
                 }
             }
         });
-
 
     </script>
     <script>
