@@ -134,7 +134,7 @@
         <p><b>Companies:</b><br>Apple<br>Panic<br>teenage engineering</p>
         <p><b>Color:</b><br><b class="yellowtext">Yellow</b></p>
         <br>
-        <p>Have an idea? A comment? A question? An opinion on duck/chicken mascot identity!?<br>Email me at <a
+        <p>Have an idea? A comment? A question? An opinion on duck/chicken mascot identity!? Or just to say hi?<br>Email me at <a
                 href="mailto:hi@owen.uno" class="normal-link">hi@owen.uno</a></p>
         <br>
         <h2>Stay in the loop!</h2>
@@ -203,7 +203,7 @@
                         .then(response => response.json())
                         .then(data => {
                             if (data.ok) {
-                                formMessage.textContent = 'Thank you for subscribing!';
+                                formMessage.textContent = 'Thanks for subscribing!';
                                 formMessage.classList.remove('error');
                             } else {
                                 formMessage.textContent = 'Oops! Something went wrong. Please try again.';
@@ -228,7 +228,7 @@
                 } else if (!email.includes('.')) {
                     return 'Almost there, but you\'re missing a "." to complete the domain!';
                 } else if (email.split('@').length > 2) {
-                    return 'It looks like you\'ve got more than one "@" sign there.';
+                    return 'It looks like you\'ve got more than one "@" sign in your email.';
                 } else if (email.startsWith('@') || email.endsWith('@')) {
                     return 'Your email shouldn\'t start or end with the "@" sign.';
                 } else if (email.endsWith('.')) {
