@@ -27,18 +27,19 @@
 <body draggable="false">
     <div id="header-container"></div>
     <main>
-        <h1 style="font-size: 70px; font-weight: 300;"><b style="font-weight: 800;">Xplore</b></h1>
-        <img src="XploreIcon.png" alt=""
-        width="200"
-        height="200"
-        style="-webkit-filter: drop-shadow(6px 6px 6px #1f1f1f); filter: drop-shadow(6px 6px 6px #1f1f1f);">
-        <br>
-        <h2>Prepare to be amazed.</h2>
-        <h4>The next generation of the web.<br><br>Coming early 2025.</h4>
-        <br>
-        <img oncontextmenu="return false;" draggable="false" src="XploreImage.png"
-        alt="The Xplore web browser for macOS" class="carousel-image">
-        <div style="height: 500px;"></div>
+        <div class="xplore">
+            <h1 style="font-size: 70px; font-weight: 300;"><b style="font-weight: 800;">Xplore</b></h1>
+            <img src="XploreIcon.png" alt="" width="200" height="200"
+                style="-webkit-filter: drop-shadow(8px 8px 3px #515151); filter: drop-shadow(8px 8px 3px #515151);">
+            <br>
+            <br>
+            <h2>Prepare to be amazed.</h2>
+            <h4>The next generation of the web.<br><br>Coming early 2025.</h4>
+            <br>
+            <video src="Xplore Sidebar.mp4" muted oncontextmenu="return false;"
+                style="width: 90.5vw; max-width: 703px; border-radius: 7px; offset-inline-start: 2px;"></video>
+        </div>
+        <div class="mainGradient"></div>
         <!--Hey from the HTML! I hope that you enjoyed using my website as much as I enjoyed programming it!-->
         <img src="mascotblue.png" alt="My logo : )" draggable="false" width="200" height=auto class="mainimg"
             oncontextmenu="return false;">
@@ -306,6 +307,28 @@
             showSlide(currentIndex);
         });
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const video = document.querySelector('video');
+            const imageReplacement = `<img src="XploreImage.png" alt="" oncontextmenu="return false;" 
+                                        style="width: 90vw; max-width: 700px; transform: scale(1.0, 0.998)">`;
+    
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        video.play();
+                    }
+                });
+            }, {
+                threshold: 0.75
+            });
+            observer.observe(video);
+            video.addEventListener('ended', () => {
+                video.outerHTML = imageReplacement;
+            });
+        });
+    </script>
+    
 </body>
 
 </html>

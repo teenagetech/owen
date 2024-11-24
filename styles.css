@@ -35,7 +35,9 @@ p {
     footer {
         box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
     }
-
+    .mainGradient {
+        background: linear-gradient(#0f0f0f, #282829);
+    }
     .normal-link:hover {
         color: #FFBF00;
         transition: color 0.5s ease;
@@ -97,6 +99,10 @@ p {
 
     footer {
         box-shadow: rgba(0, 0, 0, 0.477) 0px 5px 15px;
+    }
+
+    .mainGradient {
+        background: linear-gradient(#0f0f0f, #fbf9f2);
     }
 
     .normal-link:hover {
@@ -294,7 +300,7 @@ input:focus {
 }
 
 .mainimg:hover {
-    transform: rotate(-3deg);
+    transform: rotate(-3deg) scale(1.02);
     cursor: grab;
 }
 
@@ -362,6 +368,19 @@ span>p {
 
 .twitter-tweet {
     max-width: 400px !important;
+}
+
+
+.xplore {
+    background-color: #0f0f0f;
+    margin-top: -40px;
+    width: 100vw;
+    color: #fff;
+}
+
+.mainGradient {
+    width: 100vw;
+    padding-bottom: 400px;
 }
 
 .footer-link {
