@@ -8,6 +8,7 @@ body {
     display: flex;
     flex-direction: column;
     -ms-overflow-style: none;
+    cursor: url('cursor-normal.cur'), default;
 }
 
 #randomFact {
@@ -39,12 +40,12 @@ p {
         background: linear-gradient(#0f0f0f, #282829);
     }
     .normal-link:hover {
-        color: #56d37e;
+        color: #2EC05A;
         transition: color 0.5s ease;
     }
 
     a:hover {
-        color: #56d37e;
+        color: #2EC05A;
         transition: color 0.5s ease;
     }
 
@@ -71,7 +72,7 @@ p {
     }
 
     .yellowtext {
-        color: #56d37e;
+        color: #FFBF00;
     }
 
     .subscribe-section {
@@ -241,11 +242,12 @@ a {
     color: #45A3D9;
     transition: color 0.5s ease;
     text-decoration: none;
+    cursor: url('cursor-link.cur'), pointer !important;
 }
 
 a:hover {
     transition: color 0.5s ease;
-    cursor: pointer;
+    cursor: url('cursor-normal.cur'), default;
 }
 
 .form-message {
@@ -274,7 +276,7 @@ input::placeholder {
 
 input {
     color: #282829;
-    background-color: #59d37e;
+    background-color: #2EC05A;
     transition: background-color 0.5s ease;
     border: none;
     padding: 10px 8px;
@@ -295,13 +297,13 @@ input:focus {
 
 .mainimg {
     transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
-    cursor: grab;
+    cursor: url('cursor-pet.cur'), grab;
     z-index: 4;
 }
 
 .mainimg:hover {
     transform: rotate(-3deg) scale(1.02);
-    cursor: grab;
+    cursor: url('cursor-pet.cur'), grab;
 }
 
 p,
@@ -314,11 +316,12 @@ h6,
 text,
 code,
 pre {
-    cursor: default;
+    cursor: url('cursor-normal.cur'), default;
 }
 
 p {
     font-size: 18px;
+    cursor: url('cursor-normal.cur'), default;
 }
 
 .main-h1 {
@@ -336,28 +339,28 @@ button {
     display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
-    cursor: pointer;
+    cursor: url('cursor-link.cur'), pointer;
     border-radius: 20px;
 }
 
 button:hover {
-    background-color: #56d37e;
+    background-color: #2EC05A;
     transition: background-color 0.5s ease;
 }
 
 button>a {
     text-decoration: none;
     color: #fff;
-    cursor: pointer;
+    cursor: url('cursor-link.cur'), pointer;
 }
 
 button>a:hover {
     color: #fff;
-    cursor: pointer;
+    cursor: url('cursor-link.cur'), pointer;
 }
 
 span>p {
-    cursor: pointer;
+    cursor: url('cursor-link.cur'), pointer;
 }
 
 .aboutMe {
@@ -514,6 +517,7 @@ main {
 
 header>nav>ul>li>a {
     animation: fadeIn 0.75s;
+    cursor: url('cursor-link.cur'), pointer;
 }
 
 footer>p {
@@ -569,7 +573,7 @@ footer {
     text-align: center;
     z-index: 3;
     color: #282829;
-    background-color: #56d37e;
+    background-color: #2EC05A;
     position: fixed;
 }
 
@@ -590,7 +594,6 @@ main {
 .titlebar-link-dev,
 .titlebar-link-photo {
     font-size: 20px;
-    color: #56d37e;
 }
 
 .titlebar-link-photo:hover,
@@ -603,7 +606,6 @@ main {
 .short-text-dev,
 .short-text-photo {
     font-size: 20px;
-    color: #56d37e;
 }
 
 .short-text-dev:hover,
@@ -618,7 +620,7 @@ main {
 .titlebar-link-photo,
 .short-text-photo {
     font-size: 20px;
-    color: #56d37e;
+    color: #54ec8c;
     transition: color 0.5s ease;
 }
 
@@ -663,7 +665,7 @@ main {
     transition: background-color 0.5s ease;
     transition: color 0.5s ease;
     border: none;
-    cursor: pointer;
+    cursor: url('cursor-link.cur'), pointer;
     padding: 10px;
     font-size: 18px;
     border-radius: 10px;
@@ -763,11 +765,11 @@ main {
     font-size: 18px;
     text-align: center;
     border-radius: 10px;
-    cursor: pointer;
+    cursor: url('cursor-link.cur'), pointer;
 }
 
 .gallery-item .image-overlay p {
-    cursor: pointer;
+    cursor: url('cursor-link.cur'), pointer;
     padding-left: 15px;
     padding-right: 15px;
     line-height: 1.6;
@@ -1037,11 +1039,12 @@ a {
     color: #45A3D9;
     transition: color 0.5s ease;
     text-decoration: none;
+    cursor: url('cursor-link.cur'), pointer;
 }
 
 a:hover {
     transition: color 0.5s ease;
-    cursor: pointer;
+    cursor: url('cursor-link.cur'), pointer;
 }
 
 .form-message {
@@ -1091,13 +1094,13 @@ input:focus {
 
 .mainimg {
     transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
-    cursor: grab;
+    cursor: url('cursor-pet.cur'), grab;
     z-index: 4;
 }
 
 .mainimg:hover {
     transform: rotate(-3deg) scale(1.02);
-    cursor: grab;
+    cursor: url('cursor-pet.cur'), grab;
 }
 
 p,
@@ -1132,7 +1135,7 @@ button {
     display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
-    cursor: pointer;
+    cursor: url('cursor-link.cur'), pointer;
     border-radius: 20px;
 }
 
@@ -1144,16 +1147,16 @@ button:hover {
 button>a {
     text-decoration: none;
     color: #fff;
-    cursor: pointer;
+    cursor: url('cursor-link.cur'), pointer;
 }
 
 button>a:hover {
     color: #fff;
-    cursor: pointer;
+    cursor: url('cursor-link.cur'), pointer;
 }
 
 span>p {
-    cursor: pointer;
+    cursor: url('cursor-link.cur'), pointer;
 }
 
 .aboutMe {
@@ -1459,7 +1462,7 @@ main {
     transition: background-color 0.5s ease;
     transition: color 0.5s ease;
     border: none;
-    cursor: pointer;
+    cursor: url('cursor-link.cur'), pointer;
     padding: 10px;
     font-size: 18px;
     border-radius: 10px;
@@ -1559,11 +1562,11 @@ main {
     font-size: 18px;
     text-align: center;
     border-radius: 10px;
-    cursor: pointer;
+    cursor: url('cursor-link.cur'), pointer;
 }
 
 .gallery-item .image-overlay p {
-    cursor: pointer;
+    cursor: url('cursor-link.cur'), pointer;
     padding-left: 15px;
     padding-right: 15px;
     line-height: 1.6;
