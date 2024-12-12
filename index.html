@@ -23,6 +23,34 @@
     <meta property="og:image" content="/mascotyellow.png">
     <meta property="og:url" content="https://owen.uno">
 </head>
+<style>
+    .amazed {
+        background: linear-gradient(90deg,
+                #ff5e57, #ff757a, #ff8a8a, #ff91b5, #d18aff, #a68aff, #8a8aff, #8aa6ff, #ff5e57, #fd624b);
+        background-size: 300%;
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        animation: gradientAnimation 6s infinite linear;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.4),
+            0 0 20px rgba(255, 255, 255, 0.3);
+    }
+
+    @keyframes gradientAnimation {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+</style>
+
 
 <body draggable="false">
     <div id="header-container"></div>
@@ -30,10 +58,11 @@
         <div class="xplore">
             <h1 style="font-size: 70px; font-weight: 300;"><b style="font-weight: 800;">Xplore</b></h1>
             <img src="XploreIcon.png" alt="" width="200" height="200"
-                style="-webkit-filter: drop-shadow(8px 8px 3px #515151); filter: drop-shadow(8px 8px 3px #515151);" oncontextmenu="return false;" draggable="false">
+                style="-webkit-filter: drop-shadow(8px 8px 3px #515151); filter: drop-shadow(8px 8px 3px #515151);"
+                oncontextmenu="return false;" draggable="false">
             <br>
             <br>
-            <h2>Prepare to be amazed.</h2>
+            <h2>Prepare to be <b class="amazed">amazed</b>.</h2>
             <h4>The next generation of the web.<br><br>Coming early 2025.</h4>
             <br>
             <video src="Xplore Sidebar.mp4" muted oncontextmenu="return false;"
@@ -145,8 +174,8 @@
         <p><b>Companies:</b><br>Apple<br>Panic<br>teenage engineering</p>
         <p><b>Color:</b><br><b class="yellowtext">Yellow</b></p>
         <br>
-        <p>Have an idea? A comment? A question? An opinion on duck/chicken mascot identity!? Or just want to say hi?<br>Email me at <a
-                href="mailto:hi@owen.uno" class="normal-link">hi@owen.uno</a></p>
+        <p>Have an idea? A comment? A question? An opinion on duck/chicken mascot identity!? Or just want to say
+            hi?<br>Email me at <a href="mailto:hi@owen.uno" class="normal-link">hi@owen.uno</a></p>
         <br>
         <h2>Stay in the loop!</h2>
         <h4>I'll let you know when I release new software or when new photography drops.</h4>
@@ -166,7 +195,8 @@
         <br>
     </main>
     <footer>
-        <p>&copy; <a href="https://github.com/teenagetech" class="footer-link">Owen Van Vooren</a>. All rights reserved. Happy Holidays!
+        <p>&copy; <a href="https://github.com/teenagetech" class="footer-link">Owen Van Vooren</a>. All rights reserved.
+            Happy Holidays!
         </p>
     </footer>
     <script src="header.js"></script>
@@ -312,7 +342,7 @@
             const video = document.querySelector('video');
             const imageReplacement = `<img src="XploreImage.png" alt="" oncontextmenu="return false;" 
                                         style="width: 90vw; max-width: 700px; transform: scale(1.0, 0.998)">`;
-    
+
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -328,7 +358,7 @@
             });
         });
     </script>
-    
+
 </body>
 
 </html>
