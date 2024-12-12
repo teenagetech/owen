@@ -456,7 +456,7 @@ header nav ul li:last-child {
 
 .slash {
     color: #fff;
-    cursor: default;
+    cursor: url('cursor-normal.cur'), default;
     animation: fadeIn 0.75s;
 }
 
@@ -1113,7 +1113,7 @@ h6,
 text,
 code,
 pre {
-    cursor: default;
+    cursor: url('cursor-normal.cur'), default;
 }
 
 p {
@@ -1252,7 +1252,7 @@ header nav ul li:last-child {
 
 .slash {
     color: #fff;
-    cursor: default;
+    cursor: url('cursor-normal.cur'), default;
     animation: fadeIn 0.75s;
 }
 
