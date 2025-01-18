@@ -11,6 +11,8 @@
         content="Owen Van Vooren, Developer, Photographer, Entrepreneur, Cinematographer, Videographer, iOS app developer, Mac developer">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Owen Van Vooren</title>
+    <link rel="preload" as="image" href="tinycon.png">
+    <link rel="preload" as="image" href="XploreImage.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
@@ -19,7 +21,7 @@
     <link rel="stylesheet" href="styles.css">
     <meta property="og:title" content="Owen Van Vooren">
     <meta property="og:description"
-        content="Hi! I'm Owen. I'm a photographer, programmer, iOS/macOS developer, and innovator.">
+        content="Hi! Iʼm Owen. Iʼm a photographer, programmer, iOS/macOS developer, and innovator.">
     <meta property="og:image" content="/mascotyellow.png">
     <meta property="og:url" content="https://owen.uno">
 </head>
@@ -84,19 +86,19 @@
             <br>
             <h4>The next generation of the web. No big deal.</h4>
             <br>
-            <h4>You're using a web browser right now. How does it look?</h4>
+            <h4>Youʼre using a web browser right now. How does it look?</h4>
             <br>
             <br>
             <video src="Xplore Sidebar.mp4" muted oncontextmenu="return false;"
                 style="width: 90.5vw; max-width: 703px; border-radius: 7px; offset-inline-start: 2px;"></video>
             <br>
-            <h4>Not this good? That's what I thought.</h4>
+            <h4>Not this good? Thatʼs what I thought.</h4>
             <br>
-            <p class="not">So why wouldn't you switch?</p>
+            <p class="not">So why wouldnʼt you switch?</p>
             <br>
             <p>Xplore is coming early this year.</p>
             <br>
-            <p>(Y'know, you could always subscribe to the mailing list to know when it'll be released, plus exclusive
+            <p>(Yʼknow, you could always subscribe to the mailing list to know when itʼll be released, plus exclusive
                 insider news 😉)</p>
             <br>
             <br>
@@ -105,9 +107,9 @@
         <!--Hey from the HTML! I hope that you enjoyed using my website as much as I enjoyed programming it!-->
         <img src="mascotblue.png" alt="My logo : )" draggable="false" width="200" height=auto class="mainimg"
             oncontextmenu="return false;">
-        <h1 class="main-h1">Hi! I'm Owen. It's nice to meet you.</h1>
-        <p class="aboutMe">I'm a photographer, programmer, iOS/macOS developer, web developer, cinematographer, and
-            innovator.</p>
+        <h1 class="main-h1">Hi! Iʼm Owen. Itʼs nice to meet you.</h1>
+        <p class="aboutMe">Iʼm a photographer, programmer, iOS/macOS developer, web developer, cinematographer, and
+            innovator. Oh, and Iʼm 14.</p>
         <br>
         <span>
             <a href="https://owen.uno/photography"><button><b>Photography</b></button></a>
@@ -211,7 +213,7 @@
             hi?<br>Email me at <a href="mailto:hi@owen.uno" class="normal-link">hi@owen.uno</a></p>
         <br>
         <h2>Stay in the loop!</h2>
-        <h4>I'll let you know when I release new software or when new photography drops.</h4>
+        <h4>Iʼll let you know when I release new software or when new photography drops.</h4>
         <br>
         <form class="subscribe-form" id="subscribeForm">
             <div class="input-container">
@@ -297,17 +299,17 @@
 
             function getEmailErrorMessage(email) {
                 if (!email.includes('@')) {
-                    return 'Hmm, it looks like you\'re missing the "@" sign.';
+                    return 'Hmm, it looks like youʼre missing the "@" sign.';
                 } else if (!email.includes('.')) {
-                    return 'Almost there, but you\'re missing a "." to complete the domain!';
+                    return 'Almost there, but youʼre missing a "." to complete the domain!';
                 } else if (email.split('@').length > 2) {
-                    return 'It looks like you\'ve got more than one "@" sign in your email.';
+                    return 'It looks like youʼve got more than one "@" sign in your email.';
                 } else if (email.startsWith('@') || email.endsWith('@')) {
-                    return 'Your email shouldn\'t start or end with the "@" sign.';
+                    return 'Your email shouldnʼt start or end with the "@" sign.';
                 } else if (email.endsWith('.')) {
-                    return 'Your email shouldn\'t end with a "."';
+                    return 'Your email shouldnʼt end with a "."';
                 } else {
-                    return 'This doesn\'t look like a valid email address. Double-check it!';
+                    return 'This doesnʼt look like a valid email address. Double-check it!';
                 }
             }
         });
