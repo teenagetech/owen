@@ -520,6 +520,14 @@ header>nav>ul>li>a {
     cursor: url('cursor-link.cur'), pointer;
 }
 
+footer {
+    cursor: url('cursor-normal.cur'), default;
+}
+
+footer>a:hover {
+    cursor: url('cursor-link.cur'), pointer !important;
+}
+
 footer>p {
     animation: fadeIn 0.75s;
 }
