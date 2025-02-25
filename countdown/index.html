@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer with Style Switcher</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sigmar&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: "Sigmar", sans-serif;
+        }
+
+        .style-selector {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .style-selector button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            margin: 5px;
+            cursor: pointer;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        .style-indicator {
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 24px;
+            text-transform: lowercase;
+        }
+
+        .timer-container {
+            padding: 40px;
+            border-radius: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .time-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .time-block {
+            text-align: center;
+            width: 100px;
+        }
+
+        .time-display {
+            position: relative;
+            width: 100px;
+            height: 80px;
+            border-radius: 15px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+        }
+
+        .number-container {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.6s ease-in-out;
+        }
+
+        .number {
+            height: 80px;
+            line-height: 80px;
+            flex-shrink: 0;
+        }
+
+        .label-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .label {
+            width: 100px;
+            text-align: center;
+            font-size: 20px;
+            text-transform: lowercase;
+        }
+
+        .label-spacer {
+            width: 20px;
+        }
+
+        .separator {
+            width: 20px;
+            text-align: center;
+            font-size: 48px;
+            height: 80px;
+            line-height: 80px;
+        }
+
+        @keyframes roll {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-80px);
+            }
+        }
+
+        body.design-neumorphic {
+            background: #e0e0e0;
+        }
+
+        body.design-neumorphic .timer-container {
+            background: #e0e0e0;
+            box-shadow: 10px 10px 20px #bebebe, -10px -10px 20px #ffffff;
+        }
+
+        body.design-neumorphic .time-display {
+            background: #e0e0e0;
+            box-shadow: inset 5px 5px 10px #bebebe, inset -5px -5px 10px #ffffff;
+            color: #333;
+        }
+
+        body.design-neumorphic .label {
+            color: #666;
+        }
+
+        body.design-neumorphic .separator {
+            color: #333;
+        }
+
+        body.design-neumorphic .style-selector button {
+            background: #e0e0e0;
+            box-shadow: 5px 5px 10px #bebebe, -5px -5px 10px #ffffff;
+        }
+
+        body.design-neumorphic .heading {
+            color: #333;
+        }
+
+        body.design-neumorphic .style-indicator {
+            background: #e0e0e0;
+            box-shadow: 5px 5px 10px #bebebe, -5px -5px 10px #ffffff;
+            color: #333;
+        }
+
+        body.design-glassmorphic {
+            background: linear-gradient(135deg, #63ce95, #4aadba);
+        }
+
+        body.design-glassmorphic .timer-container {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        body.design-glassmorphic .time-display {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+        }
+
+        body.design-glassmorphic .number {
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+
+        body.design-glassmorphic .label {
+            color: #fff;
+        }
+
+        body.design-glassmorphic .separator {
+            color: #fff;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+
+        body.design-glassmorphic .heading {
+            color: #fff;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+
+        body.design-glassmorphic .style-selector button {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            color: #fff;
+        }
+
+        body.design-glassmorphic .style-indicator {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        body.design-skeuomorphic {
+            background: #333;
+        }
+
+        body.design-skeuomorphic .timer-container {
+            background: linear-gradient(145deg, #4d4d4d, #2b2b2b);
+            box-shadow: 5px 5px 15px #1a1a1a, -5px -5px 15px #4d4d4d;
+        }
+
+        body.design-skeuomorphic .time-display {
+            background: #000;
+            color: #0f0;
+            text-shadow: 0 0 10px #0f0;
+            font-family: 'Courier New', monospace;
+        }
+
+        body.design-skeuomorphic .number {
+            background: linear-gradient(to bottom, #555, #333);
+            color: #fff;
+            text-shadow: 1px 1px 2px #3f3b3b;
+        }
+
+        body.design-skeuomorphic .label {
+            color: #ccc;
+        }
+
+        body.design-skeuomorphic .separator {
+            color: #0f0;
+            text-shadow: 0 0 10px #0f0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        body.design-skeuomorphic .style-selector button {
+            background: linear-gradient(145deg, #4d4d4d, #2b2b2b);
+            color: #fff;
+            box-shadow: 2px 2px 5px #1a1a1a, -2px -2px 5px #4d4d4d;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        body.design-skeuomorphic .style-indicator {
+            font-family: 'Courier New', Courier, monospace;
+            background: linear-gradient(145deg, #4d4d4d, #2b2b2b);
+            color: #0f0;
+            text-shadow: 0 0 5px #0f0;
+            box-shadow: 2px 2px 5px #1a1a1a, -2px -2px 5px #4d4d4d;
+        }
+        body.design-skeuomorphic .heading {
+            font-family: 'Courier New', Courier, monospace;
+            color: #0f0;
+            text-shadow: 0 0 5px #0f0;
+            box-shadow: 2px 2px 5px #1a1a1a, -2px -2px 5px #4d4d4d;
+            border-radius: 14px;
+            padding: 10px;
+        }
+
+        body.design-flat {
+            background: #ecf0f1;
+        }
+
+        body.design-flat .timer-container {
+            background: #fff;
+            box-shadow: none;
+        }
+
+        body.design-flat .heading {
+            color: #3498db;
+        }
+
+        body.design-flat .time-display {
+            background: #2ecc71;
+            color: #fff;
+        }
+
+        body.design-flat .label {
+            color: #2c3e50;
+        }
+
+        body.design-flat .separator {
+            color: #2ecc71;
+        }
+
+        body.design-flat .style-selector button {
+            background: #3498db;
+            color: #fff;
+        }
+
+        body.design-flat .style-indicator {
+            background: #3498db;
+            color: #fff;
+        }
+
+        .heading {
+            font-size: 48px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 600px) {
+            .timer-container {
+                padding: 20px;
+            }
+
+            .heading {
+                font-size: 32px;
+            }
+
+            .time-block {
+                width: 60px;
+            }
+
+            .time-display {
+                width: 60px;
+                height: 48px;
+                border-radius: 10px;
+                font-size: 28px;
+            }
+
+            .number {
+                height: 48px;
+                line-height: 48px;
+            }
+
+            .separator {
+                width: 12px;
+                height: 48px;
+                line-height: 48px;
+                font-size: 28px;
+            }
+
+            .label {
+                width: 60px;
+                font-size: 14px;
+            }
+
+            .label-spacer {
+                width: 12px;
+            }
+
+            .style-selector button {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+
+            .style-indicator {
+                padding: 8px 16px;
+                font-size: 18px;
+            }
+
+            @keyframes roll {
+                0% {
+                    transform: translateY(0);
+                }
+
+                100% {
+                    transform: translateY(-48px);
+                }
+            }
+        }
+
+        @media (max-width: 400px) {
+            .time-row {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 5px;
+            }
+
+            .label-row {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 5px;
+            }
+
+            .timer-container {
+                padding: 15px;
+            }
+
+            .style-selector {
+                flex-direction: column;
+                align-items: center;
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body class="design-neumorphic">
+    <h1 class="heading">countdown clock :)</h1>
+    <div class="style-indicator" id="style-indicator">neumorphic</div>
+    <div class="timer-container">
+        <div class="time-row">
+            <div class="time-block">
+                <div class="time-display" id="days"></div>
+            </div>
+            <div class="separator">:</div>
+            <div class="time-block">
+                <div class="time-display" id="hours"></div>
+            </div>
+            <div class="separator">:</div>
+            <div class="time-block">
+                <div class="time-display" id="minutes"></div>
+            </div>
+            <div class="separator">:</div>
+            <div class="time-block">
+                <div class="time-display" id="seconds"></div>
+            </div>
+        </div>
+        <div class="label-row">
+            <div class="label">days</div>
+            <div class="label-spacer"></div>
+            <div class="label">hours</div>
+            <div class="label-spacer"></div>
+            <div class="label">minutes</div>
+            <div class="label-spacer"></div>
+            <div class="label">seconds</div>
+        </div>
+    </div>
+    <div class="style-selector">
+        <button onclick="setStyle('neumorphic')">neumorphic</button>
+        <button onclick="setStyle('glassmorphic')">glassmorphic</button>
+        <button onclick="setStyle('skeuomorphic')">skeuomorphic</button>
+        <button onclick="setStyle('flat')">flat design</button>
+    </div>
+
+    <script>
+        const targetDate = new Date(Date.UTC(2025, 5, 24, 5, 0, 0));
+
+        function updateTimer() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            let days, hours, minutes, seconds;
+            if (distance > 0) {
+                days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            } else {
+                days = 0;
+                hours = 0;
+                minutes = 0;
+                seconds = 0;
+                clearInterval(timerInterval);
+            }
+
+            updateDisplay("days", days);
+            updateDisplay("hours", hours);
+            updateDisplay("minutes", minutes);
+            updateDisplay("seconds", seconds);
+        }
+
+        function updateDisplay(elementId, newValue) {
+            const display = document.getElementById(elementId);
+            const currentValue = display.querySelector(".number-container")?.dataset.value || -1;
+
+            let formattedNew = String(newValue);
+            if (elementId !== "days") {
+                formattedNew = formattedNew.padStart(2, '0');
+            }
+
+            if (parseInt(currentValue) !== newValue) {
+                const container = document.createElement("div");
+                container.className = "number-container";
+                container.dataset.value = newValue;
+
+                let formattedCurrent = currentValue === -1 ? formattedNew : String(currentValue);
+                if (elementId !== "days" && currentValue !== -1) {
+                    formattedCurrent = formattedCurrent.padStart(2, '0');
+                }
+
+                container.innerHTML = `
+                    <div class="number">${formattedCurrent}</div>
+                    <div class="number">${formattedNew}</div>
+                `;
+
+                if (document.body.className === "design-skeuomorphic" && currentValue !== -1) {
+                    const oldNumber = container.querySelector(".number:first-child");
+                    const newNumber = container.querySelector(".number:last-child");
+                    oldNumber.style.borderTop = "1px solid #666";
+                    oldNumber.style.borderBottom = "1px solid #222";
+                    newNumber.style.borderTop = "1px solid #666";
+                    newNumber.style.borderBottom = "1px solid #222";
+
+                    setTimeout(() => {
+                        oldNumber.style.borderTop = "none";
+                        oldNumber.style.borderBottom = "none";
+                        newNumber.style.borderTop = "none";
+                        newNumber.style.borderBottom = "none";
+                    }, 600);
+                }
+
+                display.innerHTML = "";
+                display.appendChild(container);
+                if (currentValue !== -1) {
+                    setTimeout(() => {
+                        container.style.transform = "translateY(-" + display.offsetHeight + "px)";
+                    }, 10);
+                }
+            }
+        }
+
+        function setStyle(style) {
+            document.body.className = `design-${style}`;
+            document.getElementById("style-indicator").textContent = style === "flat" ? "Flat Design" : style.charAt(0).toUpperCase() + style.slice(1);
+        }
+
+        updateTimer();
+        const timerInterval = setInterval(updateTimer, 1000);
+    </script>
+</body>
+
+</html>
