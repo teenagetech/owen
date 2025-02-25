@@ -4,10 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Countdown Timer with Style Switcher</title>
+    <title>countdown clock :)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sigmar&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/countdown/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/countdown/favicon.svg" />
+    <link rel="shortcut icon" href="/countdown/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/countdown/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="countdown" />
+    <link rel="manifest" href="/countdown/site.webmanifest" />
     <style>
         body {
             display: flex;
@@ -170,13 +176,11 @@
 
         body.design-glassmorphic .timer-container {
             background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(15px);
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         body.design-glassmorphic .time-display {
             background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.3);
             color: #fff;
         }
@@ -201,13 +205,11 @@
 
         body.design-glassmorphic .style-selector button {
             background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(5px);
             color: #fff;
         }
 
         body.design-glassmorphic .style-indicator {
             background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
             color: #fff;
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
@@ -258,6 +260,7 @@
             text-shadow: 0 0 5px #0f0;
             box-shadow: 2px 2px 5px #1a1a1a, -2px -2px 5px #4d4d4d;
         }
+
         body.design-skeuomorphic .heading {
             font-family: 'Courier New', Courier, monospace;
             color: #0f0;
