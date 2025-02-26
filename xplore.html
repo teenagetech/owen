@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en" draggable="false">
+
+<head>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <meta charset="UTF-8">
+    <meta name="description"
+        content="Owen Van Vooren: Developer, Photographer, Entrepreneur, and Tech Enthusiast extrodinaire.">
+    <meta name="keywords"
+        content="Owen Van Vooren, Developer, Photographer, Entrepreneur, Cinematographer, Videographer, iOS app developer, Mac developer">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owen Van Vooren</title>
+    <link rel="preload" as="image" href="tinycon.png">
+    <link rel="preload" as="image" href="XploreImage.png">
+    <link rel="preload" as="image" href="XploreScreenshot.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <meta name="theme-color" content="#E03400">
+    <link rel="stylesheet" href="styles.css">
+    <meta property="og:title" content="Owen Van Vooren">
+    <meta property="og:description"
+        content="Hi! Iʼm Owen. Iʼm a photographer, programmer, iOS/macOS developer, and innovator.">
+    <meta property="og:image" content="/mascotyellow.png">
+    <meta property="og:url" content="https://owen.uno">
+</head>
+<style>
+    body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Montserrat', ' Helvetica Neue', sans-serif;
+    }
+
+    h2,
+    h3,
+    h4 {
+        cursor: default !important;
+    }
+
+    .slash {
+        cursor: default !important;
+    }
+
+    body {
+        cursor: default !important;
+    }
+
+    a {
+        cursor: pointer !important;
+    }
+
+    p {
+        cursor: default !important;
+    }
+
+    .asterisk {
+        color: #fff;
+    }
+
+    .asterisk:hover {
+        text-decoration: solid 1px #fff !important;
+        color: #e0e0e0;
+    }
+
+    .disclaimer {
+        font-size: 12px;
+        text-align: center;
+        color: #fff;
+        margin-bottom: 60px;
+    }
+
+    .xplore p {
+        text-align: center;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .xplore {
+        cursor: default !important;
+        font-family: 'Montserrat', 'Avenir', 'Helvetica Neue', 'Helvetica', 'Arial', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    .amazed {
+        background: linear-gradient(135deg, #00aaff, #ff4f58, #ff6fb2);
+        background-size: 300%;
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        animation: gradientAnimation 6s infinite linear;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.4),
+            0 0 20px rgba(255, 255, 255, 0.3);
+        cursor: default !important;
+    }
+
+    .section {
+        cursor: default;
+    }
+
+    .icon {
+        width: 25px;
+        height: 25px;
+        vertical-align: baseline;
+        margin-right: 10px;
+        filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 10px rgba(0, 170, 255, 0.6)) drop-shadow(0 0 15px rgba(255, 79, 88, 0.5));
+        filter: brightness(0.9);
+        fill: rgba(255, 255, 255, 0.6);
+        cursor: default !important;
+        position: relative;
+        top: 2px;
+    }
+
+    .section h1 {
+        margin-right: 10px;
+        filter: drop-shadow(0 0 6px rgb(255, 255, 255)) drop-shadow(0 0 10px rgba(0, 170, 255, 0.6)) drop-shadow(0 0 15px rgba(255, 79, 88, 0.5));
+        color: rgba(255, 255, 255, 0.6);
+        cursor: default !important;
+    }
+
+    .section p {
+        text-align: center;
+        padding: 0 20px;
+        margin: 0;
+    }
+
+    .container {
+        background: #515151;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 20px auto;
+        box-shadow: 0 0 10px rgba(84, 84, 84, 0.864),
+            0 0 20px rgba(121, 121, 121, 0.3);
+        width: 90%;
+        max-width: 800px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+    }
+
+    .tile {
+        background: #616161;
+        border-radius: 8px;
+        padding: 15px;
+        min-height: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        transition: transform 0.3s ease;
+    }
+
+    .tile:hover {
+        transform: translateY(-5px);
+    }
+
+    .not {
+        cursor: default !important;
+        background: linear-gradient(135deg, #00aaff, #ff4f58, #ff6fb2);
+        background-size: 300%;
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        animation: gradientAnimation 6s infinite linear;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.4),
+            0 0 20px rgba(255, 255, 255, 0.3);
+        font-weight: 700;
+        font-size: 30px;
+    }
+
+    .tagline-container {
+    font-size: 24px;
+    align-items: center;
+    display: inline-block;
+    max-width: 500px;
+    width: 90%;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(135deg, #00aaff, #ff4f58, #ff6fb2);
+    background-size: 300%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: gradientAnimation 6s infinite linear;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.4),
+        0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.tagline-container span {
+    display: inline-block;
+    max-width: 100%;
+}
+.scrolling-text {
+        display: inline-block;
+        overflow: hidden;
+        height: 1em; /* Adjust based on font size */
+        line-height: 1em;
+        position: relative;
+    }
+
+    .scrolling-text span {
+        display: block;
+        position: absolute;
+        width: 100%;
+        text-align: center;
+    }
+    @keyframes slideUp {
+        0% { transform: translateY(0); opacity: 1; }
+        50% { transform: translateY(-50%); opacity: 0; }
+        51% { transform: translateY(50%); opacity: 0; }
+        100% { transform: translateY(0); opacity: 1; }
+    }
+
+
+
+    @keyframes gradientAnimation {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .container {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .tile {
+            min-height: 250px;
+        }
+    }
+</style>
+
+<body draggable="false">
+    <div id="header-container"></div>
+    <main>
+        <div class="xplore">
+            <h1 style="font-size: 70px; font-weight: 300;"><b
+                    style="font-weight: 800; cursor: default !important;">Xplore</b></h1>
+            <div class="tagline-container" style="font-size: 24px; text-align: center; margin: 20px 0;">
+                <span>Go </span>
+                <span id="dynamic-adverb"></span>
+                <span> where no </span>
+                <span id="dynamic-noun"></span>
+                <span> has ever gone before.</span>
+            </div>
+            <br>
+            <br>
+            <img src="XploreIcon.png" alt="" width="200" height="200"
+                style="-webkit-filter: drop-shadow(8px 8px 3px #515151); filter: drop-shadow(8px 8px 3px #515151);"
+                oncontextmenu="return false;" draggable="false">
+            <br>
+            <br>
+            <h2>Prepare to be <b class="amazed">amazed</b>.</h2>
+            <br>
+            <h4>The next generation of the web. No big deal.</h4>
+            <br>
+            <h4>Youʼre using a web browser right now. How does it look?</h4>
+            <br>
+            <br>
+            <video src="Xplore Sidebar.mp4" muted oncontextmenu="return false;"
+                style="width: 90.5vw; max-width: 703px; border-radius: 7px;"></video>
+            <br>
+            <h4>Not this good? Thatʼs what I thought.</h4>
+            <br>
+            <p class="not">So why wouldnʼt you switch?</p>
+            <p>Xplore is coming early this year.</p>
+        </div>
+        <div class="mainGradient"></div>
+        <div class="container">
+            <div class="tile section">
+                <h1><img src="lock.svg" class="icon" draggable="false" oncontextmenu="return false;">Security</h1>
+                <p>Xplore is powered by WebKit, a powerful, secure, and open source browser engine developed and
+                    maintained by
+                    Apple.</p>
+            </div>
+            <div class="tile section">
+                <h1><img src="gauge.svg" class="icon" draggable="false" oncontextmenu="return false;">Performance</h1>
+                <p>Experience lightning-fast browsing speeds with optimized rendering and top-notch resource management
+                    thanks to the efficiency and speed of WebKit.</p>
+            </div>
+            <div class="tile section">
+                <h1><img src="paintbrush.svg" class="icon" draggable="false" oncontextmenu="return false;">Design</h1>
+                <p>A sleek, modern interface gives you an effortless experience as you breeze across websites with ease.
+                    Inspired by the latest UI design trends, you'll be browsing in style. Plus, innovative features like
+                    Scrollable Tabs make Xplore perfect for uncluttered browsing and multitasking.</p>
+            </div>
+            <div class="tile section">
+                <h1><img src="sparkles.svg" class="icon" draggable="false" oncontextmenu="return false;">Features</h1>
+                <p>Xplore has all the features you need, and none of the features you don't<a href="#disclaimer"
+                        class="asterisk">*</a>, including <a href="https://teenagetech.github.io/wordclock"><b>word
+                            clock</b></a> and a built-in ad blocker, called <b>Vanish</b>.</p>
+            </div>
+            <div class="tile section">
+                <h1><img src="desktopcomputer.and.macbook.svg" class="icon" draggable="false"
+                        style="width: 34px; height: 34px; margin-right: 2px;"
+                        oncontextmenu="return false;">Compatibility</h1>
+                <p>Works on macOS 13 (Ventura) and later. Due to Xplore's configuration, it'll always be
+                    running the WebKit version that your Mac has, so when you update your Mac, Xplore updates, too.</p>
+            </div>
+            <div class="tile section">
+                <h1><img src="leaf.svg" class="icon" draggable="false" oncontextmenu="return false;">Environment</h1>
+                <p>I'm the one and only developer of Xplore, which means that, unlike other web browsers (which have
+                    massive development teams made up of thousands of people), Xplore has a significantly smaller
+                    negative impact on the environment. Maybe I'll plant one tree for every 5 people who use Xplore!</p>
+            </div>
+        </div>
+    </main>
+    <p class="disclaimer" id="disclaimer">*Some users may find the word clock feature completely unnecessary and
+        useless.</p>
+    <footer>
+        <p>© <a href="https://github.com/teenagetech" class="footer-link">Owen Van Vooren</a>. All rights reserved.</p>
+    </footer>
+    <script src="header.js"></script>
+    <script type="module" src="firebaseconfig.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const video = document.querySelector('video');
+            const imageReplacement = `<img src="XploreImage.png" alt="" oncontextmenu="return false;" 
+                                        style="width: 90vw; max-width: 700px; transform: scale(1.0, 0.998)">`;
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        video.play();
+                    }
+                });
+            }, {
+                threshold: 0.75
+            });
+            observer.observe(video);
+            video.addEventListener('ended', () => {
+                video.outerHTML = imageReplacement;
+            });
+        });
+
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const adverbs = ["bravely", "swiftly", "fearlessly", "boldly", "courageously", "audaciously"];
+            const nouns = ["human", "mortal", "person", "soul", "adventurer", "explorer"];
+
+            const adverbSpan = document.getElementById("dynamic-adverb");
+            const nounSpan = document.getElementById("dynamic-noun");
+            function setFixedWidthForDynamicElement(element, words) {
+    const measure = document.createElement('span');
+    measure.style.visibility = 'hidden';
+    measure.style.position = 'absolute';
+    measure.style.whiteSpace = 'nowrap';
+    measure.style.font = window.getComputedStyle(element).font;
+    document.body.appendChild(measure);
+
+    let maxWidth = 0;
+    for (let word of words) {
+        measure.textContent = word;
+        maxWidth = Math.max(maxWidth, measure.offsetWidth);
+    }
+
+    document.body.removeChild(measure);
+
+    element.style.display = 'inline-block';
+    element.style.width = `${Math.min(maxWidth, element.parentElement.offsetWidth)}px`;  // Use the parent's max width
+}
+
+
+            let interval = setInterval(() => {
+                let randomAdverb = adverbs[Math.floor(Math.random() * adverbs.length)];
+                let randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+                adverbSpan.textContent = randomAdverb;
+                nounSpan.textContent = randomNoun;
+            }, 150);
+            setTimeout(() => {
+                clearInterval(interval);
+            }, 3000);
+        });
+    </script>
+</body>
+
+</html>
