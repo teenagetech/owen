@@ -75,7 +75,7 @@
         padding-right: 20px;
     }
 
-    .xplore {
+    .xplore, header {
         cursor: default !important;
         font-family: 'Montserrat', 'Avenir', 'Helvetica Neue', 'Helvetica', 'Arial', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     }
@@ -166,46 +166,26 @@
     }
 
     .tagline-container {
-    font-size: 24px;
-    align-items: center;
-    display: inline-block;
-    max-width: 500px;
-    width: 90%;
-    font-weight: 700;
-    color: #fff;
-    background: linear-gradient(135deg, #00aaff, #ff4f58, #ff6fb2);
-    background-size: 300%;
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    animation: gradientAnimation 6s infinite linear;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.4),
-        0 0 20px rgba(255, 255, 255, 0.3);
-}
-
-.tagline-container span {
-    display: inline-block;
-    max-width: 100%;
-}
-.scrolling-text {
+        font-size: 24px;
+        align-items: center;
         display: inline-block;
-        overflow: hidden;
-        height: 1em; /* Adjust based on font size */
-        line-height: 1em;
-        position: relative;
+        max-width: 500px;
+        width: 90%;
+        font-weight: 700;
+        color: #fff;
+        background: linear-gradient(135deg, #00aaff, #ff4f58, #ff6fb2);
+        background-size: 300%;
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        animation: gradientAnimation 6s infinite linear;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.4),
+            0 0 20px rgba(255, 255, 255, 0.3);
     }
 
-    .scrolling-text span {
-        display: block;
-        position: absolute;
-        width: 100%;
-        text-align: center;
-    }
-    @keyframes slideUp {
-        0% { transform: translateY(0); opacity: 1; }
-        50% { transform: translateY(-50%); opacity: 0; }
-        51% { transform: translateY(50%); opacity: 0; }
-        100% { transform: translateY(0); opacity: 1; }
+    .tagline-container span {
+        display: inline-block;
+        max-width: 100%;
     }
 
 
@@ -347,24 +327,24 @@
             const adverbSpan = document.getElementById("dynamic-adverb");
             const nounSpan = document.getElementById("dynamic-noun");
             function setFixedWidthForDynamicElement(element, words) {
-    const measure = document.createElement('span');
-    measure.style.visibility = 'hidden';
-    measure.style.position = 'absolute';
-    measure.style.whiteSpace = 'nowrap';
-    measure.style.font = window.getComputedStyle(element).font;
-    document.body.appendChild(measure);
+                const measure = document.createElement('span');
+                measure.style.visibility = 'hidden';
+                measure.style.position = 'absolute';
+                measure.style.whiteSpace = 'nowrap';
+                measure.style.font = window.getComputedStyle(element).font;
+                document.body.appendChild(measure);
 
-    let maxWidth = 0;
-    for (let word of words) {
-        measure.textContent = word;
-        maxWidth = Math.max(maxWidth, measure.offsetWidth);
-    }
+                let maxWidth = 0;
+                for (let word of words) {
+                    measure.textContent = word;
+                    maxWidth = Math.max(maxWidth, measure.offsetWidth);
+                }
 
-    document.body.removeChild(measure);
+                document.body.removeChild(measure);
 
-    element.style.display = 'inline-block';
-    element.style.width = `${Math.min(maxWidth, element.parentElement.offsetWidth)}px`;  // Use the parent's max width
-}
+                element.style.display = 'inline-block';
+                element.style.width = `${Math.min(maxWidth, element.parentElement.offsetWidth)}px`;  // Use the parent's max width
+            }
 
 
             let interval = setInterval(() => {
