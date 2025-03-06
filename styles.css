@@ -221,6 +221,9 @@ body::-webkit-scrollbar-button {
         display: none !important;
         animation: fadeOut 0.75s;
     }
+    footer>p {
+        font-size: 14px !important;
+    }
 }
 
 @media (min-width: 761px) {
@@ -289,6 +292,7 @@ input {
     font-weight: bold;
     border-radius: 20px;
     max-width: 400px;
+    box-shadow: rgba(0, 0, 0, 0.8) 6px 5px 15px;
     font-family: 'Montserrat', 'Avenir', 'Helvetica Neue', 'Helvetica', 'Arial', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
@@ -347,6 +351,7 @@ button {
     margin: 4px 2px;
     cursor: url('cursor-link.cur'), pointer;
     border-radius: 20px;
+    box-shadow: #000000a4 6px 5px 15px;
 }
 
 button:hover {
@@ -403,18 +408,21 @@ span>p {
 
 header {
     height: 56px;
-    padding: 0 20px;
     color: #282829;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
+    top: 6px;
+    left: 6px;
+    right: 6px;
     z-index: 6;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #F25337;
+    background-color: #f25337c4;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     box-sizing: border-box;
+    border: 1px solid #ffffff4b;
+    border-radius: 12px;
 }
 
 .titlebar-text {
@@ -524,11 +532,27 @@ main {
 
 header>nav>ul>li>a {
     animation: fadeIn 0.75s;
-    cursor: url('cursor-link.cur'), pointer;
+    cursor: url('cursor-link.cur'), pointer !important;
 }
 
 footer {
-    cursor: url('cursor-normal.cur'), default;
+    cursor: url('cursor-normal.cur'), default !important;
+    height: 36px;
+    color: #282829;
+    z-index: 3;
+    background-color: #eee343c4;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    box-sizing: border-box;
+    border: 1px solid #ffffff4b;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+    width: calc(100% - 12px);
+    margin: 20px auto 10px;
+    padding: 0 10px;
 }
 
 footer>a:hover {
@@ -537,6 +561,7 @@ footer>a:hover {
 
 footer>p {
     animation: fadeIn 0.75s;
+    font-size: 18px;
 }
 
 @keyframes fadeIn {
@@ -576,20 +601,6 @@ footer>p {
 .dropdown:hover .dropdown-content {
     display: block;
     text-align: center;
-}
-
-footer {
-    bottom: 0px;
-    width: 100%;
-    height: 46px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    z-index: 3;
-    color: #282829;
-    background-color: #EEE343;
-    position: fixed;
 }
 
 main {
