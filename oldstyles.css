@@ -36,18 +36,16 @@ p {
     footer {
         box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
     }
-
     .mainGradient {
         background: linear-gradient(#0f0f0f, #282829);
     }
-
     .normal-link:hover {
-        color: #EEE343;
+        color: #FFBF00;
         transition: color 0.5s ease;
     }
 
     a:hover {
-        color: #EEE343;
+        color: #FFBF00;
         transition: color 0.5s ease;
     }
 
@@ -74,7 +72,7 @@ p {
     }
 
     .yellowtext {
-        color: #EEE343;
+        color: #FFBF00;
     }
 
     .subscribe-section {
@@ -241,7 +239,7 @@ html {
 }
 
 a {
-    color: #67A4BE;
+    color: #45A3D9;
     transition: color 0.5s ease;
     text-decoration: none;
     cursor: url('cursor-link.cur'), pointer !important;
@@ -278,7 +276,7 @@ input::placeholder {
 
 input {
     color: #282829;
-    background-color: #EEE343;
+    background-color: #FFBF00;
     transition: background-color 0.5s ease;
     border: none;
     padding: 10px 8px;
@@ -293,7 +291,7 @@ input {
 }
 
 input:focus {
-    background-color: #67A4BE;
+    background-color: #45A3D9;
     outline: none;
 }
 
@@ -301,9 +299,6 @@ input:focus {
     transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
     cursor: url('cursor-pet.cur'), grab;
     z-index: 4;
-    width: 110px;
-    height: auto;
-    padding: 20px;
 }
 
 .mainimg:hover {
@@ -331,12 +326,11 @@ p {
 
 .main-h1 {
     font-size: 25px;
-    margin-bottom: -8px
 }
 
 button {
     color: #282829;
-    background-color: #67A4BE;
+    background-color: #45A3D9;
     transition: background-color 0.5s ease;
     border: none;
     padding: 10px 20px;
@@ -350,7 +344,7 @@ button {
 }
 
 button:hover {
-    background-color: #EEE343;
+    background-color: #FFBF00;
     transition: background-color 0.5s ease;
 }
 
@@ -427,8 +421,8 @@ header {
 }
 
 .logo {
-    height: 18px;
-    margin-right: -2px;
+    height: 38px;
+    margin-right: 8px;
     vertical-align: middle;
 }
 
@@ -464,7 +458,6 @@ header nav ul li:last-child {
     color: #fff;
     cursor: url('cursor-normal.cur'), default;
     animation: fadeIn 0.75s;
-    margin: -8px;
 }
 
 header nav {
@@ -481,7 +474,7 @@ header nav ul {
 }
 
 .normal-link {
-    color: #67A4BE;
+    color: #45A3D9;
     transition: color 0.5s ease;
 }
 
@@ -509,7 +502,7 @@ main {
 
 .dropdown-content {
     box-shadow: rgba(0, 0, 0, 0.8) 0px 5px 15px;
-    background: #67A4BE;
+    background: #45A3D9;
     animation: headerAnimation 5s infinite;
     background-size: 200% 200%;
     text-align: center;
@@ -588,7 +581,7 @@ footer {
     text-align: center;
     z-index: 3;
     color: #282829;
-    background-color: #EEE343;
+    background-color: #FFBF00;
     position: fixed;
 }
 
@@ -635,7 +628,7 @@ main {
 .titlebar-link-photo,
 .short-text-photo {
     font-size: 20px;
-    color: #EEE343;
+    color: #FFBF00;
     transition: color 0.5s ease;
 }
 

@@ -11,7 +11,7 @@ const urlsToCache = [
   '../header.js',
   '../photography.html',
   '../mascot.png',
-  '../mascotblue.png',
+  '../mascot.svg',
   '../manifest.json',
   '../service-worker.js'
 ];
