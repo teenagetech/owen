@@ -50,7 +50,7 @@
             margin: 20px;
             width: 136px;
             height: 139px;
-            background-image: url('/keyboard-detector/Activate-Released.svg');
+            background-image: url('/keyboard-detector/activate-Released.svg');
             background-size: cover;
             border-radius: 10px;
             background-color: transparent;
@@ -61,15 +61,15 @@
         }
 
         #activate-btn:active {
-            background-image: url('/keyboard-detector/Activate-Pressed.svg');
+            background-image: url('/keyboard-detector/activate-Pressed.svg');
         }
 
         #activate-btn.active {
-            background-image: url('/keyboard-detector/Deactive-Released.svg');
+            background-image: url('/keyboard-detector/deactive-Released.svg');
         }
 
         #activate-btn.active:active {
-            background-image: url('/keyboard-detector/Deactive-Pressed.svg');
+            background-image: url('/keyboard-detector/deactive-Pressed.svg');
         }
 
         #activate-btn-container {
@@ -97,10 +97,10 @@
         <button id="activate-btn"></button>
     </div>
     <div class="command-bank hidden">
-        <img id="controlKey" class="key-indicator" src="/keyboard-detector/Control-Released.svg" alt="Control Key">
-        <img id="optionKey" class="key-indicator" src="/keyboard-detector/Option-Released.svg" alt="Option Key">
-        <img id="commandKey" class="key-indicator" src="/keyboard-detector/Command-Released.svg" alt="Command Key">
-        <img id="letterKey" class="key-indicator" src="/keyboard-detector/Letter-Released.svg" alt="Letter Key">
+        <img id="controlKey" class="key-indicator" src="/keyboard-detector/control-Released.svg" alt="control Key">
+        <img id="optionKey" class="key-indicator" src="/keyboard-detector/option-Released.svg" alt="option Key">
+        <img id="commandKey" class="key-indicator" src="/keyboard-detector/command-Released.svg" alt="command Key">
+        <img id="letterKey" class="key-indicator" src="/keyboard-detector/letter-Released.svg" alt="Letter Key">
     </div>
 
     <p style="text-align: center; font-size: 0.8rem; color: #333; bottom: 10px; position: absolute; font-weight: 700;">
@@ -109,12 +109,12 @@
 
     <script>
         let currentLetter = 'J';
-        let isActivated = false;
+        let isactivated = false;
 
         function updateKeyImage(keyId, isPressed) {
             const element = document.getElementById(keyId);
             const keyName = keyId.replace('Key', '');
-            const filename = isPressed ? `/keyboard-detector/${keyName.toUpperCase}-Pressed.svg` : `/keyboard-detector/${keyName.toUpperCase}-Released.svg`;
+            const filename = isPressed ? `/keyboard-detector/${keyName}-Pressed.svg` : `/keyboard-detector/${keyName}-Released.svg`;
             element.src = filename;
         }
 
@@ -122,7 +122,7 @@
             const svgTemplate = isPressed ?
                 `<?xml version="1.0" encoding="UTF-8"?>
 <svg width="136px" height="139px" viewBox="0 0 136 139" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <title>Letter-Pressed</title>
+  <title>letter-Pressed</title>
   <defs>
       <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
           <stop stop-color="#F4F4F4" offset="0%"></stop>
@@ -151,7 +151,7 @@
           </feMerge>
       </filter>
   </defs>
-  <g id="Letter-Pressed" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+  <g id="letter-Pressed" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
       <g id="Group-2-Copy" transform="translate(0, -0.25)">
           <rect id="Rectangle" fill="url(#linearGradient-1)" x="0" y="0" width="136" height="139" rx="28"></rect>
           <g id="Rectangle-Copy">
@@ -169,7 +169,7 @@
 </svg>` :
                 `<?xml version="1.0" encoding="UTF-8"?>
 <svg width="136px" height="139px" viewBox="0 0 136 139" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <title>Letter-Released</title>
+  <title>letter-Released</title>
   <defs>
       <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
           <stop stop-color="#F4F4F4" offset="0%"></stop>
@@ -196,7 +196,7 @@
           <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowInnerInner1"></feColorMatrix>
       </filter>
   </defs>
-  <g id="Letter-Released" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+  <g id="letter-Released" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
       <g id="Group-2">
           <rect id="Rectangle" fill="url(#linearGradient-1)" x="0" y="0" width="136" height="139" rx="28"></rect>
           <g id="Rectangle-Copy">
@@ -221,14 +221,14 @@
 
         document.getElementById('activate-btn').addEventListener('click', (event) => {
             event.stopPropagation();
-            if (!isActivated) {
-                isActivated = true;
+            if (!isactivated) {
+                isactivated = true;
                 document.getElementById('activation-message').classList.add('hidden');
                 document.querySelector('.command-bank').classList.remove('hidden');
                 document.getElementById('activate-btn').classList.add('active');
                 document.body.focus();
             } else {
-                isActivated = false;
+                isactivated = false;
                 document.getElementById('activation-message').classList.remove('hidden');
                 document.querySelector('.command-bank').classList.add('hidden');
                 document.getElementById('activate-btn').classList.remove('active');
@@ -240,7 +240,7 @@
         });
 
         document.addEventListener('keydown', (event) => {
-            if (!isActivated) return;
+            if (!isactivated) return;
             event.preventDefault();
             event.stopPropagation();
 
@@ -254,7 +254,7 @@
         }, true);
 
         document.addEventListener('keyup', (event) => {
-            if (!isActivated) return;
+            if (!isactivated) return;
             event.preventDefault();
             event.stopPropagation();
 
