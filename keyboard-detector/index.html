@@ -114,7 +114,7 @@
         function updateKeyImage(keyId, isPressed) {
             const element = document.getElementById(keyId);
             const keyName = keyId.replace('Key', '');
-            const filename = isPressed ? `/keyboard-detector/${keyName}-Pressed.svg` : `/keyboard-detector/${keyName}-Released.svg`;
+            const filename = isPressed ? `/keyboard-detector/${keyName.toUpperCase}-Pressed.svg` : `/keyboard-detector/${keyName.toUpperCase}-Released.svg`;
             element.src = filename;
         }
 
