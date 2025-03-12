@@ -42,7 +42,7 @@
             <use fill="#FDFDFD" fill-rule="evenodd" xlink:href="#path-4"></use>
             <use fill="black" fill-opacity="1" filter="url(#filter-5)" xlink:href="#path-4"></use>
         </g>
-        <text id="command" font-family="SFProText-Medium, SF Pro Text" font-size="17" font-weight="400" fill="#767676">
+        <text id="command" font-family="SFProText-Medium, SF Pro Text, -apple-system, BlinkMacSystemFont, system-ui, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif" font-size="17" font-weight="400" fill="#767676">
             <tspan x="29.2837838" y="109">command</tspan>
         </text>
         <g id="command" transform="translate(87.0993, 27.25)" fill="#767676" fill-rule="nonzero">

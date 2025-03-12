@@ -43,7 +43,7 @@
                 <use fill="#FDFDFD" fill-rule="evenodd" xlink:href="#path-4"></use>
                 <use fill="black" fill-opacity="1" filter="url(#filter-6)" xlink:href="#path-4"></use>
             </g>
-            <text id="activate" font-family="SFProText-Medium, SF Pro Text" font-size="17" font-weight="400" fill="#767676">
+            <text id="activate" font-family="SFProText-Medium, SF Pro Text, -apple-system, BlinkMacSystemFont, system-ui, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif" font-size="17" font-weight="400" fill="#767676">
                 <tspan x="25.8817473" y="89.327484">activate</tspan>
             </text>
         </g>

@@ -42,7 +42,7 @@
             <use fill="#FDFDFD" fill-rule="evenodd" xlink:href="#path-4"></use>
             <use fill="black" fill-opacity="1" filter="url(#filter-5)" xlink:href="#path-4"></use>
         </g>
-        <text id="J" font-family="SFProText-Medium, SF Pro Text" font-size="60" font-weight="400" fill="#767676">
+        <text id="J" font-family="SFProText-Medium, SF Pro Text, -apple-system, BlinkMacSystemFont, system-ui, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif" font-size="60" font-weight="400" fill="#767676">
             <tspan x="50.7837838" y="87.75">J</tspan>
         </text>
     </g>

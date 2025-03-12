@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shortcut Detector</title>
-    <link rel="shortcut icon" href="KeyFavicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/keyboard-detector/KeyFavicon.png" type="image/x-icon">
     <style>
         body {
             margin: 0;
@@ -50,7 +50,7 @@
             margin: 20px;
             width: 136px;
             height: 139px;
-            background-image: url('Activate-Released.svg');
+            background-image: url('/keyboard-detector/Activate-Released.svg');
             background-size: cover;
             border-radius: 10px;
             background-color: transparent;
@@ -61,15 +61,15 @@
         }
 
         #activate-btn:active {
-            background-image: url('Activate-Pressed.svg');
+            background-image: url('/keyboard-detector/Activate-Pressed.svg');
         }
 
         #activate-btn.active {
-            background-image: url('Deactive-Released.svg');
+            background-image: url('/keyboard-detector/Deactive-Released.svg');
         }
 
         #activate-btn.active:active {
-            background-image: url('Deactive-Pressed.svg');
+            background-image: url('/keyboard-detector/Deactive-Pressed.svg');
         }
 
         #activate-btn-container {
@@ -97,10 +97,10 @@
         <button id="activate-btn"></button>
     </div>
     <div class="command-bank hidden">
-        <img id="controlKey" class="key-indicator" src="Control-Released.svg" alt="Control Key">
-        <img id="optionKey" class="key-indicator" src="Option-Released.svg" alt="Option Key">
-        <img id="commandKey" class="key-indicator" src="Command-Released.svg" alt="Command Key">
-        <img id="letterKey" class="key-indicator" src="Letter-Released.svg" alt="Letter Key">
+        <img id="controlKey" class="key-indicator" src="/keyboard-detector/Control-Released.svg" alt="Control Key">
+        <img id="optionKey" class="key-indicator" src="/keyboard-detector/Option-Released.svg" alt="Option Key">
+        <img id="commandKey" class="key-indicator" src="/keyboard-detector/Command-Released.svg" alt="Command Key">
+        <img id="letterKey" class="key-indicator" src="/keyboard-detector/Letter-Released.svg" alt="Letter Key">
     </div>
 
     <p style="text-align: center; font-size: 0.8rem; color: #333; bottom: 10px; position: absolute; font-weight: 700;">
@@ -114,7 +114,7 @@
         function updateKeyImage(keyId, isPressed) {
             const element = document.getElementById(keyId);
             const keyName = keyId.replace('Key', '');
-            const filename = isPressed ? `${keyName}-Pressed.svg` : `${keyName}-Released.svg`;
+            const filename = isPressed ? `/keyboard-detector/${keyName}-Pressed.svg` : `/keyboard-detector/${keyName}-Released.svg`;
             element.src = filename;
         }
 
@@ -164,7 +164,7 @@
           <use fill="#FDFDFD" fill-rule="evenodd" xlink:href="#path-4"></use>
           <use fill="black" fill-opacity="1" filter="url(#filter-5)" xlink:href="#path-4"></use>
       </g>
-      <text text-anchor="middle" x="68" y="86" font-family="SFProText-Medium, SF Pro Text" font-size="60" font-weight="400" fill="#767676">${letter}</text>
+          <text text-anchor="middle" x="68" y="86" font-family="SFProText-Medium, SF Pro Text, -apple-system, BlinkMacSystemFont, system-ui, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif" font-size="60" font-weight="400" fill="#767676">${letter}</text>
   </g>
 </svg>` :
                 `<?xml version="1.0" encoding="UTF-8"?>
@@ -212,7 +212,7 @@
               <use fill="#FDFDFD" fill-rule="evenodd" xlink:href="#path-4"></use>
               <use fill="black" fill-opacity="1" filter="url(#filter-6)" xlink:href="#path-4"></use>
           </g>
-          <text text-anchor="middle" x="51" y="69" font-family="SFProText-Medium, SF Pro Text" font-size="60" font-weight="400" fill="#767676">${letter}</text>
+          <text text-anchor="middle" x="51" y="69" font-family="SFProText-Medium, SF Pro Text, -apple-system, BlinkMacSystemFont, system-ui, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif" font-size="60" font-weight="400" fill="#767676">${letter}</text>
       </g>
   </g>
 </svg>`;
