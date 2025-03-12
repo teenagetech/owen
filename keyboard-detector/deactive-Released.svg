@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="136px" height="139px" viewBox="0 0 136 139" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Deactivate-Released 2</title>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#F4F4F4" offset="0%"></stop>
+            <stop stop-color="#CACACA" offset="100%"></stop>
+        </linearGradient>
+        <rect id="path-2" x="13.7837838" y="17" width="107.513514" height="105" rx="13"></rect>
+        <filter x="-1.9%" y="-1.9%" width="103.7%" height="103.8%" filterUnits="objectBoundingBox" id="filter-3">
+            <feGaussianBlur stdDeviation="1.5" in="SourceAlpha" result="shadowBlurInner1"></feGaussianBlur>
+            <feOffset dx="0" dy="1" in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset>
+            <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowInnerInner1"></feColorMatrix>
+        </filter>
+        <rect id="path-4" x="0" y="0" width="102" height="101" rx="12"></rect>
+        <filter x="-21.8%" y="-13.6%" width="143.6%" height="144.1%" filterUnits="objectBoundingBox" id="filter-5">
+            <feMorphology radius="1.5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="0" dy="8.5" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="4.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <filter x="-13.5%" y="-5.2%" width="127.0%" height="127.2%" filterUnits="objectBoundingBox" id="filter-6">
+            <feGaussianBlur stdDeviation="1.5" in="SourceAlpha" result="shadowBlurInner1"></feGaussianBlur>
+            <feOffset dx="0" dy="-0.5" in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset>
+            <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowInnerInner1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Deactivate-Released" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-2">
+            <rect id="Rectangle" fill="url(#linearGradient-1)" x="0" y="0" width="136" height="139" rx="28"></rect>
+            <g id="Rectangle-Copy">
+                <use fill="#535353" fill-rule="evenodd" xlink:href="#path-2"></use>
+                <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                <rect stroke="#979797" stroke-width="1" stroke-linejoin="square" x="14.2837838" y="17.5" width="106.513514" height="104" rx="13"></rect>
+            </g>
+        </g>
+        <rect id="Rectangle-Copy-3" fill="#FDFDFD" x="16.5337838" y="14.5" width="102.5" height="104.5" rx="12"></rect>
+        <g id="Group" transform="translate(16.7838, 13)">
+            <g id="Rectangle-Copy-2">
+                <use fill="black" fill-opacity="1" filter="url(#filter-5)" xlink:href="#path-4"></use>
+                <use fill="#FDFDFD" fill-rule="evenodd" xlink:href="#path-4"></use>
+                <use fill="black" fill-opacity="1" filter="url(#filter-6)" xlink:href="#path-4"></use>
+            </g>
+            <text id="deactivate" font-family="SFProText-Medium, SF Pro Text, -apple-system, BlinkMacSystemFont, system-ui, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif" font-size="17" font-weight="400" fill="#767676">
+                <tspan x="8.21621622" y="90.327484">deactivate</tspan>
+            </text>
+        </g>
+        <path d="M99.4130721,24.6951016 L101.071226,26.3448253 C101.2189,26.488283 101.358141,26.5431187 101.552218,26.5431187 L103.889657,26.5431187 C105.91908,26.5431187 106.881167,27.5093367 106.881167,29.5303429 L106.881167,31.8720162 C106.881167,32.0660928 106.931803,32.2011168 107.075244,32.3487913 L108.724981,34.0069451 C110.159385,35.4372707 110.167854,36.7958587 108.724981,38.230401 L107.075244,39.884338 C106.935951,40.0320125 106.881167,40.1712534 106.881167,40.3695468 L106.881167,42.7027519 C106.881167,44.7321744 105.914932,45.694262 103.889657,45.694262 L101.552218,45.694262 C101.358141,45.694262 101.223117,45.7448982 101.071226,45.8924863 L99.4130721,47.5380761 C97.9827466,48.9724802 96.6241586,48.9768007 95.1938331,47.5380761 L93.5356793,45.8924863 C93.3880048,45.7448982 93.252998,45.694262 93.0589041,45.694262 L90.7172308,45.694262 C88.6962246,45.694262 87.7300239,44.7280267 87.7300239,42.7027519 L87.7300239,40.3695468 C87.7300239,40.1712534 87.6751709,40.0320125 87.5317132,39.884338 L85.8819947,38.230401 C84.4474559,36.7958587 84.4432356,35.4372707 85.8819947,34.0069451 L87.5317132,32.3487913 C87.6751709,32.2095504 87.7300239,32.0660928 87.7300239,31.8720162 L87.7300239,29.5303429 C87.7300239,27.4924522 88.6920078,26.5431187 90.7172308,26.5431187 L93.0589041,26.5431187 C93.252998,26.5431187 93.3964557,26.488283 93.5356793,26.3448253 L95.1896163,24.7035404 C96.6241586,23.2563425 97.9785298,23.252124 99.4130721,24.6951016 Z M99.9826688,31.8720162 L97.3118949,34.5301397 L94.6537713,31.876233 C94.425943,31.6610551 94.1643457,31.5471323 93.8310283,31.5471323 C93.198145,31.5471323 92.7044853,32.0365579 92.7044853,32.6736752 C92.7044853,32.9605733 92.8226249,33.2474887 93.0420369,33.4584498 L95.708594,36.1292237 L93.0420369,38.7999977 C92.8226249,39.0151756 92.7044853,39.29364 92.7044853,39.5847722 C92.7044853,40.2260891 93.198145,40.7239656 93.8310283,40.7239656 C94.1643457,40.7239656 94.4428102,40.6142596 94.6706558,40.3864313 L97.3118949,37.7367413 L99.9573507,40.3864313 C100.180979,40.6142596 100.455227,40.7239656 100.792761,40.7239656 C101.434078,40.7239656 101.923521,40.2260891 101.923521,39.5847722 C101.923521,39.2894232 101.809598,39.0109588 101.585987,38.7957809 L98.9236466,36.1292237 L101.590204,33.454233 C101.822249,33.2263874 101.927738,32.9563565 101.927738,32.6652243 C101.927738,32.0239074 101.438312,31.5344819 100.805412,31.5344819 C100.476328,31.5344819 100.218948,31.6399538 99.9826688,31.8720162 Z" id="Shape" fill-opacity="0.85" fill="#767676" fill-rule="nonzero"></path>
+    </g>
+</svg>
