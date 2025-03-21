@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Playdate Image Ditherer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Convert images to Playdate dithered images">
+    <meta name="author" content="Owen Van Vooren">
+    <meta name="keywords" content="playdate, dither, converter, image, atkinson, floyd-steinberg">
+    <link rel="icon" href="ditherfavicon.png" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <style>
+        :root {
+            --bg: #1a1a1a;
+            --text: #f0f0f0;
+            --accent: #d0a02c;
+            --panel: #2a2a2a;
+            --button-bg: var(--accent);
+            --button-text: #1a1a1a;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-size: 16px;
+            margin: 0;
+            padding: 20px;
+            font-family: monospace;
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        .controls-wrapper {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            background: var(--panel);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            max-width: 500px;
+        }
+
+        .controls label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+
+        .controls input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid var(--accent);
+            border-radius: 4px;
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        .file-label {
+            display: inline-block;
+            padding: 10px 15px;
+            background: var(--button-bg);
+            color: var(--button-text);
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            text-align: center;
+            width: 100%;
+            margin-top: 5px;
+            font-size: 1rem;
+        }
+
+        .file-label input[type="file"] {
+            display: none;
+        }
+
+        .radio-group {
+            background: var(--bg);
+            border: 1px solid var(--accent);
+            border-radius: 4px;
+            padding: 10px;
+        }
+
+        .radio-group span {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .radio-options {
+            display: flex;
+            gap: 10px;
+        }
+
+        .radio-options label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .radio-options input[type="radio"] {
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid var(--accent);
+            background-color: transparent;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .radio-options input[type="radio"]:checked {
+            background-color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .radio-options input[type="radio"]:checked::before {
+            content: '';
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--bg);
+            transition: all 0.3s ease;
+        }
+
+        .radio-options input[type="radio"]:not(:checked)::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 3px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: transparent;
+        }
+
+        .radio-options input[type="radio"]:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(208, 160, 44, 0.5);
+        }
+
+        .button-group {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .controls button {
+            padding: 10px 15px;
+            cursor: pointer;
+            border: none;
+            background: var(--button-bg);
+            color: var(--button-text);
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background 0.2s ease;
+            font-size: 1rem;
+        }
+
+        .controls button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .controls button:hover:not(:disabled) {
+            background: #b5891d;
+        }
+
+        #results {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .result-item {
+            background: var(--panel);
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .result-item p {
+            font-size: 0.8em;
+            margin-bottom: 5px;
+        }
+
+        .result-item button {
+            color: var(--bg);
+            background-color: var(--accent);
+            border: none;
+            border-radius: 4px;
+            width: 100px;
+            height: 26px;
+            font-weight: bolder;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .result-item canvas {
+            max-width: 100%;
+            display: block;
+            margin: 0 auto 10px;
+            cursor: grab;
+        }
+
+        .result-item canvas:active {
+            cursor: grabbing;
+        }
+
+        #scale {
+            padding: 10px 15px;
+        }
+
+        #width {
+            padding: 10px 15px;
+        }
+
+        #height {
+            padding: 10px 15px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.8em;
+        }
+
+        a {
+            color: var(--accent);
+        }
+
+        @media (max-width: 600px) {
+            .controls {
+                grid-template-columns: 1fr;
+                min-width: 90vw;
+            }
+
+            .button-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .radio-options {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .controls-wrapper {
+                padding: 0 10px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Playdate Image Ditherer</h1>
+    <div class="controls-wrapper">
+        <section class="controls">
+            <div>
+                <label for="source">Source Images</label>
+                <label class="file-label">
+                    Choose Files
+                    <input type="file" id="source" accept="image/*" multiple>
+                </label>
+            </div>
+            <div>
+                <label for="scale">Scale</label>
+                <input type="number" id="scale" min="1" max="16" step="1" value="1">
+            </div>
+
+            <div>
+                <label for="width">Width</label>
+                <input type="number" id="width" min="8" max="2000" step="1" value="200">
+            </div>
+            <div>
+                <label for="height">Height</label>
+                <input type="number" id="height" min="8" max="2000" step="1" value="200">
+            </div>
+
+            <div class="radio-group">
+                <span>Scaling</span>
+                <div class="radio-options">
+                    <label><input type="radio" name="scaling" value="fit" checked
+                            title="Scale to fit within the specified dimensions">Fit</label>
+                </div>
+                <div class="radio-options">
+                    <label><input type="radio" name="scaling" value="crop"
+                            title="Scale to cover the specified dimensions, cropping excess">Crop</label>
+                </div>
+            </div>
+            <div class="radio-group">
+                <span>Dithering</span>
+                <div class="radio-options">
+                    <label><input type="radio" name="diffusion" value="atkinson" checked
+                            title="Atkinson dithering algorithm (sharper, clearer, less detail)">Atkinson</label>
+                </div>
+                <div class="radio-options">
+                    <label><input type="radio" name="diffusion" value="floydSteinberg"
+                            title="Floyd-Steinberg dithering algorithm (softer, blurrier, more detail)">Floyd-Steinberg</label>
+                </div>
+            </div>
+            <div class="button-group">
+                <button id="start" disabled>Convert All</button>
+                <button id="downloadAll" disabled>Download All</button>
+            </div>
+        </section>
+    </div>
+    <section id="results"></section>
+    <script>
+        const floydSteinbergDiffusion = [
+            { offsetX: 1, offsetY: 0, coef: 7 / 16 },
+            { offsetX: -1, offsetY: 1, coef: 3 / 16 },
+            { offsetX: 0, offsetY: 1, coef: 5 / 16 },
+            { offsetX: 1, offsetY: 1, coef: 1 / 16 }
+        ];
+        const atkinsonDiffusion = [
+            { offsetX: 1, offsetY: 0, coef: 1 / 8 },
+            { offsetX: 2, offsetY: 0, coef: 1 / 8 },
+            { offsetX: -1, offsetY: 1, coef: 1 / 8 },
+            { offsetX: 0, offsetY: 1, coef: 1 / 8 },
+            { offsetX: 1, offsetY: 1, coef: 1 / 8 },
+            { offsetX: 0, offsetY: 2, coef: 1 / 8 }
+        ];
+
+        const source = document.getElementById("source");
+        const startBtn = document.getElementById("start");
+        const downloadAllBtn = document.getElementById("downloadAll");
+        const resultsContainer = document.getElementById("results");
+        let processedItems = [];
+
+        function processImage(img, opts, cb) {
+            const canvas1 = document.createElement("canvas");
+            const canvas2 = document.createElement("canvas");
+            const ctx1 = canvas1.getContext("2d");
+            const ctx2 = canvas2.getContext("2d");
+
+            canvas1.width = opts.width;
+            canvas1.height = opts.height;
+            canvas2.width = opts.width;
+            canvas2.height = opts.height;
+
+            ctx1.filter = "grayscale(1)";
+            let fitHoriz = opts.width / opts.height < img.naturalWidth / img.naturalHeight;
+            if (opts.scaling === "crop") fitHoriz = !fitHoriz;
+            const scale = fitHoriz ? img.naturalWidth / opts.width : img.naturalHeight / opts.height;
+            const offset = {
+                x: fitHoriz ? 0 : (canvas1.width - img.naturalWidth / scale) / 2,
+                y: fitHoriz ? (canvas1.height - img.naturalHeight / scale) / 2 : 0
+            };
+
+            ctx1.drawImage(
+                img,
+                offset.x,
+                offset.y,
+                fitHoriz ? canvas1.width : img.naturalWidth / scale,
+                fitHoriz ? img.naturalHeight / scale : canvas1.height
+            );
+
+            let imageData = ctx1.getImageData(0, 0, canvas1.width, canvas1.height);
+            const data = imageData.data;
+            const diffusion = opts.diffusion === "atkinson" ? atkinsonDiffusion : floydSteinbergDiffusion;
+
+            for (let y = 0; y < canvas1.height; y++) {
+                for (let x = 0; x < canvas1.width; x++) {
+                    const idx = (y * canvas1.width + x) * 4;
+                    if (data[idx + 3] === 0) continue;
+                    const oldPixel = data[idx];
+                    const newPixel = oldPixel < 128 ? 0 : 255;
+                    const quantError = oldPixel - newPixel;
+                    data[idx] = data[idx + 1] = data[idx + 2] = newPixel;
+                    diffusion.forEach(d => {
+                        const nx = x + d.offsetX, ny = y + d.offsetY;
+                        if (nx >= 0 && nx < canvas1.width && ny >= 0 && ny < canvas1.height) {
+                            const nIdx = (ny * canvas1.width + nx) * 4;
+                            if (data[nIdx + 3] === 0) return;
+                            for (let ch = 0; ch < 3; ch++) {
+                                data[nIdx + ch] = Math.max(0, Math.min(255, data[nIdx + ch] + quantError * d.coef));
+                            }
+                        }
+                    });
+                }
+            }
+
+            ctx2.putImageData(imageData, 0, 0);
+
+            if (opts.scale > 1) {
+                const scaled = document.createElement("canvas");
+                scaled.width = opts.scale * canvas2.width;
+                scaled.height = opts.scale * canvas2.height;
+                const sctx = scaled.getContext("2d");
+                sctx.imageSmoothingEnabled = false;
+                sctx.drawImage(canvas2, 0, 0, scaled.width, scaled.height);
+                cb(scaled);
+            } else {
+                cb(canvas2);
+            }
+        }
+
+        function processImages() {
+            resultsContainer.innerHTML = "";
+            processedItems = [];
+            downloadAllBtn.textContent = "Download All";
+            downloadAllBtn.disabled = true;
+
+            const files = source.files;
+            if (!files.length) return;
+
+            const widthInput = document.getElementById("width");
+            const heightInput = document.getElementById("height");
+            const scaleInput = document.getElementById("scale");
+
+            const opts = {
+                width: Math.max(8, Math.min(2000, Number(widthInput.value))),
+                height: Math.max(8, Math.min(2000, Number(heightInput.value))),
+                scale: Math.max(1, Math.min(16, Number(scaleInput.value))),
+                scaling: document.querySelector('input[name="scaling"]:checked').value,
+                diffusion: document.querySelector('input[name="diffusion"]:checked').value
+            };
+
+            let processedCount = 0;
+            const totalFiles = files.length;
+
+            Array.from(files).forEach(file => {
+                const reader = new FileReader();
+                reader.onload = e => {
+                    const img = new Image();
+                    img.onload = () => {
+                        processImage(img, opts, processedCanvas => {
+                            processedCanvas.draggable = true;
+                            processedCanvas.addEventListener('dragstart', (e) => {
+                                const dataUrl = processedCanvas.toDataURL('image/png');
+                                e.dataTransfer.setData('DownloadURL', `image/png:${file.name.replace(/\.[^/.]+$/, "")}.png:${dataUrl}`);
+                            });
+
+                            const item = document.createElement("div");
+                            item.className = "result-item";
+
+                            const namePara = document.createElement("p");
+                            namePara.textContent = file.name;
+                            item.appendChild(namePara);
+
+                            item.appendChild(processedCanvas);
+
+                            const btn = document.createElement("button");
+                            btn.textContent = "Download";
+                            btn.addEventListener("click", () => {
+                                processedCanvas.toBlob(blob => {
+                                    const url = URL.createObjectURL(blob);
+                                    const a = document.createElement("a");
+                                    a.href = url;
+                                    a.download = file.name.replace(/\.[^/.]+$/, "") + ".png";
+                                    a.click();
+                                    URL.revokeObjectURL(url);
+                                }, "image/png");
+                            });
+                            item.appendChild(btn);
+
+                            resultsContainer.appendChild(item);
+                            processedItems.push({ file, canvas: processedCanvas });
+                            processedCount++;
+
+                            if (processedCount === totalFiles) {
+                                downloadAllBtn.textContent = `Download All (${processedItems.length})`;
+                                downloadAllBtn.disabled = false;
+                            }
+                        });
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        // Event listeners for settings changes
+        const settingsInputs = [
+            document.getElementById("width"),
+            document.getElementById("height"),
+            document.getElementById("scale"),
+            ...document.querySelectorAll('input[name="scaling"]'),
+            ...document.querySelectorAll('input[name="diffusion"]')
+        ];
+
+        settingsInputs.forEach(input => {
+            input.addEventListener('change', () => {
+                if (source.files.length > 0) {
+                    processImages();
+                }
+            });
+        });
+
+        startBtn.addEventListener("click", processImages);
+
+        source.addEventListener('change', () => {
+            startBtn.disabled = source.files.length === 0;
+            if (source.files.length > 0) {
+                processImages();
+            }
+        });
+
+        downloadAllBtn.addEventListener("click", () => {
+            const zip = new JSZip();
+            let count = 0;
+            processedItems.forEach(item => {
+                item.canvas.toBlob(blob => {
+                    zip.file(item.file.name.replace(/\.[^/.]+$/, "") + ".png", blob);
+                    count++;
+                    if (count === processedItems.length) {
+                        zip.generateAsync({ type: "blob" }).then(content => {
+                            const a = document.createElement("a");
+                            a.href = URL.createObjectURL(content);
+                            a.download = "Playdate Dithered Images.zip";
+                            a.click();
+                            URL.revokeObjectURL(a.href);
+                        });
+                    }
+                }, "image/png");
+            });
+        });
+    </script>
+    <footer>Playdate Dither Converter ©2025 Owen Van Vooren<br>
+        Inspired by <a href="https://codepen.io/t0m/pen/xxPWJQm">This Codepen</a></footer>
+</body>
+
+</html>
