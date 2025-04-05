@@ -34,7 +34,7 @@
     }
 
     #card-spacer {
-        height: 180px;
+        height: 100px;
     }
 
     @media (prefers-color-scheme: dark) {
@@ -77,6 +77,10 @@
             0 0 20px rgba(255, 255, 255, 0.3);
     }
 
+    .xplore {
+        margin-top: -90px !important;
+    }
+
     .not {
         background: linear-gradient(135deg, #00aaff, #ff4f58, #ff6fb2);
         background-size: 300%;
@@ -88,6 +92,14 @@
             0 0 20px rgba(255, 255, 255, 0.3);
         font-weight: 700;
         font-size: 30px;
+    }
+
+    hr {
+        border: 0;
+        height: 3px;
+        background: #515151;
+        margin: 0 auto;
+        width: 90%;
     }
 
     .learn-button {
@@ -125,13 +137,16 @@
 <body draggable="false">
     <div id="header-container"></div>
     <main>
-        <br>
-        <a href="https://nocture.owen.uno">
-        <img src="card.png" id="card-image" alt="nocturne" draggable="false" width="200" height=auto
-            oncontextmenu="return false;"></a>
+        <div class="xplore">
             <div id="card-spacer"></div>
 
-        <div class="xplore">
+            <a href="https://nocture.owen.uno">
+                <img src="card.png" id="card-image" alt="nocturne" draggable="false" width="200" height=auto
+                    oncontextmenu="return false;"></a>
+                    <div id="card-spacer"></div>
+                    <br>
+                    <hr>
+                    <div id="card-spacer"></div>
             <h1 style="font-size: 70px; font-weight: 300;"><b style="font-weight: 800;">Xplore</b></h1>
             <img src="XploreIcon.png" alt="" width="200" height="200"
                 style="-webkit-filter: drop-shadow(8px 8px 3px #515151); filter: drop-shadow(8px 8px 3px #515151);"
