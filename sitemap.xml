@@ -2,62 +2,74 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://owen.uno</loc>
-        <lastmod>2025-03-21</lastmod>
+        <lastmod>2025-04-05</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://owen.uno/photography</loc>
-        <lastmod>2025-03-21</lastmod>
+        <lastmod>2025-04-05</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://owen.uno/dev</loc>
-        <lastmod>2025-03-21</lastmod>
+        <lastmod>2025-04-05</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://asterisk.owen.uno</loc>
-        <lastmod>2025-03-21</lastmod>
+        <lastmod>2025-04-05</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://asterisk.owen.uno/about</loc>
-        <lastmod>2025-03-21</lastmod>
+        <lastmod>2025-04-05</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://yay.owen.uno</loc>
-        <lastmod>2025-03-21</lastmod>
+        <lastmod>2025-04-05</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://owen.uno/xplore</loc>
-        <lastmod>2025-03-21</lastmod>
+        <lastmod>2025-04-05</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://owen.uno/countdown</loc>
-        <lastmod>2025-03-21</lastmod>
+        <lastmod>2025-04-05</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.4</priority>
     </url>
     <url>
         <loc>https://owen.uno/keyboard-detector</loc>
-        <lastmod>2025-03-21</lastmod>
+        <lastmod>2025-04-05</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.4</priority>
     </url>
     <url>
         <loc>https://owen.uno/playdate-dither</loc>
-        <lastmod>2025-03-21</lastmod>
+        <lastmod>2025-04-05</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.4</priority>
+    </url>
+    <url>
+        <loc>https://beta.owen.uno</loc>
+        <lastmod>2025-04-05</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://nocturne.owen.uno</loc>
+        <lastmod>2025-04-05</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
     </url>
 </urlset>
