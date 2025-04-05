@@ -29,6 +29,26 @@
     <meta property="og:url" content="https://owen.uno">
 </head>
 <style>
+    body {
+        background-color: #0f0f0f !important;
+    }
+
+    #card-spacer {
+        height: 180px;
+    }
+
+    #card-image {
+        width:  90vw;
+        max-width: 1000px;
+        height: auto;
+        border-radius: 8px;
+        border: #515151 4px solid;
+        z-index: 1;
+        filter: drop-shadow(0px 0px 10px #000);
+        -webkit-filter: drop-shadow(0px 0px 10px #000);
+        transition: transform 0.3s ease;
+    }
+
     .xplore p {
         text-align: center;
         padding-left: 20px;
@@ -94,6 +114,12 @@
 <body draggable="false">
     <div id="header-container"></div>
     <main>
+        <br>
+        <a href="https://nocture.owen.uno">
+        <img src="card.png" id="card-image" alt="nocturne" draggable="false" width="200" height=auto
+            oncontextmenu="return false;"></a>
+            <div id="card-spacer"></div>
+
         <div class="xplore">
             <h1 style="font-size: 70px; font-weight: 300;"><b style="font-weight: 800;">Xplore</b></h1>
             <img src="XploreIcon.png" alt="" width="200" height="200"
