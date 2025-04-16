@@ -851,18 +851,6 @@ body {
     height: 16px;
 }
 
-::-webkit-scrollbar-button:vertical:start {
-    background-image: url('../images/icons/scroll-up.svg');
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-::-webkit-scrollbar-button:vertical:end {
-    background-image: url('../images/icons/scroll-down.svg');
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
 /* Resize handles */
 .resize-handle {
     position: absolute;

@@ -16,7 +16,9 @@ document.addEventListener('DOMContentLoaded', function() {
         'Telling your browser to speed things up...',
         'Waiting for you to get a better internet connection...',
         'Thanking you for being so patient that you wait forever for my portfolio to load...',
-        'Thinking of some funny easter egg...'
+        'Thinking of some funny easter egg...',
+        'Wondering how on earth you\'re still here...',
+        'Click <a href="youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">this link</a> to make it load faster',
     ];
     let currentMessageIndex = 0;
     let messageCharIndex = 0;
@@ -45,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Track loading progress
     let progress = 0;
-    const totalAssets = 20; // Approximate number of critical assets
+    const totalAssets = 27; // Approximate number of critical assets
     let loadedAssets = 0;
     
     // Function to update progress bar
