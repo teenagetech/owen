@@ -5,17 +5,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const startupScreen = document.getElementById('startup-screen');
     const loadingBar = document.getElementById('loading-bar');
     const startupSubtext = document.querySelector('.startup-subtext');
-    // Define sound but don't play it
-    const systemSounds = {
-        startup: new Audio('sounds/startup.mp3')
-    };
     
     // Set up startup messages for the typing effect
     const startupMessages = [
         'Starting up...',
         'Loading resources...',
         'Initializing system...',
-        'Preparing desktop...'
+        'Preparing desktop...',
+        'Loading applications...',
+        'Telling your browser to speed things up...',
+        'Waiting for you to get a better internet connection...',
+        'Thanking you for being so patient that you wait forever for my portfolio to load...',
+        'Thinking of some funny easter egg...'
     ];
     let currentMessageIndex = 0;
     let messageCharIndex = 0;
@@ -61,14 +62,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 setTimeout(() => {
                     startupScreen.classList.add('hidden');
-                    // Startup sound removed - silent startup
                     
                     // Remove the startup screen from DOM after transition
                     setTimeout(() => {
                         startupScreen.style.display = 'none';
                     }, 1500);
                 }, 600);
-            }, 800); // Short delay to show 100%
+            }, 600); // Short delay to show 100%
         }
     }
     
