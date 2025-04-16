@@ -1,5 +1,3 @@
-/* Mac OS 9 Theme CSS */
-
 @font-face {
     font-family: 'Charcoal';
     src: url('../fonts/Charcoal.ttf') format('truetype');
@@ -20,11 +18,11 @@
     --menu-bar-color: #dddddd;
     --desktop-color: #3875d7;
     --text-color: #000;
-    --window-header-color: #cccccc;
+    --window-header-color: #dddddd;
     --window-header-stripe: #000080;
     --button-highlight: #ffffff;
     --button-shadow: #888888;
-    --pinstripes-color: #b8b8b8;
+    --pinstripes-color: #000000;
 }
 
 /* Custom cursors */
@@ -231,144 +229,139 @@ body {
 /* Windows */
 .window {
     position: absolute;
-    background-color: var(--window-bg-color);
-    border: 1px solid var(--window-border-color);
+    min-width: 200px;
+    min-height: 150px;
+    background-color: #ECECEC;
+    border: 1px solid #000;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-    min-width: 400px;
-    min-height: 300px;
-    display: none;
+    font-family: 'Chicago', 'Charcoal', sans-serif;
+    user-select: none;
+    overflow: hidden;
+    z-index: 1;
 }
 
 .window.active {
-    z-index: 100;
-    display: block;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+.window.minimized .window-content {
+    display: none;
+}
+
+.window.minimized {
+    height: auto !important;
 }
 
 .window-header {
-    height: 22px;
-    background: var(--window-header-color);
-    border-bottom: 1px solid var(--window-border-color);
-    display: flex;
-    align-items: center;
     position: relative;
-    cursor: url('../images/cursors/normal.png'), default;
-}
-
-.window-header.dragging {
-    cursor: url('../images/cursors/grabbing.png'), grabbing;
-}
-
-.window-title-container {
+    height: 22px;
+    background: linear-gradient(to right, #FFFFFF, #CCCCCC);
     display: flex;
-    justify-content: center;
     align-items: center;
-    width: calc(100% - 70px);
-    position: absolute;
-    left: 25px;
-    height: 100%;
+    cursor: grab;
+    border-bottom: 1px solid #000;
 }
 
-.pinstripes-left {
-    flex-grow: 1;
-    height: 60%;
-    background: repeating-linear-gradient(
-        0deg,
-        var(--pinstripes-color),
-        var(--pinstripes-color) 1px,
-        var(--window-header-color) 1px,
-        var(--window-header-color) 2px
-    );
-}
-
-.window-title {
-    padding: 0 12px 0 18px;
-    font-size: 13px;
-    white-space: nowrap;
-    font-family: 'Charcoal', sans-serif;
-}
-
-.pinstripes-right {
-    flex-grow: 1;
-    height: 60%;
-    background: repeating-linear-gradient(
-        0deg,
-        var(--pinstripes-color),
-        var(--pinstripes-color) 1px,
-        var(--window-header-color) 1px,
-        var(--window-header-color) 2px
-    );
-}
-
-.window-controls-left {
+.close-button-container {
     display: flex;
-    z-index: 10;
-    position: absolute;
-    left: 5px;
+    align-items: center;
+    margin-left: 4px;
 }
 
-.window-controls-right {
+.control-right-container {
     display: flex;
-    z-index: 10;
-    position: absolute;
-    right: 5px;
+    align-items: center;
+    margin-right: 4px;
 }
 
-.window-controls-left button, .window-controls-right button {
+.control-button {
     width: 12px;
     height: 12px;
-    margin-right: 4px;
-    background-color: transparent;
-    border: none;
+    cursor: pointer;
+    margin: 0 2px;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    position: relative;
-    cursor: url('../images/cursors/pointer.png') 5 2, pointer;
 }
 
-#clock {
-    padding-right: 10px;
-}
-
-.close-btn, .minimize-btn, .zoom-btn {
-    z-index: 1001;
-}
-
-.close-btn {
+.close-button {
     background-image: url('../images/close.png');
-    width: 12px;
-    height: 12px;
 }
 
-.minimize-btn {
+.minimize-button {
     background-image: url('../images/minimize.png');
-    width: 12px;
-    height: 12px;
 }
 
-.zoom-btn {
+.zoom-button {
     background-image: url('../images/zoom.png');
-    width: 12px;
-    height: 12px;
 }
 
-.close-btn:active {
-    background-image: url('../images/close-active.png');
+.window-title-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    pointer-events: none;
 }
 
-.minimize-btn:active {
-    background-image: url('../images/minimize-active.png');
+.window-title {
+    font-size: 12px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 80%;
+    pointer-events: none;
+    padding: 0 12px 0 18px;
 }
 
-.zoom-btn:active {
-    background-image: url('../images/zoom-active.png');
+.pinstripe {
+    height: 1px;
+    background-color: #999;
 }
 
-.window-content {
-    padding: 15px;
-    overflow: auto;
-    height: calc(100% - 22px);
-    transition: height 0.2s ease;
+.pinstripe-left {
+    width: calc(50% - 140px);
+    margin-right: 10px;
+    margin-left: 30px;
+}
+
+.pinstripe-right {
+    width: calc(50% - 140px);
+    margin-left: 10px;
+    margin-right: 42px;
+}
+
+/* Resize handle */
+.resize-handle {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 16px;
+    height: 16px;
+    background-image: url('../images/pull.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: se-resize;
+    z-index: 2;
+}
+
+/* Outlines for dragging and resizing */
+.window-drag-outline,
+.window-resize-outline {
+    position: absolute;
+    border: 1px dotted #000;
+    background-color: transparent;
+    pointer-events: none;
+    display: none;
+    z-index: 1000;
 }
 
 /* Minimized window state */
@@ -377,10 +370,6 @@ body {
     height: 22px;
     border-bottom: none;
     box-shadow: none;
-}
-
-.window.minimized .window-content {
-    display: none;
 }
 
 .window.minimized .resize-handle {
@@ -772,11 +761,11 @@ body {
     width: 16px;
     height: 16px;
     background-image: url('../images/pull.png');
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: contain;
-    cursor: url('../images/cursors/normal.png'), auto;
-    z-index: 100;
+    cursor: se-resize;
+    z-index: 2;
 }
 
 /* Edge resize handles */
@@ -815,21 +804,21 @@ body {
 /* Window dragging outline */
 .window-drag-outline {
     position: absolute;
-    border: 1px dashed #000;
+    border: 1px dotted #000;
     background-color: transparent;
     pointer-events: none;
-    z-index: 10000;
     display: none;
+    z-index: 9999;
 }
 
 /* Window resize outline */
 .window-resize-outline {
     position: absolute;
-    border: 1px dashed #000;
+    border: 1px dotted #000;
     background-color: transparent;
     pointer-events: none;
-    z-index: 10000;
     display: none;
+    z-index: 9999;
 }
 
 /* Window states */
@@ -859,4 +848,13 @@ body {
         left: 10px;
         grid-gap: 20px;
     }
+}
+
+/* Window content */
+.window-content {
+    padding: 10px;
+    overflow: auto;
+    position: relative;
+    height: calc(100% - 22px);
+    background-color: #ECECEC;
 } 

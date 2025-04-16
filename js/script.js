@@ -150,208 +150,163 @@ document.addEventListener('DOMContentLoaded', function() {
             window.minWidth = parseInt(computedStyle.minWidth) || MIN_WINDOW_WIDTH;
             window.minHeight = parseInt(computedStyle.minHeight) || MIN_WINDOW_HEIGHT;
             
-            // Make window draggable (using outline)
-            header.addEventListener('mousedown', function(e) {
-                if (e.target === this || e.target.classList.contains('window-title') || 
-                    e.target.classList.contains('pinstripes-left') || 
-                    e.target.classList.contains('pinstripes-right') ||
-                    e.target.classList.contains('window-title-container')) {
-                    
-                    // Set up for dragging
-                    draggedWindow = window;
-                    activeWindow = window;
-                    isDragging = true;
-                    
-                    // Bring window to front
-                    bringToFront(window);
-                    
-                    // Calculate offset for dragging
-                    const rect = window.getBoundingClientRect();
-                    offsetX = e.clientX - rect.left;
-                    offsetY = e.clientY - rect.top;
-                    
-                    // Initialize drag outline
-                    dragOutline.style.width = rect.width + 'px';
-                    dragOutline.style.height = rect.height + 'px';
-                    dragOutline.style.left = rect.left + 'px';
-                    dragOutline.style.top = rect.top + 'px';
-                    dragOutline.style.display = 'block';
-                    
-                    e.preventDefault();
-                }
+            // Set window to active when clicked
+            window.addEventListener('mousedown', () => {
+                setActiveWindow(window);
             });
             
-            // Set up resize handle for preview
+            // Handle window dragging
+            header.addEventListener('mousedown', (e) => {
+                // Don't start dragging if clicking on a control button
+                if (e.target.closest('.control-button')) return;
+                
+                isDragging = true;
+                activeWindow = window;
+                
+                // Set grabbing cursor
+                header.style.cursor = 'grabbing';
+                
+                // Get starting positions
+                offsetX = e.clientX;
+                offsetY = e.clientY;
+                const rect = window.getBoundingClientRect();
+                window.initialLeft = rect.left;
+                window.initialTop = rect.top;
+                
+                // Set up the outline
+                dragOutline.style.width = `${rect.width}px`;
+                dragOutline.style.height = `${rect.height}px`;
+                dragOutline.style.left = `${rect.left}px`;
+                dragOutline.style.top = `${rect.top}px`;
+                dragOutline.style.display = 'block';
+                
+                playSoundEffect('click');
+                e.preventDefault();
+            });
+            
+            // Handle window resizing
             if (resizeHandle) {
-                resizeHandle.addEventListener('mousedown', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    
+                resizeHandle.addEventListener('mousedown', (e) => {
                     isResizing = true;
                     activeWindow = window;
-                    bringToFront(window);
                     
-                    // Store initial dimensions and position
+                    // Get starting positions and dimensions
                     const rect = window.getBoundingClientRect();
                     window.initialWidth = rect.width;
                     window.initialHeight = rect.height;
                     window.initialLeft = rect.left;
                     window.initialTop = rect.top;
                     
-                    // Store mouse position
-                    window.initialMouseX = e.clientX;
-                    window.initialMouseY = e.clientY;
-                    
-                    // Initialize resize outline
-                    resizeOutline.style.width = rect.width + 'px';
-                    resizeOutline.style.height = rect.height + 'px';
-                    resizeOutline.style.left = rect.left + 'px';
-                    resizeOutline.style.top = rect.top + 'px';
+                    // Set up the resize outline
+                    resizeOutline.style.width = `${rect.width}px`;
+                    resizeOutline.style.height = `${rect.height}px`;
+                    resizeOutline.style.left = `${rect.left}px`;
+                    resizeOutline.style.top = `${rect.top}px`;
                     resizeOutline.style.display = 'block';
+                    
+                    playSoundEffect('click');
+                    e.preventDefault();
                 });
             }
             
             // Close button functionality
             if (closeBtn) {
-                closeBtn.addEventListener('click', function() {
+                closeBtn.addEventListener('click', () => {
                     closeWindow(window.id);
+                    playSoundEffect('close');
                 });
             }
             
             // Minimize button functionality
             if (minimizeBtn) {
-                minimizeBtn.addEventListener('click', function() {
+                minimizeBtn.addEventListener('click', () => {
                     minimizeWindow(window);
+                    playSoundEffect('minimize');
                 });
             }
             
             // Zoom button functionality
             if (zoomBtn) {
-                zoomBtn.addEventListener('click', function() {
+                zoomBtn.addEventListener('click', () => {
                     toggleZoom(window);
+                    playSoundEffect('maximize');
+                    
+                    // Update outline dimensions if window is resized
+                    if (isDragging) {
+                        dragOutline.style.width = `${window.offsetWidth}px`;
+                        dragOutline.style.height = `${window.offsetHeight}px`;
+                    }
                 });
             }
-            
-            // Activate window on click
-            window.addEventListener('mousedown', function() {
-                bringToFront(window);
-            });
         });
         
-        // Handle dragging and resizing on document level
-        document.addEventListener('mousemove', function(e) {
-            // Handle window dragging (update drag outline)
-            if (isDragging && draggedWindow) {
-                const desktop = document.querySelector('.desktop');
-                const desktopRect = desktop.getBoundingClientRect();
+        // Global mouse move handler
+        document.addEventListener('mousemove', (e) => {
+            if (isDragging && activeWindow) {
+                const menuBar = document.querySelector('.menu-bar');
+                const menuBarRect = menuBar.getBoundingClientRect();
                 
-                // Calculate new position for the outline
-                let newLeft = e.clientX - offsetX;
-                let newTop = e.clientY - offsetY;
+                // Calculate new position
+                let newLeft = window.initialLeft + (e.clientX - offsetX);
+                let newTop = window.initialTop + (e.clientY - offsetY);
                 
-                // Keep outline within desktop boundaries
-                const outlineRect = dragOutline.getBoundingClientRect();
-                const outlineWidth = outlineRect.width;
-                const outlineHeight = outlineRect.height;
+                // Ensure window doesn't go outside viewport
+                newLeft = Math.max(0, newLeft);
+                newTop = Math.max(menuBarRect.height, newTop);
                 
-                // Constrain left/right
-                if (newLeft < 0) newLeft = 0;
-                if (newLeft + outlineWidth > desktopRect.width) {
-                    newLeft = desktopRect.width - outlineWidth;
-                }
+                // Update outline position
+                dragOutline.style.left = `${newLeft}px`;
+                dragOutline.style.top = `${newTop}px`;
+            } else if (isResizing && activeWindow) {
+                // Calculate new dimensions
+                const newWidth = Math.max(200, window.initialWidth + (e.clientX - offsetX));
+                const newHeight = Math.max(150, window.initialHeight + (e.clientY - offsetY));
                 
-                // Constrain top/bottom (accounting for menu bar)
-                if (newTop < menuBarHeight) newTop = menuBarHeight;
-                if (newTop + outlineHeight > desktopRect.height) {
-                    newTop = desktopRect.height - outlineHeight;
-                }
-                
-                // Update the outline position
-                dragOutline.style.left = newLeft + 'px';
-                dragOutline.style.top = newTop + 'px';
-                
-                e.preventDefault();
-            }
-            
-            // Handle window resizing (update resize outline)
-            if (isResizing && activeWindow) {
-                const deltaX = e.clientX - activeWindow.initialMouseX;
-                const deltaY = e.clientY - activeWindow.initialMouseY;
-                
-                // Get window-specific minimum dimensions
-                const minWidth = activeWindow.minWidth;
-                const minHeight = activeWindow.minHeight;
-                
-                // Calculate new width and height from bottom-right corner only
-                // Use the window's actual minimum dimensions, not the generic ones
-                const newWidth = Math.max(minWidth, activeWindow.initialWidth + deltaX);
-                const newHeight = Math.max(minHeight, activeWindow.initialHeight + deltaY);
-                
-                // Keep outline within desktop boundaries
-                const desktop = document.querySelector('.desktop');
-                const desktopRect = desktop.getBoundingClientRect();
-                
-                let constrainedWidth = newWidth;
-                let constrainedHeight = newHeight;
-                
-                // Adjust if outline would exceed desktop
-                if (activeWindow.initialLeft + constrainedWidth > desktopRect.width) {
-                    constrainedWidth = desktopRect.width - activeWindow.initialLeft;
-                }
-                
-                if (activeWindow.initialTop + constrainedHeight > desktopRect.height) {
-                    constrainedHeight = desktopRect.height - activeWindow.initialTop;
-                }
-                
-                // Apply constraints but respect window's specific minimum dimensions
-                constrainedWidth = Math.max(minWidth, constrainedWidth);
-                constrainedHeight = Math.max(minHeight, constrainedHeight);
-                
-                // Update resize outline
-                resizeOutline.style.width = constrainedWidth + 'px';
-                resizeOutline.style.height = constrainedHeight + 'px';
-                
-                e.preventDefault();
+                // Update outline dimensions
+                resizeOutline.style.width = `${newWidth}px`;
+                resizeOutline.style.height = `${newHeight}px`;
             }
         });
         
-        document.addEventListener('mouseup', function(e) {
-            // Check if mouse released on menu bar for drag cancel
-            const isOverMenuBar = e.clientY < menuBarHeight;
-            
-            // Finalize window dragging
-            if (isDragging && draggedWindow) {
-                // Hide the outline
-                dragOutline.style.display = 'none';
+        // Global mouse up handler
+        document.addEventListener('mouseup', (e) => {
+            if (isDragging && activeWindow) {
+                const header = activeWindow.querySelector('.window-header');
+                header.style.cursor = 'grab';
                 
-                // Only apply position if not released on menu bar
-                if (!isOverMenuBar) {
-                    const newLeft = parseInt(dragOutline.style.left);
-                    const newTop = parseInt(dragOutline.style.top);
+                // Check if mouse is over menu bar when released
+                const menuBar = document.querySelector('.menu-bar');
+                const menuBarRect = menuBar.getBoundingClientRect();
+                
+                if (e.clientY <= menuBarRect.height) {
+                    // Cancel drag if released on menu bar
+                    dragOutline.style.display = 'none';
+                } else {
+                    // Apply new position
+                    activeWindow.style.left = dragOutline.style.left;
+                    activeWindow.style.top = dragOutline.style.top;
                     
-                    // Apply position to actual window
-                    draggedWindow.style.left = newLeft + 'px';
-                    draggedWindow.style.top = newTop + 'px';
+                    // Hide outline
+                    dragOutline.style.display = 'none';
                 }
                 
                 isDragging = false;
-                draggedWindow = null;
-            }
-            
-            // Finalize window resizing
-            if (isResizing && activeWindow) {
-                // Hide the outline
+            } else if (isResizing && activeWindow) {
+                // Apply new dimensions
+                activeWindow.style.width = resizeOutline.style.width;
+                activeWindow.style.height = resizeOutline.style.height;
+                
+                // Hide outline
                 resizeOutline.style.display = 'none';
                 
-                // Apply new dimensions to the window
-                if (!isOverMenuBar) {
-                    activeWindow.style.width = resizeOutline.style.width;
-                    activeWindow.style.height = resizeOutline.style.height;
-                }
-                
                 isResizing = false;
-                activeWindow = activeWindow; // Keep window active
             }
+            
+            // Reset active window after a small delay (to allow click events to propagate)
+            clearTimeout(outlineTimeout);
+            outlineTimeout = setTimeout(() => {
+                activeWindow = null;
+            }, 10);
         });
     }
     
@@ -454,6 +409,11 @@ document.addEventListener('DOMContentLoaded', function() {
             window.dataset.preZoomTop = window.style.top;
             window.dataset.preZoomWidth = window.style.width || '400px';
             window.dataset.preZoomHeight = window.style.height || '300px';
+            
+            // Ensure window is not minimized when maximizing
+            if (window.classList.contains('minimized')) {
+                window.classList.remove('minimized');
+            }
             
             // Maximize
             const desktop = document.querySelector('.desktop');
@@ -877,5 +837,17 @@ document.addEventListener('DOMContentLoaded', function() {
         span.textContent = input.value || 'Untitled Folder';
         span.style.display = 'block';
         input.style.display = 'none';
+    }
+
+    function setActiveWindow(window) {
+        // Remove active class from all windows
+        document.querySelectorAll('.window').forEach(win => {
+            win.classList.remove('active');
+            win.style.zIndex = 1;
+        });
+        
+        // Add active class to clicked window
+        window.classList.add('active');
+        window.style.zIndex = 10;
     }
 }); 
