@@ -18,7 +18,8 @@ document.addEventListener('DOMContentLoaded', function() {
         'Thanking you for being so patient that you wait forever for my portfolio to load...',
         'Thinking of some funny easter egg...',
         'Wondering how on earth you\'re still here...',
-        'Click <a href="youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">this link</a> to make it load faster',
+        'Click <a href="https://youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">this link</a> to make it load faster',
+        'Just kidding ;)'
     ];
     let currentMessageIndex = 0;
     let messageCharIndex = 0;
@@ -26,21 +27,34 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Function for typewriter effect
     function typeMessage() {
-        const currentMessage = startupMessages[currentMessageIndex];
-        
-        if (messageCharIndex < currentMessage.length) {
-            startupSubtext.textContent = currentMessage.substring(0, messageCharIndex + 1);
-            messageCharIndex++;
-        } else {
-            // Move to next message after delay
-            clearInterval(messageUpdateInterval);
-            setTimeout(() => {
-                messageCharIndex = 0;
-                currentMessageIndex = (currentMessageIndex + 1) % startupMessages.length;
-                messageUpdateInterval = setInterval(typeMessage, 100);
-            }, 1500);
+        const msg = startupMessages[currentMessageIndex];
+      
+        // if this message contains an <a> we’ll just show it whole
+        if (msg.includes('<a ') && messageCharIndex === 0) {
+          startupSubtext.innerHTML = msg;
+          // wait 1.5s then advance
+          clearInterval(messageUpdateInterval);
+          setTimeout(nextMessage, 1500);
+          return;
         }
-    }
+      
+        // otherwise, type it character by character
+        if (messageCharIndex < msg.length) {
+          startupSubtext.innerHTML = msg.substring(0, messageCharIndex + 1);
+          messageCharIndex++;
+        } else {
+          clearInterval(messageUpdateInterval);
+          setTimeout(nextMessage, 1500);
+        }
+      }
+      
+      // helper to go to the next message
+      function nextMessage() {
+        messageCharIndex = 0;
+        currentMessageIndex = (currentMessageIndex + 1) % startupMessages.length;
+        messageUpdateInterval = setInterval(typeMessage, 100);
+      }
+      
     
     // Start the typewriter effect
     messageUpdateInterval = setInterval(typeMessage, 100);
@@ -68,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Remove the startup screen from DOM after transition
                     setTimeout(() => {
                         startupScreen.style.display = 'none';
-                    }, 1500);
+                    }, 15000);
                 }, 600);
             }, 600); // Short delay to show 100%
         }
