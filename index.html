@@ -8,6 +8,24 @@
         content="Owen Van Vooren, Developer, Photographer, Entrepreneur, Cinematographer, Videographer, iOS app developer, Mac developer">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Owen Van Vooren</title>
+    
+    <!-- Preload Critical Assets -->
+    <link rel="preload" href="fonts/Charcoal.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="fonts/geneva-9.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="images/desktop.png" as="image">
+    <link rel="preload" href="images/icons/apple-logo.svg" as="image">
+    <link rel="preload" href="images/cursors/normal.png" as="image">
+    <link rel="preload" href="images/close.png" as="image">
+    <link rel="preload" href="images/minimize.png" as="image">
+    <link rel="preload" href="images/zoom.png" as="image">
+    <link rel="preload" href="images/close-active.png" as="image">
+    <link rel="preload" href="images/minimize-active.png" as="image">
+    <link rel="preload" href="images/zoom-active.png" as="image">
+    <link rel="preload" href="images/pull.png" as="image">
+    
+    <!-- FontFaceObserver for better font loading detection -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fontfaceobserver/2.3.0/fontfaceobserver.standalone.min.js"></script>
+    
     <meta property="og:title" content="Owen Van Vooren">
     <meta property="og:description"
         content="Hi! Iʼm Owen. Iʼm a photographer, programmer, iOS/macOS developer, and innovator.">
@@ -19,6 +37,18 @@
     <link rel="apple-touch-icon" href="images/icons/apple-logo.svg">
 </head>
 <body>
+    <!-- Mac OS 9 Startup Screen -->
+    <div id="startup-screen" class="startup-screen">
+        <div class="startup-content">
+            <img src="images/icons/apple-logo.svg" alt="Happy Mac" class="happy-mac">
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="loading-bar"></div>
+            </div>
+            <div class="startup-text">Welcome to my portfolio!</div>
+            <div class="startup-subtext">Starting up...</div>
+        </div>
+    </div>
+
     <div class="desktop">
         <!-- Menu Bar -->
         <div class="menu-bar">
