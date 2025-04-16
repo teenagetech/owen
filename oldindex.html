@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en" draggable="false">
+
+<head>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <meta charset="UTF-8">
+    <meta name="description"
+        content="Owen Van Vooren: Developer, Photographer, Entrepreneur, and Tech Enthusiast extrodinaire.">
+    <meta name="keywords"
+        content="Owen Van Vooren, Developer, Photographer, Entrepreneur, Cinematographer, Videographer, iOS app developer, Mac developer">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owen Van Vooren</title>
+    <link rel="preload" as="image" href="mascot.svg">
+    <link rel="preload" as="image" href="white.svg">
+    <link rel="preload" as="image" href="tinycon.png">
+    <link rel="preload" as="image" href="XploreImage.png">
+    <link rel="preload" as="image" href="XploreScreenshot.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <meta name="theme-color" content="#F25337">
+    <link rel="stylesheet" href="styles.css">
+    <meta property="og:title" content="Owen Van Vooren">
+    <meta property="og:description"
+        content="Hi! Iʼm Owen. Iʼm a photographer, programmer, iOS/macOS developer, and innovator.">
+    <meta property="og:image" content="/apple-touch-icon.png">
+    <meta property="og:url" content="https://owen.uno">
+</head>
+<style>
+    body {
+        background-color: #0f0f0f !important;
+    }
+
+    #card-spacer {
+        height: 100px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        main {
+            background-color: #282829;
+        }
+    }
+    @media (prefers-color-scheme: light) {
+        main {
+            background-color: #fbf9f2;
+        }
+    }
+
+    #card-image {
+        width:  90vw;
+        max-width: 1000px;
+        height: auto;
+        border-radius: 8px;
+        border: #515151 4px solid;
+        z-index: 1;
+        filter: drop-shadow(0px 0px 10px #000);
+        -webkit-filter: drop-shadow(0px 0px 10px #000);
+        transition: transform 0.3s ease;
+    }
+
+    .xplore p {
+        text-align: center;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .amazed {
+        background: linear-gradient(135deg, #00aaff, #ff4f58, #ff6fb2);
+        background-size: 300%;
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        animation: gradientAnimation 6s infinite linear;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.4),
+            0 0 20px rgba(255, 255, 255, 0.3);
+    }
+
+    .xplore {
+        margin-top: -90px !important;
+    }
+
+    .not {
+        background: linear-gradient(135deg, #00aaff, #ff4f58, #ff6fb2);
+        background-size: 300%;
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        animation: gradientAnimation 6s infinite linear;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.4),
+            0 0 20px rgba(255, 255, 255, 0.3);
+        font-weight: 700;
+        font-size: 30px;
+    }
+
+    hr {
+        border: 0;
+        height: 3px;
+        background: #515151;
+        margin: 0 auto;
+        width: 90%;
+    }
+
+    .learn-button {
+        padding: 4px;
+        border-radius: 10px;
+        border: #8a8a8a 2px solid;
+        transition: border ease-in-out 0.5s;
+        transition: color ease-in-out 0.5s;
+    }
+
+    .learn-button:hover {
+        color: #c8c8c8;
+        border-radius: 10px;
+        border: #c8c8c8 2px solid;
+        transition: color ease-in-out 0.5s;
+        transition: border ease-in-out 0.5s;
+    }
+
+    @keyframes gradientAnimation {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+</style>
+
+
+<body draggable="false">
+    <div id="header-container"></div>
+    <main>
+        <div class="xplore">
+            <div id="card-spacer"></div>
+
+            <a href="https://nocturne.owen.uno">
+                <img src="card.png" id="card-image" alt="nocturne" draggable="false" width="200" height=auto
+                    oncontextmenu="return false;"></a>
+                    <div id="card-spacer"></div>
+                    <br>
+                    <hr>
+                    <div id="card-spacer"></div>
+            <h1 style="font-size: 70px; font-weight: 300;"><b style="font-weight: 800;">Xplore</b></h1>
+            <img src="XploreIcon.png" alt="" width="200" height="200"
+                style="-webkit-filter: drop-shadow(8px 8px 3px #515151); filter: drop-shadow(8px 8px 3px #515151);"
+                oncontextmenu="return false;" draggable="false">
+            <br>
+            <br>
+            <h2>Prepare to be <b class="amazed">amazed</b>.</h2>
+            <br>
+            <h4>The next generation of the web. No big deal.</h4>
+            <br>
+            <h4>Youʼre using a web browser right now. How does it look?</h4>
+            <br>
+            <br>
+            <video src="Xplore Sidebar.mp4" muted oncontextmenu="return false;"
+                style="width: 90.5vw; max-width: 703px; border-radius: 7px; offset-inline-start: 2px;"></video>
+            <br>
+            <h4>Not this good? Thatʼs what I thought.</h4>
+            <br>
+            <p class="not">So why wouldnʼt you switch?</p>
+            <br>
+            <p>Xplore is coming early this year.</p>
+            <br>
+            <p>(Yʼknow, you could always subscribe to the mailing list to know when itʼll be released, plus exclusive
+                insider news 😉)</p>
+            <br>
+            <br>
+            <a href="/xplore" class="amazed learn-button" style="font-size: 24px; font-weight: 600;">Learn more</a>
+            <br>
+            <br>
+        </div>
+        <div class="mainGradient"></div>
+        <!--Hey from the HTML! I hope that you enjoyed using my website as much as I enjoyed programming it!-->
+        <img src="mascot.svg" alt="My logo : )" draggable="false" width="200" height=auto class="mainimg"
+            oncontextmenu="return false;">
+        <h1 class="main-h1">Hi! Iʼm Owen. Itʼs nice to meet you.</h1>
+        <p class="aboutMe">Iʼm a photographer, programmer, iOS/macOS developer, web developer, cinematographer, and
+            innovator. Oh, and Iʼm 14.</p>
+        <br>
+        <span>
+            <a href="https://owen.uno/photography"><button><b>Photography</b></button></a>
+            <a href="https://owen.uno/dev"><button><b>Development</b></button></a>
+        </span>
+        <br>
+        <br>
+        
+        <h2>Some of my work:</h2>
+        <div class="carousel-container">
+            <div class="carousel">
+                <div class="carousel-item">
+                    <img oncontextmenu="return false;" draggable="false" src="shrubed.png" alt="Near Bar Harbor"
+                        class="carousel-image">
+                    <b class="carousel-caption"><a target="_blank" class="normal-link"
+                            href="https://owen.uno/photography">Near Bar Harbor/Photo</a></b>
+                </div>
+                <div class="carousel-item">
+                    <img oncontextmenu="return false;" draggable="false" src="XploreScreenshot.png"
+                        alt="The Xplore web browser for macOS" class="carousel-image">
+                    <b class="carousel-caption"><a target="_blank" class="normal-link"
+                            href="https://teenagetech.github.io/xplore">The Xplore web
+                            browser/Dev</a></b>
+                </div>
+                <div class="carousel-item">
+                    <img oncontextmenu="return false;" draggable="false" src="mountain.png" alt="Mountain"
+                        class="carousel-image">
+                    <b class="carousel-caption"><a target="_blank" class="normal-link"
+                            href="https://owen.uno/photography">Avalance
+                            Mountain/Photo</a></b>
+                </div>
+                <div class="carousel-item">
+                    <img oncontextmenu="return false;" draggable="false" src="wordclockImage.png" alt="word clock"
+                        class="carousel-image">
+                    <b class="carousel-caption"><a target="_blank" class="normal-link"
+                            href="https://teenagetech.github.io/wordclock">word clock in
+                            Safari/Dev</a></b>
+                </div>
+                <div class="carousel-item">
+                    <img oncontextmenu="return false;" draggable="false" src="cardinal.png" alt="Cardinal"
+                        class="carousel-image">
+                    <b class="carousel-caption"><a target="_blank" class="normal-link"
+                            href="https://owen.uno/photography">Cardinal/Photo</a></b>
+                </div>
+                <div class="carousel-item">
+                    <img oncontextmenu="return false;" draggable="false" src="CatChatImage.png" alt="CatChat"
+                        class="carousel-image">
+                    <b class="carousel-caption"><a target="_blank" class="normal-link"
+                            href="https://teenagetech.github.io/catchat">CatChat/Dev</a></b>
+                </div>
+                <div class="carousel-item">
+                    <img oncontextmenu="return false;" draggable="false" src="glacier.png" alt="Glacier"
+                        class="carousel-image">
+                    <b class="carousel-caption"><a target="_blank" class="normal-link"
+                            href="https://owen.uno/photography">Jackson
+                            Glacier/Photo</a></b>
+                </div>
+                <div class="carousel-item">
+                    <img oncontextmenu="return false;" draggable="false" src="ArtShareImage.png" alt="ArtShare"
+                        class="carousel-image">
+                    <b class="carousel-caption"><a target="_blank" class="normal-link"
+                            href="https://artshare.one">ArtShare/Dev</a></b>
+                </div>
+                <div class="carousel-item">
+                    <img oncontextmenu="return false;" draggable="false" src="lake.png" alt="Lake"
+                        class="carousel-image">
+                    <b class="carousel-caption"><a target="_blank" class="normal-link"
+                            href="https://owen.uno/photography">Windy Lake/Photo</a></b>
+                </div>
+                <div class="carousel-item">
+                    <img oncontextmenu="return false;" draggable="false" src="MouseManImage.png"
+                        alt="Mouse Man: Cheese Heist" class="carousel-image">
+                    <b class="carousel-caption"><a target="_blank" class="normal-link"
+                            href="https://teenagetech.github.io/teenagetechgames">Mouse
+                            Man: Cheese Heist/Dev</a></b>
+                </div>
+                <div class="carousel-item">
+                    <img oncontextmenu="return false;" draggable="false" src="lighthouse.png" alt="Lighthouse"
+                        class="carousel-image">
+                    <b class="carousel-caption"><a target="_blank" class="normal-link"
+                            href="https://owen.uno/photography">Lighthouse/Photo</a></b>
+                </div>
+                <div class="carousel-item">
+                    <img oncontextmenu="return false;" draggable="false" src="yay Screenshot.png" alt="yay: meaningless crypto"
+                        class="carousel-image">
+                    <b class="carousel-caption"><a target="_blank" class="normal-link"
+                            href="https://owen.uno/dev">yay/Dev</a></b>
+                </div>
+                <div class="carousel-item">
+                    <img oncontextmenu="return false;" draggable="false" src="undawatah.png" alt="Rocks underwater"
+                        class="carousel-image">
+                    <b class="carousel-caption"><a target="_blank" class="normal-link"
+                            href="https://owen.uno/photography">Underwater/Photo</a></b>
+                </div>
+                <div class="carousel-item">
+                    <img oncontextmenu="return false;" draggable="false" src="beta.png" alt="beta.owen.uno"
+                        class="carousel-image">
+                    <b class="carousel-caption"><a target="_blank" class="normal-link"
+                            href="https://owen.uno/dev">beta.owen.uno/Dev</a></b>
+                </div>
+                <div class="carousel-item">
+                    <img oncontextmenu="return false;" draggable="false" src="elec_ave.png" alt="Electric Avenue"
+                        class="carousel-image">
+                    <b class="carousel-caption"><a target="_blank" class="normal-link"
+                            href="https://owen.uno/photography">Electric Ave./Photo</a></b>
+                </div>
+                <div class="carousel-item">
+                    <img oncontextmenu="return false;" draggable="false" src="nocturne.png" alt="nocturne - a place to collect your thoughts"
+                        class="carousel-image">
+                    <b class="carousel-caption"><a target="_blank" class="normal-link"
+                            href="https://owen.uno/dev">nocturne/Dev</a></b>
+                </div>
+                <div class="carousel-item">
+                    <img oncontextmenu="return false;" draggable="false" src="vermont.png" alt="Green Mountains"
+                        class="carousel-image">
+                    <b class="carousel-caption"><a target="_blank" class="normal-link"
+                            href="https://owen.uno/photography">Vermont/Photo</a></b>
+                </div>
+            </div>
+            <button class="carousel-prev" onclick="prevSlide()">&#10094;</button>
+            <button class="carousel-next" onclick="nextSlide()">&#10095;</button>
+        </div>
+        <br>
+        <br>
+        <h2>I also built that LEGO Playdate that over fifty-five thousand people noticed:</h2>
+        <br>
+        <blockquote class="twitter-tweet">
+            <p lang="en" dir="ltr">Please enjoy this wonderful LEGO® Playdate® built by Owen V.—13 years old—who says it
+                took
+                him about four days to create this cheery friend. We&#39;re really glad you shared this with us, Owen!
+                <a href="https://t.co/oM6zPCScHD">pic.twitter.com/oM6zPCScHD</a>
+            </p>&mdash; Playdate (@playdate) <a
+                href="https://twitter.com/playdate/status/1712188627696984413?ref_src=twsrc%5Etfw">October 11, 2023</a>
+        </blockquote>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <br>
+        <br>
+        <h2>Here are a few of my favorite things:</h2>
+        <p><b>Programming Language:</b><br>Swift</p>
+        <p><b>Companies:</b><br>Apple<br>Panic<br>teenage engineering</p>
+        <p><b>Color:</b><br><b class="yellowtext">Yellow</b></p>
+        <br>
+        <p>Have an idea? A comment? A question? Or just want to say
+            hi?<br>Email me at <a href="mailto:hi@owen.uno" class="normal-link">hi@owen.uno</a></p>
+        <br>
+        <h2>Stay in the loop!</h2>
+        <h4>Iʼll let you know when I release new software or when new photography drops.</h4>
+        <br>
+        <form class="subscribe-form" id="subscribeForm">
+            <div class="input-container">
+                <input type="email" id="email-input" name="email" class="input-field" placeholder="Email Address"
+                    required>
+                <button type="submit" class="subscribe-button"><b>Subscribe</b></button>
+            </div>
+            <p id="email-helper-text" class="email-helper-text"></p>
+            <p id="form-message" class="form-message"></p>
+            <br>
+            <br>
+        </form>
+        <br>
+        <br>
+    </main>
+    <footer>
+        <p>&copy; <a href="https://github.com/teenagetech" class="footer-link">Owen Van Vooren</a>. All rights reserved.
+        </p>
+    </footer>
+    <script src="header.js"></script>
+    <script type="module" src="firebaseconfig.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const emailInput = document.getElementById('email-input');
+            const emailHelperText = document.getElementById('email-helper-text');
+            const formMessage = document.getElementById('form-message');
+            const subscribeButton = document.querySelector('.subscribe-button');
+
+            emailInput.addEventListener('input', function () {
+                const email = emailInput.value;
+                if (formMessage.textContent !== '') {
+                    formMessage.textContent = '';
+                    formMessage.classList.remove('error');
+                }
+                if (validateEmail(email)) {
+                    emailHelperText.textContent = 'Awesome! Your email looks good.';
+                    emailHelperText.classList.add('valid');
+                    emailHelperText.classList.remove('error');
+                    subscribeButton.disabled = false;
+                } else {
+                    emailHelperText.textContent = getEmailErrorMessage(email);
+                    emailHelperText.classList.add('error');
+                    emailHelperText.classList.remove('valid');
+                    subscribeButton.disabled = true;
+                }
+            });
+
+            document.getElementById('subscribeForm').addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const email = emailInput.value;
+                const formspreeUrl = 'https://formspree.io/f/xjkvvzaq';
+                if (validateEmail(email)) {
+                    fetch(formspreeUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ email: email })
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.ok) {
+                                formMessage.textContent = 'Thanks for subscribing!';
+                                formMessage.classList.remove('error');
+                            } else {
+                                formMessage.textContent = 'Oops! Something went wrong. Please try again.';
+                                formMessage.classList.add('error');
+                            }
+                        })
+                        .catch(error => {
+                            formMessage.textContent = 'Oops! Something went wrong. Please try again.';
+                            formMessage.classList.add('error');
+                        });
+                }
+            });
+
+            function validateEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(String(email).toLowerCase());
+            }
+
+            function getEmailErrorMessage(email) {
+                if (!email.includes('@')) {
+                    return 'Hmm, it looks like youʼre missing the "@" sign.';
+                } else if (!email.includes('.')) {
+                    return 'Almost there, but youʼre missing a "." to complete the domain!';
+                } else if (email.split('@').length > 2) {
+                    return 'It looks like youʼve got more than one "@" sign in your email.';
+                } else if (email.startsWith('@') || email.endsWith('@')) {
+                    return 'Your email shouldnʼt start or end with the "@" sign.';
+                } else if (email.endsWith('.')) {
+                    return 'Your email shouldnʼt end with a "."';
+                } else {
+                    return 'This doesnʼt look like a valid email address. Double-check it!';
+                }
+            }
+        });
+
+    </script>
+    <script>
+        const carousel = document.querySelector('.carousel');
+        const slides = document.querySelectorAll('.carousel-item');
+        const prevButton = document.querySelector('.carousel-prev');
+        const nextButton = document.querySelector('.carousel-next');
+        let currentIndex = Math.floor(Math.random() * slides.length);
+        let startX = 0;
+        let isDragging = false;
+
+        function showSlide(index) {
+            const translateX = index * -100;
+            carousel.style.transform = `translateX(${translateX}%)`;
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex === 0) ? slides.length - 1 : currentIndex - 1;
+            showSlide(currentIndex);
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex === slides.length - 1) ? 0 : currentIndex + 1;
+            showSlide(currentIndex);
+        }
+
+        function handleTouchStart(e) {
+            startX = e.touches[0].clientX;
+            isDragging = true;
+        }
+
+        function handleTouchMove(e) {
+            if (!isDragging) return;
+            const moveX = e.touches[0].clientX;
+            const diffX = startX - moveX;
+            if (diffX > 50) {
+                nextSlide();
+                isDragging = false;
+            } else if (diffX < -50) {
+                prevSlide();
+                isDragging = false;
+            }
+        }
+
+        function handleTouchEnd() {
+            isDragging = false;
+        }
+
+        document.addEventListener('touchstart', handleTouchStart);
+        document.addEventListener('touchmove', handleTouchMove);
+        document.addEventListener('touchend', handleTouchEnd);
+
+        showSlide(currentIndex);
+
+        window.addEventListener('resize', () => {
+            showSlide(currentIndex);
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const video = document.querySelector('video');
+            const imageReplacement = `<img src="XploreImage.png" alt="" oncontextmenu="return false;" 
+                                        style="width: 90vw; max-width: 700px; transform: scale(1.0, 0.998)">`;
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        video.play();
+                    }
+                });
+            }, {
+                threshold: 0.75
+            });
+            observer.observe(video);
+            video.addEventListener('ended', () => {
+                video.outerHTML = imageReplacement;
+            });
+        });
+    </script>
+
+</body>
+
+</html>
