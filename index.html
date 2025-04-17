@@ -22,22 +22,13 @@
     <link rel="preload" href="images/minimize-active.png" as="image">
     <link rel="preload" href="images/zoom-active.png" as="image">
     <link rel="preload" href="images/pull.png" as="image">
-    <link rel="preload" href="images/projects/catchat.png" as="image">
-    <link rel="preload" href="images/projects/nocturne.png" as="image">
-    <link rel="preload" href="images/projects/owenuno.png" as="image">
-    <link rel="preload" href="images/projects/wordclock.png" as="image">
-    <link rel="preload" href="images/projects/xplore.png" as="image">
-    <link rel="preload" href="images/projects/yay.png" as="image">
-    <link rel="preload" href="images/photography/cabin.png" as="image">
-    <link rel="preload" href="images/photography/cardinal.png" as="image">
-    <link rel="preload" href="images/photography/elec_ave.png" as="image">
-    <link rel="preload" href="images/photography/glacier.png" as="image">
-    <link rel="preload" href="images/photography/lake.png" as="image">
-    <link rel="preload" href="images/photography/lighthouse.png" as="image">
-    <link rel="preload" href="images/photography/mountain.png" as="image">
-    <link rel="preload" href="images/photography/shrubed.png" as="image">
-    <link rel="preload" href="images/photography/undawatah.png" as="image">
-    <link rel="preload" href="images/photography/vermont.png" as="image">
+    
+    <!-- Preload iOS App Icons -->
+    <link rel="preload" href="images/mobile/about-ios.png" as="image">
+    <link rel="preload" href="images/mobile/projects-ios.png" as="image">
+    <link rel="preload" href="images/mobile/photos-ios.png" as="image">
+    <link rel="preload" href="images/mobile/contact-ios.png" as="image">
+    <link rel="preload" href="images/ios-wallpaper.jpg" as="image">
     
     <!-- FontFaceObserver for better font loading detection -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fontfaceobserver/2.3.0/fontfaceobserver.standalone.min.js"></script>
@@ -48,6 +39,7 @@
     <meta property="og:image" content="/apple-touch-icon.png">
     <meta property="og:url" content="https://owen.uno">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/mobile.css">
     <script src="js/script.js" defer></script>
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="apple-touch-icon" href="images/icons/apple-logo.svg">
@@ -65,7 +57,205 @@
         </div>
     </div>
 
-    <div class="desktop">
+    <!-- iOS Mobile Interface -->
+    <div id="ios-interface" class="ios-interface">
+        <!-- iOS Status Bar -->
+        <div class="ios-status-bar">
+            <div class="ios-carrier">AB&C</div>
+            <div class="ios-time" id="ios-time">12:00</div>
+            <div class="ios-battery">
+                <span>75%</span>
+                <div class="ios-battery-icon">
+                    <div class="ios-battery-level"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- iOS Home Screen -->
+        <div class="ios-home-screen">
+            <div class="ios-app" data-app="about">
+                <div class="ios-app-icon">
+                    <img src="images/mobile/about-ios.png" alt="About">
+                </div>
+                <div class="ios-app-name">About Me</div>
+            </div>
+            <div class="ios-app" data-app="projects">
+                <div class="ios-app-icon">
+                    <img src="images/mobile/projects-ios.png" alt="Projects">
+                </div>
+                <div class="ios-app-name">Projects</div>
+            </div>
+            <div class="ios-app" data-app="photography">
+                <div class="ios-app-icon">
+                    <img src="images/mobile/photos-ios.png" alt="Photos">
+                </div>
+                <div class="ios-app-name">Photos</div>
+            </div>
+            <div class="ios-app" data-app="contact">
+                <div class="ios-app-icon">
+                    <img src="images/mobile/contact-ios.png" alt="Contact">
+                </div>
+                <div class="ios-app-name">Contact</div>
+            </div>
+        </div>
+
+        <!-- iOS Dock -->
+        <div class="ios-dock">
+            <div class="ios-app" data-app="about">
+                <div class="ios-app-icon">
+                    <img src="images/mobile/about-ios.png" alt="About">
+                </div>
+            </div>
+            <div class="ios-app" data-app="projects">
+                <div class="ios-app-icon">
+                    <img src="images/mobile/projects-ios.png" alt="Projects">
+                </div>
+            </div>
+            <div class="ios-app" data-app="photography">
+                <div class="ios-app-icon">
+                    <img src="images/mobile/photos-ios.png" alt="Photos">
+                </div>
+            </div>
+            <div class="ios-app" data-app="contact">
+                <div class="ios-app-icon">
+                    <img src="images/mobile/contact-ios.png" alt="Contact">
+                </div>
+            </div>
+        </div>
+
+        <!-- iOS Content Screens -->
+        <div class="ios-content-screen" id="about-screen">
+            <div class="ios-nav-bar">
+                <div class="ios-back-button">Back</div>
+                <div class="ios-nav-title">About Me</div>
+                <div class="ios-nav-right"></div>
+            </div>
+            <div class="ios-content">
+                <img src="images/me.png" alt="Owen Van Vooren" class="profile-pic" draggable="false">
+                <h1>Hi! I'm Owen. It's nice to meet you.</h1>
+                <p>I'm a UI designer, developer (iOS/macOS + web), and photographer. Oh, and I'm 14.</p>
+                <p>I make tiny apps and games for the internet and beyond.</p>
+            </div>
+        </div>
+
+        <div class="ios-content-screen" id="projects-screen">
+            <div class="ios-nav-bar">
+                <div class="ios-back-button">Back</div>
+                <div class="ios-nav-title">Projects</div>
+                <div class="ios-nav-right"></div>
+            </div>
+            <div class="ios-content">
+                <div class="projects-content">
+                    <div class="project-item">
+                        <img src="images/projects/nocturne.png" alt="App Icon">
+                        <div class="project-info">
+                            <h3><a href="https://nocturne.owen.uno">nocturne</a></h3>
+                            <p>nocturne: a place to collect your thoughts.</p>
+                            <b>iOS</b>
+                        </div>
+                    </div>
+                    <div class="project-item">
+                        <img src="images/projects/wordclock.png" alt="Web Icon">
+                        <div class="project-info">
+                            <h3><a href="https://teenagetech.github.io/wordclock">word clock</a></h3>
+                            <p>word clock is a tiny little extension for your browser. tell the time with a click.</p>
+                            <b>web extension</b>
+                        </div>
+                    </div>
+                    <div class="project-item">
+                        <img src="images/projects/xplore.png" alt="App Icon">
+                        <div class="project-info">
+                            <h3><a href="https://owen.uno/xplore">Xplore</a></h3>
+                            <p>Xplore. Web browsing so quick it's easier done than said.</p>
+                            <b>macOS</b>
+                        </div>
+                    </div>
+                    <div class="project-item">
+                        <img src="images/projects/catchat.png" alt="Web Icon">
+                        <div class="project-info">
+                            <h3><a href="https://teenagetech.github.io/catchat">CatChat</a></h3>
+                            <p>Chat with the internet's favorite clueless feline AI.</p>
+                            <b>web</b>
+                        </div>
+                    </div>
+                    <div class="project-item">
+                        <img src="images/projects/yay.png" alt="Web Icon">
+                        <div class="project-info">
+                            <h3><a href="https://yay.owen.uno">yay</a></h3>
+                            <p>Invest in the meaningless crypto you never knew you needed.</p>
+                            <b>web</b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ios-content-screen" id="photography-screen">
+            <div class="ios-nav-bar">
+                <div class="ios-back-button">Back</div>
+                <div class="ios-nav-title">Photos</div>
+                <div class="ios-nav-right"></div>
+            </div>
+            <div class="ios-content">
+                <div class="photo-gallery">
+                    <div class="photo-item">
+                        <img src="images/photography/cabin.png" alt="Cabin at dusk">
+                    </div>
+                    <div class="photo-item">
+                        <img src="images/photography/cardinal.png" alt="Cardinal in a birch tree">
+                    </div>
+                    <div class="photo-item">
+                        <img src="images/photography/elec_ave.png" alt="Electric Avenue">
+                    </div>
+                    <div class="photo-item">
+                        <img src="images/photography/glacier.png" alt="Glacier">
+                    </div>
+                    <div class="photo-item">
+                        <img src="images/photography/lake.png" alt="Lake on a windy day">
+                    </div>
+                    <div class="photo-item">
+                        <img src="images/photography/lighthouse.png" alt="Lighthouse">
+                    </div>
+                    <div class="photo-item">
+                        <img src="images/photography/mountain.png" alt="Avalanche Mountain">
+                    </div>
+                    <div class="photo-item">
+                        <img src="images/photography/shrubed.png" alt="Near Bar Harbor, Maine">
+                    </div>
+                    <div class="photo-item">
+                        <img src="images/photography/undawatah.png" alt="Underwater rocks">
+                    </div>
+                    <div class="photo-item">
+                        <img src="images/photography/vermont.png" alt="Killington, Vermont">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ios-content-screen" id="contact-screen">
+            <div class="ios-nav-bar">
+                <div class="ios-back-button">Back</div>
+                <div class="ios-nav-title">Contact</div>
+                <div class="ios-nav-right"></div>
+            </div>
+            <div class="ios-content">
+                <div class="contact-content">
+                    <h2>Get in touch</h2>
+                    <p>Have an idea? A question? A comment? Or just want to say hi?</p>
+                    <div class="contact-method">
+                        <img src="images/icons/email.svg" alt="Email">
+                        <a href="mailto:hi@owen.uno">hi@owen.uno</a>
+                    </div>
+                    <div class="contact-method">
+                        <img src="images/projects/owenuno.png" alt="Website">
+                        <a href="https://owen.uno" target="_blank">owen.uno</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="desktop" class="desktop">
         <!-- Menu Bar -->
         <div class="menu-bar">
             <div class="apple-menu">

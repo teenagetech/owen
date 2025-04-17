@@ -1,7 +1,171 @@
 // Mac OS 9 Desktop Functionality
 
-// Startup screen handling
+// Global Variables
+let zIndex = 100;
+let activeWindow = null;
+let currentDragTarget = null;
+let draggingActive = false;
+let clickedHeader = null;
+let offsetX, offsetY;
+let windowStartWidth, windowStartHeight;
+let resizingActive = false;
+let currentResizeHandle = null;
+let currentResizeTarget = null;
+let resizeStartX, resizeStartY;
+let isMobile = false;
+let draggedWindow = null;
+let isResizing = false;
+let isDragging = false;
+let folderCounter = 0;
+let lastClickedItem = null;
+let windowZIndex = 100;
+let dragOutline = null;
+let resizeOutline = null;
+let menuBarHeight = 0;
+let isMenuOpen = false;
+let activeMenu = null;
+
+// Constants for minimum window size
+const MIN_WINDOW_WIDTH = 300;
+const MIN_WINDOW_HEIGHT = 200;
+
+// Wait until the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', function() {
+    // Check device type first (mobile or desktop)
+    checkDevice();
+    
+    // Initialize common components for both interfaces
+    initializeDateTime();
+    
+    // Initialize startup screen (will call the appropriate interface init)
+    initializeStartupScreen();
+});
+
+// Check if the device is mobile
+function checkDevice() {
+    // Consider a device mobile if it has a mobile user agent OR screen width is 600px or less
+    isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 600;
+    
+    // Set appropriate interface
+    const desktopInterface = document.getElementById('desktop');
+    const mobileInterface = document.getElementById('ios-interface');
+    
+    if (isMobile) {
+        if (desktopInterface) desktopInterface.style.display = 'none';
+        if (mobileInterface) mobileInterface.style.display = 'block';
+        document.body.classList.add('mobile-device');
+    } else {
+        if (desktopInterface) desktopInterface.style.display = 'block';
+        if (mobileInterface) mobileInterface.style.display = 'none';
+        document.body.classList.remove('mobile-device');
+    }
+    
+    // Add resize listener to handle orientation changes
+    window.addEventListener('resize', function() {
+        const wasMobile = isMobile;
+        // Update mobile check with new 600px breakpoint
+        isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 600;
+        
+        if (wasMobile !== isMobile) {
+            location.reload(); // Reload to switch interfaces
+        } else if (isMobile) {
+            // Just update orientation if staying in mobile
+            handleMobileOrientation();
+        }
+    });
+    
+    // Initial orientation handling for mobile
+    if (isMobile) {
+        handleMobileOrientation();
+    }
+}
+
+// Handle mobile orientation changes
+function handleMobileOrientation() {
+    const isLandscape = window.innerWidth > window.innerHeight;
+    
+    if (isLandscape) {
+        document.body.classList.add('landscape');
+        document.body.classList.remove('portrait');
+    } else {
+        document.body.classList.add('portrait');
+        document.body.classList.remove('landscape');
+    }
+}
+
+// Initialize mobile interface
+function initializeMobileInterface() {
+    if (!isMobile) return;
+    
+    // Initialize mobile fonts
+    initializeMobileFonts();
+    
+    // Set up real-time clock for iOS interface
+    updateMobileTime();
+    setInterval(updateMobileTime, 60000); // Update every minute
+    
+    // Add click events to app icons
+    const appIcons = document.querySelectorAll('.ios-app');
+    appIcons.forEach(app => {
+        app.addEventListener('click', function() {
+            const appType = this.getAttribute('data-app');
+            openMobileApp(appType);
+        });
+    });
+    
+    // Add click events to back buttons
+    const backButtons = document.querySelectorAll('.ios-back-button');
+    backButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            closeAllMobileApps();
+        });
+    });
+}
+
+// Initialize mobile fonts
+function initializeMobileFonts() {
+    // Add class to indicate mobile font loading
+    document.documentElement.classList.add('mobile-fonts-loading');
+    
+    // Check if FontFaceObserver is available
+    if (typeof FontFaceObserver !== 'undefined') {
+        const helvetica = new FontFaceObserver('Helvetica');
+        
+        // Load Helvetica font with timeout
+        helvetica.load(null, 3000).then(() => {
+            console.log('Mobile font loaded successfully');
+            document.documentElement.classList.remove('mobile-fonts-loading');
+            document.documentElement.classList.add('mobile-fonts-loaded');
+        }).catch(err => {
+            console.log('Mobile font loading error:', err);
+            // Add the class anyway to avoid interface issues
+            document.documentElement.classList.remove('mobile-fonts-loading');
+            document.documentElement.classList.add('mobile-fonts-loaded');
+        });
+    } else {
+        // No FontFaceObserver, assume fonts are loaded after a delay
+        setTimeout(() => {
+            document.documentElement.classList.remove('mobile-fonts-loading');
+            document.documentElement.classList.add('mobile-fonts-loaded');
+        }, 800);
+    }
+}
+
+// Initialize desktop interface
+function initializeDesktopInterface() {
+    if (isMobile) return;
+    
+    initializeFonts();
+    initializeDesktop();
+    initializeMenus();
+    initializeWindows();
+    initializeCursors();
+    initializeContextMenu();
+    initializeAlerts();
+}
+
+// Startup screen handling
+function initializeStartupScreen() {
     const startupScreen = document.getElementById('startup-screen');
     const loadingBar = document.getElementById('loading-bar');
     const startupSubtext = document.querySelector('.startup-subtext');
@@ -11,15 +175,7 @@ document.addEventListener('DOMContentLoaded', function() {
         'Starting up...',
         'Loading resources...',
         'Initializing system...',
-        'Preparing desktop...',
-        'Loading applications...',
-        'Telling your browser to speed things up...',
-        'Waiting for you to get a better internet connection...',
-        'Thanking you for being so patient that you wait forever for my portfolio to load...',
-        'Thinking of some funny easter egg...',
-        'Wondering how on earth you\'re still here...',
-        'Click <a href="https://youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">this link</a> to make it load faster',
-        'Just kidding ;)'
+        'Preparing desktop...'
     ];
     let currentMessageIndex = 0;
     let messageCharIndex = 0;
@@ -27,70 +183,63 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Function for typewriter effect
     function typeMessage() {
-        const msg = startupMessages[currentMessageIndex];
-      
-        // if this message contains an <a> we’ll just show it whole
-        if (msg.includes('<a ') && messageCharIndex === 0) {
-          startupSubtext.innerHTML = msg;
-          // wait 1.5s then advance
-          clearInterval(messageUpdateInterval);
-          setTimeout(nextMessage, 1500);
-          return;
-        }
-      
-        // otherwise, type it character by character
-        if (messageCharIndex < msg.length) {
-          startupSubtext.innerHTML = msg.substring(0, messageCharIndex + 1);
-          messageCharIndex++;
+        const currentMessage = startupMessages[currentMessageIndex];
+        
+        if (messageCharIndex < currentMessage.length) {
+            startupSubtext.textContent = currentMessage.substring(0, messageCharIndex + 1);
+            messageCharIndex++;
         } else {
-          clearInterval(messageUpdateInterval);
-          setTimeout(nextMessage, 1500);
+            // Move to next message after delay
+            clearInterval(messageUpdateInterval);
+            setTimeout(() => {
+                messageCharIndex = 0;
+                currentMessageIndex = (currentMessageIndex + 1) % startupMessages.length;
+                messageUpdateInterval = setInterval(typeMessage, 100);
+            }, 1500);
         }
-      }
-      
-      // helper to go to the next message
-      function nextMessage() {
-        messageCharIndex = 0;
-        currentMessageIndex = (currentMessageIndex + 1) % startupMessages.length;
-        messageUpdateInterval = setInterval(typeMessage, 100);
-      }
-      
+    }
     
     // Start the typewriter effect
     messageUpdateInterval = setInterval(typeMessage, 100);
     
     // Track loading progress
     let progress = 0;
-    const totalAssets = 27; // Approximate number of critical assets
+    const totalAssets = 20; // Approximate number of critical assets
     let loadedAssets = 0;
     
     // Function to update progress bar
     function updateProgress() {
         loadedAssets++;
         progress = Math.min((loadedAssets / totalAssets) * 100, 100);
-        loadingBar.style.width = progress + '%';
+        if (loadingBar) loadingBar.style.width = progress + '%';
         
         // When loading is complete
         if (progress >= 100) {
             setTimeout(() => {
                 clearInterval(messageUpdateInterval); // Stop updating messages
-                startupSubtext.textContent = 'Ready.';
+                if (startupSubtext) startupSubtext.textContent = 'Ready.';
                 
                 setTimeout(() => {
-                    startupScreen.classList.add('hidden');
+                    if (startupScreen) startupScreen.classList.add('hidden');
+                    
+                    // Initialize appropriate interface after startup
+                    if (isMobile) {
+                        initializeMobileInterface();
+                    } else {
+                        initializeDesktopInterface();
+                    }
                     
                     // Remove the startup screen from DOM after transition
                     setTimeout(() => {
-                        startupScreen.style.display = 'none';
-                    }, 15000);
+                        if (startupScreen) startupScreen.style.display = 'none';
+                    }, 1500);
                 }, 600);
-            }, 600); // Short delay to show 100%
+            }, 800); // Short delay to show 100%
         }
     }
     
     // Track image loading progress
     const images = document.querySelectorAll('img');
-    let loadedImages = 0;
     
     images.forEach(img => {
         // If image is already loaded or cached
@@ -140,11 +289,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fallback: Ensure startup screen is hidden after a maximum time
     // In case something goes wrong with loading detection
     setTimeout(() => {
-        if (!startupScreen.classList.contains('hidden')) {
-            loadingBar.style.width = '100%';
+        if (startupScreen && !startupScreen.classList.contains('hidden')) {
+            if (loadingBar) loadingBar.style.width = '100%';
             setTimeout(() => {
                 startupScreen.classList.add('hidden');
-                // No startup sound in fallback either
+                
+                // Initialize appropriate interface in fallback case
+                if (isMobile) {
+                    initializeMobileInterface();
+                } else {
+                    initializeDesktopInterface();
+                }
                 
                 setTimeout(() => {
                     startupScreen.style.display = 'none';
@@ -152,37 +307,73 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 500);
         }
     }, 8000); // 8 second maximum loading time
+}
+
+// Update the time in the iOS status bar
+function updateMobileTime() {
+    const timeElement = document.getElementById('ios-time');
+    if (!timeElement) return;
     
-    // Initialize System (after startup)
-    setTimeout(() => {
-        initializeClock();
-        initializeIcons();
-        initializeWindows();
-        initializeContextMenu();
-        initializeMenus();
-        initializeCursors();
-    }, 1500);
-});
+    const now = new Date();
+    let hours = now.getHours();
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    
+    // 12-hour format for iOS
+    const period = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // Convert 0 to 12
+    
+    timeElement.textContent = `${hours}:${minutes} ${period}`;
+}
 
-// Original initialization code (now moved inside startup completion callback)
-// Window management variables
-let activeWindow = null;
-let draggedWindow = null;
-let offsetX, offsetY;
-let isResizing = false;
-let isDragging = false;
-let folderCounter = 0;
-let lastClickedItem = null;
-let windowZIndex = 100;
-let dragOutline = null;
-let resizeOutline = null;
-let menuBarHeight = 0;
-let isMenuOpen = false;
-let activeMenu = null;
+// Open a mobile app
+function openMobileApp(appType) {
+    // Hide all app screens first
+    closeAllMobileApps();
+    
+    // Show the selected app screen
+    const appScreen = document.getElementById(`${appType}-screen`);
+    if (appScreen) {
+        appScreen.classList.add('active');
+    }
+}
 
-// Constants for minimum window size
-const MIN_WINDOW_WIDTH = 300;
-const MIN_WINDOW_HEIGHT = 200;
+// Close all mobile apps
+function closeAllMobileApps() {
+    const appScreens = document.querySelectorAll('.ios-content-screen');
+    appScreens.forEach(screen => {
+        screen.classList.remove('active');
+    });
+}
+
+// Initialize date and time display
+function initializeDateTime() {
+    // Update date and time immediately
+    updateDateTime();
+    
+    // Update date and time every minute
+    setInterval(updateDateTime, 60000);
+}
+
+// Update date and time in the menu bar
+function updateDateTime() {
+    const dateTimeElement = document.querySelector('.date-time');
+    if (!dateTimeElement) return;
+    
+    const now = new Date();
+    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const day = days[now.getDay()];
+    
+    let hours = now.getHours();
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    
+    // 12-hour format
+    const period = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // Convert 0 to 12
+    
+    dateTimeElement.textContent = `${day} ${hours}:${minutes} ${period}`;
+}
 
 // Clock function with real-time updates
 function initializeClock() {
@@ -900,6 +1091,47 @@ function hideAlert(alertWindow, overlay) {
     overlay.style.display = 'none';
 }
 
+// Initialize alert windows
+function initializeAlerts() {
+    const alerts = document.querySelectorAll('.alert-window');
+    const overlay = document.getElementById('modal-overlay');
+    
+    // Pre-setup all alert buttons
+    alerts.forEach(alert => {
+        setupAlertButtons(alert, overlay);
+    });
+    
+    // Set up specific alert actions
+    const portfolioOkBtn = document.getElementById('portfolio-ok-btn');
+    const aboutMacOkBtn = document.getElementById('about-mac-ok-btn');
+    const infoOkBtn = document.getElementById('info-ok-btn');
+    const errorOkBtn = document.getElementById('error-ok-btn');
+    
+    if (portfolioOkBtn) {
+        portfolioOkBtn.addEventListener('click', function() {
+            hideAlert(document.getElementById('portfolio-alert'), overlay);
+        });
+    }
+    
+    if (aboutMacOkBtn) {
+        aboutMacOkBtn.addEventListener('click', function() {
+            hideAlert(document.getElementById('about-mac-alert'), overlay);
+        });
+    }
+    
+    if (infoOkBtn) {
+        infoOkBtn.addEventListener('click', function() {
+            hideAlert(document.getElementById('get-info-alert'), overlay);
+        });
+    }
+    
+    if (errorOkBtn) {
+        errorOkBtn.addEventListener('click', function() {
+            hideAlert(document.getElementById('error-alert'), overlay);
+        });
+    }
+}
+
 // Show info alert
 function showInfoAlert(item) {
     const infoAlert = document.getElementById('get-info-alert');
@@ -1023,7 +1255,57 @@ function createNewFolder() {
 
 // Helper function to save folder name
 function saveNewFolderName(span, input) {
-    span.textContent = input.value || 'New Folder';
+    span.textContent = input.value || 'Untitled Folder';
     span.style.display = 'block';
     input.style.display = 'none';
+}
+
+// Initialize font loading
+function initializeFonts() {
+    // Only initialize fonts for desktop mode
+    if (isMobile) return;
+    
+    // Add a class to show we're loading fonts
+    document.documentElement.classList.add('fonts-loading');
+    
+    // Check if FontFaceObserver is available
+    if (typeof FontFaceObserver !== 'undefined') {
+        const charcoal = new FontFaceObserver('Charcoal');
+        const geneva = new FontFaceObserver('geneva-9');
+        
+        // Load both fonts with a timeout to prevent hanging
+        Promise.all([
+            charcoal.load(null, 5000),  // 5 second timeout
+            geneva.load(null, 5000)
+        ]).then(() => {
+            console.log('Fonts loaded successfully');
+            document.documentElement.classList.remove('fonts-loading');
+            document.documentElement.classList.add('fonts-loaded');
+        }).catch(err => {
+            console.log('Font loading error:', err);
+            // Add the class anyway to avoid interface issues
+            document.documentElement.classList.remove('fonts-loading');
+            document.documentElement.classList.add('fonts-loaded');
+        });
+    } else {
+        // No FontFaceObserver, assume fonts are loaded after a delay
+        setTimeout(() => {
+            document.documentElement.classList.remove('fonts-loading');
+            document.documentElement.classList.add('fonts-loaded');
+        }, 1000);
+    }
+}
+
+// Initialize desktop
+function initializeDesktop() {
+    // Get references after DOM is fully loaded
+    dragOutline = document.getElementById('window-drag-outline');
+    resizeOutline = document.getElementById('window-resize-outline');
+    const menuBar = document.querySelector('.menu-bar');
+    if (menuBar) {
+        menuBarHeight = menuBar.offsetHeight;
+    }
+    
+    // Initialize desktop icons
+    initializeIcons();
 } 
