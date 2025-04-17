@@ -357,7 +357,7 @@ body.mobile-device.landscape .ios-dock {
 body {
     overflow-x: hidden;
     background-color: var(--ios-bg-color);
-    background-image: url('../images/mobile/ios-bg.jpg');
+    background-image: url('../images/ios-wallpaper.jpg');
     background-size: cover;
     background-position: center;
     position: fixed;
