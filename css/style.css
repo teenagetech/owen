@@ -964,11 +964,33 @@ body {
 /* Window resize outline */
 .window-resize-outline {
     position: absolute;
-    border: 1px dashed #000;
+    border: 1px dashed #494949;
     background-color: transparent;
     pointer-events: none;
     z-index: 10000;
     display: none;
+}
+
+.window-resize-outline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 1.75px dashed #494949;
+    pointer-events: none;
+}
+
+.window-resize-outline::after {
+    content: '';
+    position: absolute;
+    top: calc(100% - 16.25px);
+    left: calc(100% - 16.25px);
+    width: 15px;
+    height: 15px;
+    border: 1.75px dashed #494949;
+    pointer-events: none;
 }
 
 /* Window states */
@@ -981,6 +1003,10 @@ body {
     left: 0 !important;
     width: 100vw !important;
     height: calc(100vh - 20px) !important;
+}
+
+.window.window.active.window.minimized[data-is-zoomed="true"] {
+    height: 22px !important;
 }
 
 /* Media Queries for Responsiveness */
